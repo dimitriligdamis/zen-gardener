@@ -1,12 +1,14 @@
 import { ArrowLeft, Menu as MenuReactFeather } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { actionChangeIsOpen } from '../../actions/menu';
 import './styles.scss';
 
 function Menu() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.menu.isOpen);
+
+  const activeClassName = 'underline';
 
   return (
     <>
@@ -22,13 +24,23 @@ function Menu() {
             ? <MenuReactFeather />
             : <ArrowLeft />}
         </button>
-        <h1 className="Menu__logo">Logo</h1>
+        <Link to="/" className="Menu__logo">LOGO</Link>
         <ul className="Menu__list">
-          <li className="Menu__link"><NavLink to="login">Se connecter</NavLink></li>
-          <li className="Menu__link"><NavLink to="register">S'inscrire</NavLink></li>
-          <li className="Menu__link"><NavLink to="about">Qui sommes nous ?</NavLink></li>
-          <li className="Menu__link"><NavLink to="contact">Contact</NavLink></li>
-          <li className="Menu__link"><NavLink to="cgu">CGU</NavLink></li>
+          <li className="Menu__link">
+            <NavLink to="login" className={({ isActive }) => (isActive ? activeClassName : undefined)}>Se connecter</NavLink>
+          </li>
+          <li className="Menu__link">
+            <NavLink to="register" className={({ isActive }) => (isActive ? activeClassName : undefined)}>S'inscrire</NavLink>
+          </li>
+          <li className="Menu__link">
+            <NavLink to="about" className={({ isActive }) => (isActive ? activeClassName : undefined)}>Qui sommes nous ?</NavLink>
+          </li>
+          <li className="Menu__link">
+            <NavLink to="contact" className={({ isActive }) => (isActive ? activeClassName : undefined)}>Contact</NavLink>
+          </li>
+          <li className="Menu__link">
+            <NavLink to="cgu" className={({ isActive }) => (isActive ? activeClassName : undefined)}>CGU</NavLink>
+          </li>
         </ul>
       </div>
       {!isOpen && (

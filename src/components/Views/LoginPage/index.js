@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
 
@@ -17,7 +18,7 @@ function LoginPage() {
   return (
     <section className="login_container">
       {/* Importer logo */}
-      <span className="logo">LOGO</span>
+      <Link to="/" className="logo">LOGO</Link>
       <h1 className="login_title">Connexion</h1>
       <form className="login_form" onSubmit={handleSubmit}>
         <Input
