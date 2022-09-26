@@ -1,0 +1,27 @@
+.login {
+
+  &_container {
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    flex-grow: 1;
+  }
+
+  &_input {
+    margin: 2rem;
+  }
+}
+
+.links_container {
+  
+}
