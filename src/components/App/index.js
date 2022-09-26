@@ -1,10 +1,12 @@
+import LoginPage from '../Views/LoginPage';
 import './styles.css';
 
 // == Composant
 function App() {
   return (
     <>
-      <div className="container">
+      <LoginPage />
+      {/* <div className="container">
         <h1 className="reem">Zen Gardener</h1>
         <h1 className="aref">Zen Gardener</h1>
         <h1 className="old">Zen Gardener</h1>
@@ -43,7 +45,7 @@ function App() {
           lorsque les plants ont 3 feuilles.
           Protéger, si possible, les jeunes pousses de l’appétit des limaces.
         </p>
-      </div>
+      </div> */}
     </>
   );
 }
