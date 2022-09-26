@@ -1,4 +1,5 @@
 import Menu from '../../Menu';
+import './styles.scss';
 
 function Homepage() {
   return (
