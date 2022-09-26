@@ -1,18 +1,6 @@
 @use 'reset';
 @use 'vars';
 
-
-@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink&family=Cormorant+Infant:wght@400;500;600&family=Hind+Siliguri&family=IM+Fell+English:ital@0;1&family=Karla&family=Lato&family=Montserrat&family=Old+Standard+TT&family=Raleway&family=Reem+Kufi+Fun&display=swap');
-
-// Titre
-// font-family: 'Aref Ruqaa Ink', serif;
-// font-family: 'Cormorant Infant', serif;
-// font-family: 'IM Fell English', serif;
-// font-family: 'Old Standard TT', serif;
-// font-family: 'Reem Kufi Fun', sans-serif;
-
-// Paragraphe
-
 html {
   font-size: 10px;
 }
@@ -21,74 +9,4 @@ body {
   font-size: 1.6rem;
   font-family: sans-serif;
   background-color: bisque;
-}
-
-h1 {
-  font-size: 3rem;
-}
-
-
-/* 
-  // or you can import your own font
-  @font-face {
-    font-family: 'Roboto';
-    src: url('../assets/fonts/Roboto-Regular.ttf');
-  }
-
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-*/
-
-.reem {
-  font-family: 'Reem Kufi Fun', sans-serif;
-}
-
-.aref {
-  font-family: 'Aref Ruqaa Ink', serif;
-}
-
-.old {
-  font-family: 'Old Standard TT', serif;
-}
-
-.cormorant {
-  font-family: 'Cormorant Infant', serif;
-  font-weight: 500;
-}
-
-.im {
-  font-family: 'IM Fell English', serif;
-}
-
-.mont {
-  font-family: 'Montserrat', sans-serif;
-}
-
-.lato {
-  font-family: 'Lato', sans-serif;
-}
-
-.rale {
-  font-family: 'Raleway', sans-serif;
-}
-
-.hind {
-  font-family: 'Hind Siliguri', sans-serif;
-}
-
-.karla {
-  font-family: 'Karla', sans-serif;
-}
-
-p,
-h1 {
-  margin: 30px;
-  line-height: 1.5;
-}
-
-.container {
-  display: flex;
-  gap: 5rem;
-  justify-content: center;
 }
