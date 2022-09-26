@@ -14,12 +14,12 @@ const userMiddleware = (store) => (next) => (action) => {
         .post(Config.API_URL_USER, {
           ...userData,
         })
-        .then(response => {
+        .then((response) => {
           // User data updated successfully
           const { updatedAt } = response.data;
           store.dispatch(actionUserDataUpdated(updatedAt));
         })
-        .catch(error => {
+        .catch((error) => {
           // Login request failed => log and inform user
           console.error('Error while updating user data', error);
           // TODO: inform user

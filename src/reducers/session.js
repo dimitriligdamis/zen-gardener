@@ -1,9 +1,9 @@
-import { LOGIN_FAILED, UPDATE_SESSION } from "../actions/session";
+import { LOGIN_FAILED, UPDATE_SESSION } from '../actions/session';
 
 const sessionInitialState = {
-    userIsLoggedIn: false,
-    lastLoginFailed: false,
-    token: null,
+  userIsLoggedIn: false,
+  lastLoginFailed: false,
+  token: null,
 };
 
 function reducer(state = sessionInitialState, action = {}) {
@@ -14,7 +14,7 @@ function reducer(state = sessionInitialState, action = {}) {
         userIsLoggedIn: false,
         lastLoginFailed: true,
         token: null,
-      }
+      };
 
     case UPDATE_SESSION:
       const { jwtToken } = action;
@@ -26,16 +26,15 @@ function reducer(state = sessionInitialState, action = {}) {
           userIsLoggedIn: false,
           lastLoginFailed: false,
           token: null,
-        }
+        };
       }
-      else {
-        return {
-          ...state,
-          userIsLoggedIn: true,
-          lastLoginFailed: false,
-          token: action.jwtToken,
-        }
-      }
+
+      return {
+        ...state,
+        userIsLoggedIn: true,
+        lastLoginFailed: false,
+        token: action.jwtToken,
+      };
 
     default:
       return state;

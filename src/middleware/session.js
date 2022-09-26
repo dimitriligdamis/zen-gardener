@@ -4,7 +4,7 @@ import {
   LOGIN,
   LOGOUT,
   actionUpdateSession,
-  actionLoginFailed
+  actionLoginFailed,
 } from '../actions/session';
 import { actionUserDataReceived } from '../actions/user';
 import Config from '../config';
@@ -18,13 +18,13 @@ const authMiddleware = (store) => (next) => (action) => {
           email,
           password,
         })
-        .then(response => {
+        .then((response) => {
           // Login request successful => save session and user data
           const { jwtToken, userData } = response.data;
           store.dispatch(actionUserDataReceived(userData));
           store.dispatch(actionUpdateSession(jwtToken));
         })
-        .catch(error => {
+        .catch((error) => {
           // Login request failed => log and inform user
           console.error('Error while logging in', error);
           store.dispatch(actionLoginFailed());
@@ -33,9 +33,9 @@ const authMiddleware = (store) => (next) => (action) => {
     case LOGOUT:
       axios
         .delete(Config.API_URL_SESSION)
-        .then(response => console.log('Logout successful'))
-        .catch(error => console.log('Logout failed', error))
-        .finally(_ => {
+        .then((response) => console.log('Logout successful'))
+        .catch((error) => console.log('Logout failed', error))
+        .finally((_) => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUpdateSession(null));
         });
