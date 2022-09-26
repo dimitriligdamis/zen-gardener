@@ -1,3 +1,4 @@
 {
-  "environment": "development"
+  "ENVIRONMENT": "development",
+  "API_URL": "http://localhost:8080"
 }

@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import reducer from 'src/reducers';
-import Config from '../config/index.json';
+import Config from '../config';
 
-const isDevelopment = Config.environment === 'development';
+const isDevelopment = Config.ENVIRONMENT === 'development';
 let composeEnhancers;
 
 if (isDevelopment) {
