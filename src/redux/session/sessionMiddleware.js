@@ -5,9 +5,9 @@ import {
   LOGOUT,
   actionUpdateSession,
   actionLoginFailed,
-} from '../actions/session';
-import { actionUserDataReceived } from '../actions/user';
-import Config from '../config';
+} from './sessionActions';
+import { actionUserDataReceived } from '../userActions';
+import Config from '../../config';
 
 const authMiddleware = (store) => (next) => (action) => {
   switch (action.type) {

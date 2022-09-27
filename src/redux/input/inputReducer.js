@@ -1,4 +1,4 @@
-import { CHANGE_VALUE } from '../actions/form';
+import { CHANGE_VALUE } from './inputActions';
 
 const initialState = {
   email: '',

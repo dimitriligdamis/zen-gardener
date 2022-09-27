@@ -1,4 +1,4 @@
-import { CHANGE_ISOPEN } from '../actions/menu';
+import { CHANGE_ISOPEN } from './menuActions';
 
 const initialState = {
   isOpen: true,

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeValue } from '../../../actions/form';
+
+import { changeValue } from '../../../redux/input/inputActions';
 
 import './style.scss';
 
