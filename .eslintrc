@@ -5,6 +5,10 @@
     "browser": true
   },
   "rules": {
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
     "brace-style": [
       "error",
       "stroustrup"
@@ -40,7 +44,6 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
   },
-  "linebreak-style": ["error", "unix"],
   "settings": {
     "import/resolver": {
       "alias": {

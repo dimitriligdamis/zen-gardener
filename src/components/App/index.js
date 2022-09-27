@@ -8,10 +8,11 @@ import './styles.css';
 // == Composant
 function App() {
   return (
-    <div className="app">
+    <div className="App">
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/cgu" element={<Homepage />} />
       </Routes>
     </div>
   );
