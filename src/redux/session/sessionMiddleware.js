@@ -6,10 +6,10 @@ import {
   actionUpdateSession,
   actionLoginFailed,
 } from './sessionActions';
-import { actionUserDataReceived } from '../userActions';
+import { actionUserDataReceived } from '../user/userActions';
 import Config from '../../config';
 
-const authMiddleware = (store) => (next) => (action) => {
+const sessionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN:
       const { email, password } = action;
@@ -44,4 +44,4 @@ const authMiddleware = (store) => (next) => (action) => {
   return next(action);
 };
 
-export default authMiddleware;
+export default sessionMiddleware;

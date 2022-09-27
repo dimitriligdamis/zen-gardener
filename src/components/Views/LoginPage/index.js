@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionLogin } from '../../../redux/session/sessionActions';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
 
@@ -12,7 +13,7 @@ function LoginPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // dispatch(Login(email, password));
+    dispatch(actionLogin(email, password));
   };
 
   return (
