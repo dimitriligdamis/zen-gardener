@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducer from 'src/reducers';
+import reducer from 'src/redux/rootReducer';
 import Config from '../config';
 
 const isDevelopment = Config.ENVIRONMENT === 'development';

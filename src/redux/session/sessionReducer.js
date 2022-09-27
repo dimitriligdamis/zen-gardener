@@ -1,4 +1,4 @@
-import { LOGIN_FAILED, UPDATE_SESSION } from '../actions/session';
+import { LOGIN_FAILED, UPDATE_SESSION } from './sessionActions';
 
 const sessionInitialState = {
   userIsLoggedIn: false,

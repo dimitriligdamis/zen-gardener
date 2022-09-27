@@ -2,7 +2,7 @@ import {
   USER_DATA_UPDATED,
   USER_LOGGED_OUT,
   USER_DATA_RECEIVED,
-} from '../actions/user';
+} from './userActions';
 
 const userInitialState = {
   id: null,

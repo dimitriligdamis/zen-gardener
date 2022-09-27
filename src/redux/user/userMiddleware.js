@@ -3,8 +3,8 @@ import axios from 'axios';
 import {
   UPDATE_USER_DATA,
   actionUserDataUpdated,
-} from '../actions/user';
-import Config from '../config';
+} from '../userActions';
+import Config from '../../config';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {

@@ -1,7 +1,8 @@
 import { ArrowLeft, Menu as MenuReactFeather } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import { actionChangeIsOpen } from '../../actions/menu';
+
+import { actionChangeIsOpen } from '../../redux/menu/menuActions';
 import './styles.scss';
 
 function Menu() {
