@@ -3,8 +3,10 @@ import {
   User,
   Bell,
   Calendar,
+  MoreHorizontal,
 } from 'react-feather';
-import { NavLink } from 'react-router-dom';
+
+import { Link, NavLink } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -48,6 +50,12 @@ function Dashboard() {
           <p>Profil</p>
         </div>
       </NavLink>
+      <Link className="Dashboard__item">
+        <div className="Dashboard__item-content">
+          <MoreHorizontal />
+          <p>Plus</p>
+        </div>
+      </Link>
     </nav>
   );
 }

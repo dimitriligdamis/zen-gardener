@@ -1,10 +1,9 @@
-import Menu from '../../Menu';
 import './styles.scss';
 
 function Homepage() {
   return (
     <main className="Homepage">
-      <Menu />
+      <h1>Accueil</h1>
     </main>
   );
 }
