@@ -5,6 +5,11 @@
   height: 30px;
   left: 36px;
   top: 36px;
+
+  //   @media screen and (min-width: 1400px) {
+  //     // display: none;
+  //     left: calc(100vw - 72px);
+  //   }
 }
 
 /* Color/shape of burger icon bars */
@@ -80,6 +85,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
   color: #ffffff;
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+// A modifier -------------------------------------------------------------------
+
+.menu-item:hover {
+  color: chartreuse;
+}
+
 .active {
   color: chartreuse;
 }
+
+.bm-item.log-container {
+  display: flex !important;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// A modifier -------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////
