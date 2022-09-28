@@ -3,9 +3,9 @@ import './styles.scss';
 
 function Homepage() {
   return (
-    <div className="Homepage">
+    <main className="Homepage">
       <Menu />
-    </div>
+    </main>
   );
 }
 

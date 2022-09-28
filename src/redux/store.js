@@ -4,7 +4,6 @@ import reducer from 'src/redux/rootReducer';
 import Config from '../config';
 import sessionMiddleware from './session/sessionMiddleware';
 
-
 const isDevelopment = Config.ENVIRONMENT === 'development';
 let composeEnhancers;
 

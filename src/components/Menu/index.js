@@ -1,11 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { bubble as MenuBurger } from 'react-burger-menu';
 
 import './styles.scss';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Menu() {
   const [isOpen, setOpen] = useState(false);
+
+  const userIsLoggedIn = useSelector((state) => state.session.userIsLoggedIn);
 
   const handleIsOpen = () => {
     setOpen(!isOpen);
@@ -29,22 +32,38 @@ function Menu() {
         className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
       >Accueil
       </NavLink>
-      <NavLink
-        onClick={() => {
-          closeSideBar();
-        }}
-        to="/login"
-        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
-      >Se connecter
-      </NavLink>
-      <NavLink
-        onClick={() => {
-          closeSideBar();
-        }}
-        to="/register"
-        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
-      >S'inscrire
-      </NavLink>
+      {!userIsLoggedIn
+        ? (
+          <div className="log-container">
+            <NavLink
+              onClick={() => {
+                closeSideBar();
+              }}
+              to="/login"
+              className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+            >Se connecter
+            </NavLink>
+            <NavLink
+              onClick={() => {
+                closeSideBar();
+              }}
+              to="/register"
+              className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+            >S'inscrire
+            </NavLink>
+          </div>
+        )
+        : (
+          <Link
+            onClick={() => {
+              closeSideBar();
+            }}
+            to="/logout"
+            className="menu-item"
+          >Déconnexion
+          </Link>
+        )}
+
       <NavLink
         onClick={() => {
           closeSideBar();
