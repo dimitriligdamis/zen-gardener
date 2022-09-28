@@ -1,5 +1,13 @@
-h1 {
-  position: relative;
-  top: 100px;
-  text-align: center;
+.Fiches {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 1rem;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 2rem;
+  }
 }
