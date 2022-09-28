@@ -1,7 +1,7 @@
 import { LOGIN_FAILED, UPDATE_SESSION } from './sessionActions';
 
 const sessionInitialState = {
-  userIsLoggedIn: false,
+  userIsLoggedIn: true,
   lastLoginFailed: false,
   token: null,
 };
@@ -16,7 +16,7 @@ function reducer(state = sessionInitialState, action = {}) {
         token: null,
       };
 
-    case UPDATE_SESSION:
+    case UPDATE_SESSION: {
       const { jwtToken } = action;
 
       // If jwtToken is falsy, consider session log out / session invalid
@@ -35,7 +35,7 @@ function reducer(state = sessionInitialState, action = {}) {
         lastLoginFailed: false,
         token: action.jwtToken,
       };
-
+    }
     default:
       return state;
   }
