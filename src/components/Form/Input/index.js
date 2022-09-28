@@ -5,12 +5,17 @@ import { changeValue } from '../../../redux/input/inputActions';
 
 import './style.scss';
 
-function Input({ name, label, ...props }) {
+function Input({
+  page,
+  name,
+  label,
+  ...props
+}) {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.input[name]);
+  const value = useSelector((state) => state.input[page][name]);
 
   const handleChange = (event) => {
-    dispatch(changeValue(event.target.value, name));
+    dispatch(changeValue(event.target.value, page, name));
   };
   return (
     <div className="input_container">
@@ -27,6 +32,7 @@ function Input({ name, label, ...props }) {
 }
 
 Input.propTypes = {
+  page: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
 };

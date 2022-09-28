@@ -5,13 +5,14 @@ import {
   LOGOUT,
   actionUpdateSession,
   actionLoginFailed,
+  REGISTER,
 } from './sessionActions';
 import { actionUserDataReceived } from '../user/userActions';
 import Config from '../../config';
 
 const sessionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case LOGIN:
+    case LOGIN: {
       const { email, password } = action;
       axios
         .post(Config.API_URL_SESSION, {
@@ -29,6 +30,8 @@ const sessionMiddleware = (store) => (next) => (action) => {
           console.error('Error while logging in', error);
           store.dispatch(actionLoginFailed());
         });
+      break;
+    }
 
     case LOGOUT:
       axios
@@ -39,6 +42,47 @@ const sessionMiddleware = (store) => (next) => (action) => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUpdateSession(null));
         });
+      break;
+
+    case REGISTER: {
+      // TODO
+      const {
+        email,
+        userName,
+        password,
+        passwordConfirm,
+        adress,
+        city,
+        postalCode,
+        phoneNumber,
+      } = action;
+      if (password !== passwordConfirm) {
+        // TODO erreur
+        console.log('Mot de passe non correspondant')
+        break;
+      }
+      axios
+        .post(Config.API_URL_SESSION, {
+          email,
+          userName,
+          password,
+          adress,
+          city,
+          postalCode,
+          phoneNumber,
+        })
+        .then((response) => {
+          // TODO
+        })
+        .catch((error) => {
+          console.error('Error while register', error);
+          store.dispatch(actionLoginFailed());
+        });
+      break;
+    }
+
+    default:
+      break;
   }
 
   return next(action);
