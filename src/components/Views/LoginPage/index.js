@@ -1,44 +1,47 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionLogin } from '../../../redux/session/sessionActions';
 import Input from '../../Form/Input';
+
 import SubmitButton from '../../Form/SubmitButton';
 
 import './style.scss';
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { email, password } = useSelector((state) => state.input);
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(actionLogin(email, password));
+  const onSubmit = (data) => {
+    console.log(data)
+    dispatch(actionLogin(data));
   };
 
   return (
     <main className="login_container">
-      {/* Importer logo */}
       <div className="title_container">
         <Link to="/" className="logo">LOGO</Link>
-        <h1 className="login_title">Connexion</h1>
+        <h2 className="login_title">Connexion</h2>
       </div>
-      <form className="login_form" onSubmit={handleSubmit}>
+      <form className="login_form" onSubmit={handleSubmit(onSubmit)}>
         <Input
-          page="login"
           label="Email"
           name="email"
           type="email"
           placeholder="Email"
           aria-label="Email"
+          register={register}
+          required
         />
         <Input
-          page="login"
           label="Mot de passe"
           name="password"
           type="password"
           placeholder="Mot de passe"
           aria-label="Mot de passe"
+          register={register}
+          required
         />
         <SubmitButton
           label="Se connecter"
