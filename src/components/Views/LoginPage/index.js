@@ -19,8 +19,10 @@ function LoginPage() {
   return (
     <main className="login_container">
       {/* Importer logo */}
-      <Link to="/" className="logo">LOGO</Link>
-      <h1 className="login_title">Connexion</h1>
+      <div className="title_container">
+        <Link to="/" className="logo">LOGO</Link>
+        <h1 className="login_title">Connexion</h1>
+      </div>
       <form className="login_form" onSubmit={handleSubmit}>
         <Input
           page="login"

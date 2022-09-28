@@ -15,11 +15,13 @@ function RegisterPage() {
   }
 
   return (
-    <main className="page">
+    <div className="register_container">
       {/* Importer logo */}
-      <Link to="/" className="logo">LOGO</Link>
-      <h1 className="login_title">Connexion</h1>
-      <form className="login_form" onSubmit={handleSubmit}>
+      <div className="title_container">
+        <Link to="/" className="logo">LOGO</Link>
+        <h1 className="register_title">Connexion</h1>
+      </div>
+      <form className="register_form" onSubmit={handleSubmit}>
         <Input
           page="register"
           label="Email*"
@@ -96,7 +98,7 @@ function RegisterPage() {
       <div className="links_container">
         <p><Link to="/login" className="logo">Déjà inscrit ?</Link></p>
       </div>
-    </main>
+    </div>
   );
 }
 

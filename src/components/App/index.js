@@ -5,6 +5,7 @@ import Homepage from '../Views/Homepage';
 
 import './styles.css';
 import RegisterPage from '../Views/RegisterPage';
+import Page from '../Views';
 
 // == Composant
 function App() {
@@ -12,8 +13,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<Page><LoginPage /></Page>} />
+        <Route path="/register" element={<Page><RegisterPage /></Page>} />
         <Route path="/cgu" element={<Homepage />} />
       </Routes>
     </div>

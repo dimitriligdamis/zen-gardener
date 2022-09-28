@@ -46,6 +46,38 @@ const sessionMiddleware = (store) => (next) => (action) => {
 
     case REGISTER: {
       // TODO
+      const {
+        email,
+        userName,
+        password,
+        passwordConfirm,
+        adress,
+        city,
+        postalCode,
+        phoneNumber,
+      } = action;
+      if (password !== passwordConfirm) {
+        // TODO erreur
+        console.log('Mot de passe non correspondant')
+        break;
+      }
+      axios
+        .post(Config.API_URL_SESSION, {
+          email,
+          userName,
+          password,
+          adress,
+          city,
+          postalCode,
+          phoneNumber,
+        })
+        .then((response) => {
+          // TODO
+        })
+        .catch((error) => {
+          console.error('Error while register', error);
+          store.dispatch(actionLoginFailed());
+        });
       break;
     }
 
