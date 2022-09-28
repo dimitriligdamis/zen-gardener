@@ -17,12 +17,13 @@ function LoginPage() {
   };
 
   return (
-    <section className="login_container">
+    <main className="login_container">
       {/* Importer logo */}
       <Link to="/" className="logo">LOGO</Link>
       <h1 className="login_title">Connexion</h1>
       <form className="login_form" onSubmit={handleSubmit}>
         <Input
+          page="login"
           label="Email"
           name="email"
           type="email"
@@ -30,6 +31,7 @@ function LoginPage() {
           aria-label="Email"
         />
         <Input
+          page="login"
           label="Mot de passe"
           name="password"
           type="password"
@@ -43,9 +45,9 @@ function LoginPage() {
       </form>
       <div className="links_container">
         <p>Mot de passe oublié ?</p>
-        <p>Se connecter</p>
+        <p><Link to="/register">S'inscrire</Link></p>
       </div>
-    </section>
+    </main>
   );
 }
 

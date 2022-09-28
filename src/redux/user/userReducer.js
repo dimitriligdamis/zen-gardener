@@ -19,12 +19,13 @@ const userInitialState = {
 
 function reducer(state = userInitialState, action = {}) {
   switch (action.type) {
-    case USER_DATA_RECEIVED:
+    case USER_DATA_RECEIVED: {
       const { userData } = action;
       return {
         ...state,
         ...userData,
       };
+    }
 
     case USER_LOGGED_OUT:
       return {
@@ -32,13 +33,13 @@ function reducer(state = userInitialState, action = {}) {
         ...userInitialState,
       };
 
-    case USER_DATA_UPDATED:
+    case USER_DATA_UPDATED: {
       const { updatedAt } = action;
       return {
         ...state,
         updatedAt,
       };
-
+    }
     default:
       return state;
   }
