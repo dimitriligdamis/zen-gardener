@@ -1,4 +1,4 @@
 {
   "ENVIRONMENT": "development",
-  "API_URL": "http://localhost:8080"
+  "API_URL": "http://zen-gardener-api.herokuapp.com"
 }
