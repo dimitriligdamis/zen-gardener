@@ -34,7 +34,7 @@ function Menu() {
       </NavLink>
       {!userIsLoggedIn
         ? (
-          <>
+          <div className="log-container">
             <NavLink
               onClick={() => {
                 closeSideBar();
@@ -51,7 +51,7 @@ function Menu() {
               className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
             >S'inscrire
             </NavLink>
-          </>
+          </div>
         )
         : (
           <Link

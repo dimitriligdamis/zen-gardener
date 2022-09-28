@@ -1,7 +1,7 @@
 import { LOGIN_FAILED, UPDATE_SESSION } from './sessionActions';
 
 const sessionInitialState = {
-  userIsLoggedIn: true,
+  userIsLoggedIn: false,
   lastLoginFailed: false,
   token: null,
 };
