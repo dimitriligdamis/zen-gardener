@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionLogin } from '../../../redux/session/sessionActions';
+import Dashboard from '../../Dashboard';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
 
@@ -18,6 +19,7 @@ function LoginPage() {
 
   return (
     <section className="login_container">
+      <Dashboard />
       {/* Importer logo */}
       <Link to="/" className="logo">LOGO</Link>
       <h1 className="login_title">Connexion</h1>
