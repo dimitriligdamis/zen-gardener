@@ -1,63 +1,75 @@
-import { ArrowLeft, Menu as MenuReactFeather } from 'react-feather';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { bubble as MenuBurger } from 'react-burger-menu';
 
-import { actionChangeIsOpen } from '../../redux/menu/menuActions';
 import './styles.scss';
+import { useState } from 'react';
 
 function Menu() {
-  const dispatch = useDispatch();
-  const isOpen = useSelector((state) => state.menu.isOpen);
+  const [isOpen, setOpen] = useState(false);
 
-  const activeClassName = 'underline';
+  const handleIsOpen = () => {
+    setOpen(!isOpen);
+  };
 
+  const closeSideBar = () => {
+    setOpen(false);
+  };
   return (
-    <>
-      <div className={!isOpen ? 'Menu' : 'Menu Menu--open'}>
-        <button
-          className="Menu__button"
-          type="button"
-          onClick={() => {
-            dispatch(actionChangeIsOpen());
-          }}
-        >
-          {!isOpen
-            ? <MenuReactFeather />
-            : <ArrowLeft />}
-        </button>
-        <Link to="/" className="Menu__logo">LOGO</Link>
-        <ul className="Menu__list">
-          <li className="Menu__link">
-            <NavLink to="login" className={({ isActive }) => (isActive ? activeClassName : undefined)}>Se connecter</NavLink>
-          </li>
-          <li className="Menu__link">
-            <NavLink to="register" className={({ isActive }) => (isActive ? activeClassName : undefined)}>S'inscrire</NavLink>
-          </li>
-          <li className="Menu__link">
-            <NavLink to="about" className={({ isActive }) => (isActive ? activeClassName : undefined)}>Qui sommes nous ?</NavLink>
-          </li>
-          <li className="Menu__link">
-            <NavLink to="contact" className={({ isActive }) => (isActive ? activeClassName : undefined)}>Contact</NavLink>
-          </li>
-          <li className="Menu__link">
-            <NavLink to="cgu" className={({ isActive }) => (isActive ? activeClassName : undefined)}>CGU</NavLink>
-          </li>
-        </ul>
-      </div>
-      {!isOpen && (
-        <button
-          className="Menu__button"
-          type="button"
-          onClick={() => {
-            dispatch(actionChangeIsOpen());
-          }}
-        >
-          {!isOpen
-            ? <MenuReactFeather />
-            : <ArrowLeft />}
-        </button>
-      )}
-    </>
+    <MenuBurger
+      isOpen={isOpen}
+      onOpen={handleIsOpen}
+      onClose={handleIsOpen}
+    >
+      <NavLink
+        end
+        onClick={() => {
+          closeSideBar();
+        }}
+        to="/"
+        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+      >Accueil
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          closeSideBar();
+        }}
+        to="/login"
+        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+      >Se connecter
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          closeSideBar();
+        }}
+        to="/register"
+        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+      >S'inscrire
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          closeSideBar();
+        }}
+        to="/about"
+        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+      >Qui sommes nous ?
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          closeSideBar();
+        }}
+        to="/contact"
+        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+      >Contact
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          closeSideBar();
+        }}
+        to="/cgu"
+        className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')}
+      >CGU
+      </NavLink>
+    </MenuBurger>
   );
 }
 
