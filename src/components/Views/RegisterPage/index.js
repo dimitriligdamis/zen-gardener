@@ -5,6 +5,7 @@ import { actionRegister } from '../../../redux/session/sessionActions';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
 import './style.scss';
+import Dashboard from '../../Dashboard';
 
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function RegisterPage() {
 
   return (
     <div className="register_container">
+      <Dashboard />
       <div className="title_container">
         <Link to="/" className="logo">LOGO</Link>
         <h1 className="register_title">Connexion</h1>

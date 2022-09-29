@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   LogIn,
   Layers,
@@ -11,11 +12,14 @@ import {
 import { useSelector } from 'react-redux';
 
 import { Link, NavLink } from 'react-router-dom';
+import Overlay from '../Overlay';
 
 import './styles.scss';
 
 function Dashboard() {
   const userIsLoggedIn = useSelector((state) => state.session.userIsLoggedIn);
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -60,7 +64,12 @@ function Dashboard() {
                 <p>Profil</p>
               </div>
             </NavLink>
-            <Link className="Dashboard__item">
+            <Link
+              onClick={() => {
+                setMenuOpen(true);
+              }}
+              className="Dashboard__item"
+            >
               <div className="Dashboard__item-content">
                 <MoreHorizontal />
                 <p>Plus</p>
@@ -101,7 +110,12 @@ function Dashboard() {
                 <p>S'inscrire</p>
               </div>
             </NavLink>
-            <Link className="Dashboard__item">
+            <Link
+              onClick={() => {
+                setMenuOpen(true);
+              }}
+              className="Dashboard__item"
+            >
               <div className="Dashboard__item-content">
                 <MoreHorizontal />
                 <p>Plus</p>
@@ -110,6 +124,13 @@ function Dashboard() {
           </nav>
         )
       }
+      <Overlay
+        isConnected={userIsLoggedIn}
+        menuOpen={menuOpen}
+        setMenuOpen={() => {
+          setMenuOpen(false);
+        }}
+      />
     </>
   );
 }
