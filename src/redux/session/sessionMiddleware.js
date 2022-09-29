@@ -10,6 +10,12 @@ import {
 import { actionUserDataReceived } from '../user/userActions';
 import Config from '../../config';
 
+import useMockAdapter from '../../services/mockApi/session';
+
+if (Config.API_MOCK_ENABLED) {
+  useMockAdapter(axios, Config.API_URL_SESSION);
+}
+
 const sessionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
@@ -36,9 +42,9 @@ const sessionMiddleware = (store) => (next) => (action) => {
     case LOGOUT:
       axios
         .delete(Config.API_URL_SESSION)
-        .then((response) => console.log('Logout successful'))
+        .then(() => console.log('Logout successful'))
         .catch((error) => console.log('Logout failed', error))
-        .finally((_) => {
+        .finally(() => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUpdateSession(null));
         });
@@ -71,7 +77,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
           postalCode,
           phoneNumber,
         })
-        .then((response) => {
+        .then(() => {
           // TODO
         })
         .catch((error) => {
