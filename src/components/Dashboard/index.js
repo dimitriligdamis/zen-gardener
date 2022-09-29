@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   LogIn,
   Layers,
@@ -16,6 +17,8 @@ import './styles.scss';
 
 function Dashboard() {
   const userIsLoggedIn = useSelector((state) => state.session.userIsLoggedIn);
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -101,7 +104,12 @@ function Dashboard() {
                 <p>S'inscrire</p>
               </div>
             </NavLink>
-            <Link className="Dashboard__item">
+            <Link
+              onClick={() => {
+                setMenuOpen(true);
+              }}
+              className="Dashboard__item"
+            >
               <div className="Dashboard__item-content">
                 <MoreHorizontal />
                 <p>Plus</p>
@@ -110,6 +118,20 @@ function Dashboard() {
           </nav>
         )
       }
+      <div id="myNav" className={menuOpen ? 'overlay overlay--open' : 'overlay'}>
+        <a
+          className="closebtn"
+          onClick={() => {
+            setMenuOpen(false);
+          }}
+        >&times;
+        </a>
+        <div className="overlay-content">
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">CGU</a>
+        </div>
+      </div>
     </>
   );
 }
