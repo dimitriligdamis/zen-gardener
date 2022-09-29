@@ -6,7 +6,7 @@ import Homepage from '../Views/Homepage';
 import './styles.css';
 import Tasks from '../Views/Tasks';
 import Fiches from '../Views/Fiches';
-import Profil from '../Views/Profil';
+import Profile from '../Views/Profile';
 
 // == Composant
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Route path="/cgu" element={<Homepage />} />
         <Route path="/tableau-de-bord" element={<Tasks />} />
         <Route path="/fiches" element={<Fiches />} />
-        <Route path="/profil" element={<Profil />} />
+        <Route path="/profil" element={<Profile />} />
       </Routes>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   Calendar,
   MoreHorizontal,
   PenTool,
+  Home,
 } from 'react-feather';
 import { useSelector } from 'react-redux';
 
@@ -72,6 +73,16 @@ function Dashboard() {
         !userIsLoggedIn
         && (
           <nav className="Dashboard">
+            <NavLink
+              end
+              to="/"
+              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+            >
+              <div className="Dashboard__item-content">
+                <Home />
+                <p>Accueil</p>
+              </div>
+            </NavLink>
             <NavLink
               to="/login"
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
