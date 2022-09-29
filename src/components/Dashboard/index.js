@@ -12,6 +12,7 @@ import {
 import { useSelector } from 'react-redux';
 
 import { Link, NavLink } from 'react-router-dom';
+import Overlay from '../Overlay';
 
 import './styles.scss';
 
@@ -63,7 +64,12 @@ function Dashboard() {
                 <p>Profil</p>
               </div>
             </NavLink>
-            <Link className="Dashboard__item">
+            <Link
+              onClick={() => {
+                setMenuOpen(true);
+              }}
+              className="Dashboard__item"
+            >
               <div className="Dashboard__item-content">
                 <MoreHorizontal />
                 <p>Plus</p>
@@ -118,20 +124,13 @@ function Dashboard() {
           </nav>
         )
       }
-      <div id="myNav" className={menuOpen ? 'overlay overlay--open' : 'overlay'}>
-        <a
-          className="closebtn"
-          onClick={() => {
-            setMenuOpen(false);
-          }}
-        >&times;
-        </a>
-        <div className="overlay-content">
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">CGU</a>
-        </div>
-      </div>
+      <Overlay
+        isConnected={userIsLoggedIn}
+        menuOpen={menuOpen}
+        setMenuOpen={() => {
+          setMenuOpen(false);
+        }}
+      />
     </>
   );
 }
