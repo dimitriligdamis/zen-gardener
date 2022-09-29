@@ -15,12 +15,12 @@ function LoginPage() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     dispatch(actionLogin(data));
   };
 
   return (
-    <section className="login_container">
+    <main className="login_container">
       <Dashboard />
       {/* Importer logo */}
       <Link to="/" className="logo">LOGO</Link>
