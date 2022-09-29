@@ -8,6 +8,7 @@ import {
   REGISTER,
 } from './sessionActions';
 import { actionUserDataReceived } from '../user/userActions';
+import { displayError } from '../error/errorAction';
 import Config from '../../config';
 
 import useMockAdapter from '../../services/mockApi/session';
@@ -27,14 +28,17 @@ const sessionMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           // Login request successful => save session and user data
-          const { jwtToken, userData } = response.data;
+          const { userData } = response.data;
           store.dispatch(actionUserDataReceived(userData));
-          store.dispatch(actionUpdateSession(jwtToken));
+          store.dispatch(actionUpdateSession());
         })
         .catch((error) => {
           // Login request failed => log and inform user
           console.error('Error while logging in', error);
           store.dispatch(actionLoginFailed());
+          if (error.response.status === 401) {
+            store.dispatch(displayError('Combinaison email / mot de passe incorrect'));
+          }
         });
       break;
     }
@@ -54,7 +58,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
       // TODO
       const {
         email,
-        userName,
+        pseudo,
         password,
         adress,
         city,
@@ -64,7 +68,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
       axios
         .post(Config.API_URL_SESSION, {
           email,
-          userName,
+          pseudo,
           password,
           adress,
           city,

@@ -25,7 +25,7 @@ const useMockAdapter = (axios, apiUrl) => {
         jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
         userData: {
           id: 1234,
-          userName: 'Igor',
+          pseudo: 'Igor',
           email: 'Igor@hossegor.fr',
           address: 'Rue de la vague',
           city: 'Hossegor',
