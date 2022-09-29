@@ -5,7 +5,7 @@ import MockAdapter from 'axios-mock-adapter';
  * @param {string} API URL, e.g. '/session'
  * @returns {axios}
  */
-const mockAdapter = (axios, apiUrl) => {
+const useMockAdapter = (axios, apiUrl) => {
   const mockAdapter = new MockAdapter(axios);
 
   mockAdapter
@@ -19,7 +19,7 @@ const mockAdapter = (axios, apiUrl) => {
     ])
     // Mock successful login
     .onPost(apiUrl)
-    .reply((config) => [
+    .reply(() => [
       200, // HTTP 200 OK
       {
         jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
@@ -39,7 +39,7 @@ const mockAdapter = (axios, apiUrl) => {
     ])
     // Mock log out request
     .onDelete(apiUrl)
-    .reply((_) => [
+    .reply(() => [
       204, // HTTP 204 No Content
       {
         message: 'Unauthorized',

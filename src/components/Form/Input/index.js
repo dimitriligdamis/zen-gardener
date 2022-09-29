@@ -1,26 +1,22 @@
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { changeValue } from '../../../redux/input/inputActions';
 
 import './style.scss';
 
-function Input({ name, label, ...props }) {
-  const dispatch = useDispatch();
-  const value = useSelector((state) => state.input[name]);
-
-  const handleChange = (event) => {
-    dispatch(changeValue(event.target.value, name));
-  };
+function Input({
+  name,
+  label,
+  register,
+  ...props
+}) {
   return (
     <div className="input_container">
       {label && <label className="form_label" htmlFor={name}>{label}</label>}
       <input
+        className="form_input"
         name={name}
         id={name}
-        value={value || ''}
-        onChange={handleChange}
         {...props}
+        {...register(name)}
       />
     </div>
   );
@@ -28,6 +24,7 @@ function Input({ name, label, ...props }) {
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
+  register: PropTypes.func.isRequired,
   label: PropTypes.string,
 };
 

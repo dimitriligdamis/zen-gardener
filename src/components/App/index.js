@@ -4,6 +4,9 @@ import LoginPage from '../Views/LoginPage';
 import Homepage from '../Views/Homepage';
 
 import './styles.css';
+
+import RegisterPage from '../Views/RegisterPage';
+import Page from '../Views';
 import Tasks from '../Views/Tasks';
 import Fiches from '../Views/Fiches';
 import Profile from '../Views/Profile';
@@ -15,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/cgu" element={<Homepage />} />
         <Route path="/tableau-de-bord" element={<Tasks />} />
         <Route path="/fiches" element={<Fiches />} />
