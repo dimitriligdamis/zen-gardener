@@ -11,7 +11,6 @@ function RegisterPage() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     dispatch(actionRegister(data));
   };
 
@@ -33,7 +32,7 @@ function RegisterPage() {
         />
         <Input
           label="Pseudo*"
-          name="userName"
+          name="pseudo"
           type="text"
           placeholder="Géant Vert"
           aria-label="Pseudo"

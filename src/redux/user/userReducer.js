@@ -6,7 +6,7 @@ import {
 
 const userInitialState = {
   id: null,
-  userName: null,
+  pseudo: null,
   email: null,
   address: null,
   city: null,
