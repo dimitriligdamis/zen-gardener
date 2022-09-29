@@ -1,13 +1,12 @@
 import Dashboard from '../../Dashboard';
-import Menu from '../../Menu';
+
 import './styles.scss';
 
 function Profile() {
   return (
-    <main className="Profil">
-      <Menu />
+    <main className="Profile">
       <Dashboard />
-      <h1>Ici c'est la page Profil</h1>
+      <h1 className="Profile__title">Ici c'est la page Profil</h1>
     </main>
   );
 }

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionLogin } from '../../../redux/session/sessionActions';
+import Dashboard from '../../Dashboard';
 import Input from '../../Form/Input';
 
 import SubmitButton from '../../Form/SubmitButton';
@@ -19,12 +20,13 @@ function LoginPage() {
   };
 
   return (
-    <main className="login_container">
-      <div className="title_container">
-        <Link to="/" className="logo">LOGO</Link>
-        <h2 className="login_title">Connexion</h2>
-      </div>
-      <form className="login_form" onSubmit={handleSubmit(onSubmit)}>
+    <section className="login_container">
+      <Dashboard />
+      {/* Importer logo */}
+      <Link to="/" className="logo">LOGO</Link>
+      <h1 className="login_title">Connexion</h1>
+      <form className="login_form" onSubmit={handleSubmit}>
+
         <Input
           label="Email"
           name="email"

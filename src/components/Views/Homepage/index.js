@@ -1,10 +1,11 @@
-import Menu from '../../Menu';
+import Dashboard from '../../Dashboard';
 import './styles.scss';
 
 function Homepage() {
   return (
     <main className="Homepage">
-      <Menu />
+      <Dashboard />
+      <h1>Accueil</h1>
     </main>
   );
 }
