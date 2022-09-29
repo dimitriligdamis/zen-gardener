@@ -4,7 +4,7 @@ import './style.scss';
 
 function SubmitButton({ label }) {
   return (
-    <button type="submit">{label}</button>
+    <button className="SubmitButton" type="submit">{label}</button>
   );
 }
 

@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { actionLogin } from '../../../redux/session/sessionActions';
-import Dashboard from '../../Dashboard';
 import ErrorMessage from '../../Form/ErrorMessage';
 import Input from '../../Form/Input';
 
@@ -26,40 +25,42 @@ function LoginPage() {
   }
 
   return (
-    <main className="login_container">
-      <Dashboard />
-      <Link to="/" className="logo">LOGO</Link>
-      <h1 className="login_title">Connexion</h1>
-      <form className="login_form" onSubmit={handleSubmit(onSubmit)}>
+    <main className="LoginPage">
+      <section className="LoginPage__container">
+        <h1 className="LoginPage__title">Connexion</h1>
+        <form className="LoginPage__form" onSubmit={handleSubmit(onSubmit)}>
 
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Email"
-          aria-label="Email"
-          register={register}
-          required
-        />
-        <Input
-          label="Mot de passe"
-          name="password"
-          type="password"
-          placeholder="Mot de passe"
-          aria-label="Mot de passe"
-          register={register}
-          required
-        />
-        <SubmitButton
-          label="Se connecter"
-          className="button"
-        />
-      </form>
-      <div className="links_container">
-        <p>Mot de passe oublié ?</p>
-        <p><Link to="/register">S'inscrire</Link></p>
-        { errorIsActive && <ErrorMessage message={message} />}
-      </div>
+          <Input
+            // label="Email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            aria-label="Email"
+            register={register}
+            autoComplete="off"
+            required
+          />
+          <Input
+            // label="Mot de passe"
+            name="password"
+            type="password"
+            placeholder="Mot de passe"
+            aria-label="Mot de passe"
+            register={register}
+            autoComplete="off"
+            required
+          />
+          <SubmitButton
+            label="Se connecter"
+            className="button"
+          />
+        </form>
+        <div className="links_container">
+          <a className="LoginPage__nopassword">Mot de passe oublié ?</a>
+          {/* <Link className="LoginPage__register" to="/register">S'inscrire</Link> */}
+          {errorIsActive && <ErrorMessage message={message} />}
+        </div>
+      </section>
     </main>
   );
 }

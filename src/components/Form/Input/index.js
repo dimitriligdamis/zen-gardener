@@ -4,15 +4,14 @@ import './style.scss';
 
 function Input({
   name,
-  label,
   register,
   ...props
 }) {
   return (
-    <div className="input_container">
-      {label && <label className="form_label" htmlFor={name}>{label}</label>}
+    <div className="Input">
+      {/* {label && <label className="Input__label" htmlFor={name}>{label}</label>} */}
       <input
-        className="form_input"
+        className="Input__input"
         name={name}
         id={name}
         {...props}

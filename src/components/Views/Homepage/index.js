@@ -1,11 +1,15 @@
-import Dashboard from '../../Dashboard';
+import Card from '../../Card';
 import './styles.scss';
 
 function Homepage() {
   return (
     <main className="Homepage">
-      <Dashboard />
-      <h1>Accueil</h1>
+      <ul className="Homepage__list">
+        <li><Card /></li>
+        <li><Card /></li>
+        <li><Card /></li>
+      </ul>
+
     </main>
   );
 }
