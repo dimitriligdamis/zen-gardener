@@ -21,9 +21,12 @@ function LoginPage() {
     dispatch(actionLogin(email, password));
   };
 
+  if (userIsLoggedIn) {
+    return (<Navigate to="/tableau-de-bord" />);
+  }
+
   return (
     <main className="login_container">
-      {userIsLoggedIn && <Navigate to="/tableau-de-bord" />}
       <Dashboard />
       <Link to="/" className="logo">LOGO</Link>
       <h1 className="login_title">Connexion</h1>

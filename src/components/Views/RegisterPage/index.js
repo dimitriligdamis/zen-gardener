@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { actionRegister } from '../../../redux/session/sessionActions';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
@@ -10,10 +10,15 @@ import Dashboard from '../../Dashboard';
 function RegisterPage() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const { userIsLoggedIn } = useSelector((state) => state.session);
 
   const onSubmit = (data) => {
     dispatch(actionRegister(data));
   };
+
+  if (userIsLoggedIn) {
+    return (<Navigate to="/tableau-de-bord" />);
+  }
 
   return (
     <div className="register_container">
