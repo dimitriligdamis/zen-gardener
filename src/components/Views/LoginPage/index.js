@@ -25,7 +25,7 @@ function LoginPage() {
       {/* Importer logo */}
       <Link to="/" className="logo">LOGO</Link>
       <h1 className="login_title">Connexion</h1>
-      <form className="login_form" onSubmit={handleSubmit}>
+      <form className="login_form" onSubmit={handleSubmit(onSubmit)}>
 
         <Input
           label="Email"
