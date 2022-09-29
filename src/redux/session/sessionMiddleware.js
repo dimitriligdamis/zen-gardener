@@ -56,17 +56,11 @@ const sessionMiddleware = (store) => (next) => (action) => {
         email,
         userName,
         password,
-        passwordConfirm,
         adress,
         city,
         postalCode,
         phoneNumber,
       } = action;
-      if (password !== passwordConfirm) {
-        // TODO erreur
-        console.log('Mot de passe non correspondant')
-        break;
-      }
       axios
         .post(Config.API_URL_SESSION, {
           email,
