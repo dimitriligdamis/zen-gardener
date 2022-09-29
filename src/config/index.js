@@ -9,6 +9,10 @@ export default class Config {
         return env.API_URL;
     }
 
+    static get API_MOCK_ENABLED() {
+        return env.API_MOCK_ENABLED;
+    }
+
     static get API_URL_SESSION() {
         return `${Config.API_URL}/session`;
     }
