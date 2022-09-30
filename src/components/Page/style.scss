@@ -1,0 +1,5 @@
+@use 'src/styles/vars';
+
+.Page {
+  min-height: vars.$dashboard-bottom;
+}

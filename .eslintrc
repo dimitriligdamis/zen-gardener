@@ -5,6 +5,10 @@
     "browser": true
   },
   "rules": {
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
     "brace-style": [
       "error",
       "stroustrup"

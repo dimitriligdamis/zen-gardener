@@ -1,50 +1,35 @@
+import { Route, Routes } from 'react-router-dom';
+
+import LoginPage from '../Views/LoginPage';
+import Homepage from '../Views/Homepage';
+
 import './styles.css';
+
+import RegisterPage from '../Views/RegisterPage';
+import Page from '../Page';
+import Tasks from '../Views/Tasks';
+import Fiches from '../Views/Fiches';
+import Profile from '../Views/Profile';
+import PageNotFound from '../Views/PageNotFound';
 
 // == Composant
 function App() {
   return (
-    <>
-      <div className="container">
-        <h1 className="reem">Zen Gardener</h1>
-        <h1 className="aref">Zen Gardener</h1>
-        <h1 className="old">Zen Gardener</h1>
-        <h1 className="cormorant">Zen Gardener</h1>
-        <h1 className="im">Zen Gardener</h1>
-      </div>
-      <div className="app">
+    <div className="App">
+      <Page>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/cgu" element={<Homepage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/tableau-de-bord" element={<Tasks />} />
+          <Route path="/fiches" element={<Fiches />} />
+          <Route path="/profil" element={<Profile />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Page>
+    </div>
 
-        <p className="mont"> Semer en place, en lignes espacées de 25 cm.
-          Recouvrir peu et plomber légèrement.
-          Éclaircir une première fois à 5 cm puis à 8 cm
-          lorsque les plants ont 3 feuilles.
-          Protéger, si possible, les jeunes pousses de l’appétit des limaces.
-        </p>
-        <p className="lato"> Semer en place, en lignes espacées de 25 cm.
-          Recouvrir peu et plomber légèrement.
-          Éclaircir une première fois à 5 cm puis à 8 cm
-          lorsque les plants ont 3 feuilles.
-          Protéger, si possible, les jeunes pousses de l’appétit des limaces.
-        </p>
-        <p className="rale"> Semer en place, en lignes espacées de 25 cm.
-          Recouvrir peu et plomber légèrement.
-          Éclaircir une première fois à 5 cm puis à 8 cm
-          lorsque les plants ont 3 feuilles.
-          Protéger, si possible, les jeunes pousses de l’appétit des limaces.
-        </p>
-        <p className="hind"> Semer en place, en lignes espacées de 25 cm.
-          Recouvrir peu et plomber légèrement.
-          Éclaircir une première fois à 5 cm puis à 8 cm
-          lorsque les plants ont 3 feuilles.
-          Protéger, si possible, les jeunes pousses de l’appétit des limaces.
-        </p>
-        <p className="karla"> Semer en place, en lignes espacées de 25 cm.
-          Recouvrir peu et plomber légèrement.
-          Éclaircir une première fois à 5 cm puis à 8 cm
-          lorsque les plants ont 3 feuilles.
-          Protéger, si possible, les jeunes pousses de l’appétit des limaces.
-        </p>
-      </div>
-    </>
   );
 }
 
