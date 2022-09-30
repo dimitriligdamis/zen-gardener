@@ -1,11 +1,19 @@
-import Dashboard from '../../Dashboard';
+import Card from '../../Card';
+import Title from '../../Title';
 import './styles.scss';
 
 function Homepage() {
   return (
     <main className="Homepage">
-      <Dashboard />
-      <h1>Accueil</h1>
+      <Title>
+        <h1>Welcome to Zen Gardener</h1>
+      </Title>
+      <ul className="Homepage__list">
+        <li><Card /></li>
+        <li><Card /></li>
+        <li><Card /></li>
+      </ul>
+
     </main>
   );
 }

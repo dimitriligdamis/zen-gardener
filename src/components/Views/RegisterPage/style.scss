@@ -1,31 +1,43 @@
-.register {
+@use 'src/styles/vars';
 
-  &_container {
-    width: 80%;
-    height: calc(100vh - 4rem);
-    margin: auto;
+.Register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+
+  min-height: vars.$dashboard-bottom;
+
+  &__container {
+    background-color: vars.$bg-sign;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 10px;
+    min-height: 300px;
+    min-width: 400px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  &__form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
   }
 
-  &_form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    flex-grow: 1;
+  &__login {
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
-
-  &_input {
-    margin: 2rem;
-  }
-}
-
-.title_container {
-  text-align: center;
-}
-
-.links_container {
-  text-align: center;
 }

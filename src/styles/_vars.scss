@@ -1,5 +1,11 @@
-// font size
-//color 
-// font
+// dimensions
+$dashboard-bottom: calc(100vh - 50px);
 
-// 428 x 926 mobile
+
+// color
+
+$bg-main: bisque;
+$bg-sign: rgba(0, 84, 79, 0.8);
+
+
+$color-sign-bar: lighten($bg-sign, 20%);

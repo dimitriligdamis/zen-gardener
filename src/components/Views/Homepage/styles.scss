@@ -1,0 +1,15 @@
+.Homepage {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 3rem;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 2rem;
+  }
+
+}

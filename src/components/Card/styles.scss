@@ -1,4 +1,7 @@
+@use 'src/styles/vars';
+
 .Card {
+  background-color: vars.$bg-sign;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   max-width: 400px;
@@ -16,6 +19,7 @@
     text-align: center;
     font-weight: bold;
     margin: 1rem 0;
+    color: #fff;
   }
 
   &__image {
@@ -27,5 +31,11 @@
   &__infos {
     background-color: azure;
     min-height: 100px;
+  }
+
+  &__description {
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 0.3rem 0;
   }
 }

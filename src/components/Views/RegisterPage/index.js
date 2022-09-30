@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
+
 import { actionRegister } from '../../../redux/session/sessionActions';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
 import './style.scss';
-import Dashboard from '../../Dashboard';
 
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -21,90 +21,85 @@ function RegisterPage() {
   }
 
   return (
-    <div className="register_container">
-      <Dashboard />
-      <div className="title_container">
-        <Link to="/" className="logo">LOGO</Link>
-        <h1 className="register_title">Connexion</h1>
-      </div>
-      <form className="register_form" onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="Email*"
-          name="email"
-          type="email"
-          placeholder="Email"
-          aria-label="Email"
-          required
-          register={register}
-        />
-        <Input
-          label="Pseudo*"
-          name="pseudo"
-          type="text"
-          placeholder="Géant Vert"
-          aria-label="Pseudo"
-          required
-          register={register}
-        />
-        <Input
-          label="Mot de passe*"
-          name="password"
-          type="password"
-          placeholder=""
-          aria-label="Mot de passe"
-          required
-          register={register}
-        />
-        <Input
-          label="Confirmer mot de passe*"
-          name="passwordConfirm"
-          type="password"
-          placeholder=""
-          aria-label="Confirmer mot de passe"
-          required
-          register={register}
-        />
-        <Input
-          label="Adresse"
-          name="adress"
-          type="text"
-          placeholder="32 rue de l'aubergine"
-          aria-label="Adresse"
-          register={register}
-        />
-        <Input
-          label="Ville"
-          name="city"
-          type="text"
-          placeholder="Gardener City"
-          aria-label="Ville"
-          register={register}
-        />
-        <Input
-          label="Code Postal"
-          name="postalCode"
-          type="text"
-          placeholder=""
-          aria-label="Code postal"
-          register={register}
-        />
-        <Input
-          label="Téléphone"
-          name="phoneNumber"
-          type="text"
-          placeholder=""
-          aria-label="Téléphone"
-          register={register}
-        />
-        <SubmitButton
-          label="Accepter les CGU et valider"
-          className="button"
-        />
-      </form>
-      <div className="links_container">
-        <p><Link to="/login" className="logo">Déjà inscrit ?</Link></p>
-      </div>
-    </div>
+    <main className="Register">
+      <section className="Register__container">
+
+        <h1 className="Register__title">Inscription</h1>
+        <form className="Register__form" onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            name="email"
+            type="email"
+            placeholder="Email*"
+            aria-label="Email"
+            required
+            register={register}
+          />
+          <Input
+            name="pseudo"
+            type="text"
+            placeholder="Pseudo*"
+            aria-label="Pseudo"
+            required
+            register={register}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Mot de passe*"
+            aria-label="Mot de passe"
+            required
+            register={register}
+          />
+          <Input
+            name="passwordConfirm"
+            type="password"
+            placeholder="Confirmer mot de passe*"
+            aria-label="Confirmer mot de passe"
+            required
+            register={register}
+          />
+          <Input
+            label="Adresse"
+            name="adress"
+            type="text"
+            placeholder="Adresse"
+            aria-label="Adresse"
+            register={register}
+          />
+          <Input
+            label="Ville"
+            name="city"
+            type="text"
+            placeholder="Ville"
+            aria-label="Ville"
+            register={register}
+          />
+          <Input
+            label="Code Postal"
+            name="postalCode"
+            type="text"
+            placeholder="Code Postal"
+            aria-label="Code postal"
+            register={register}
+          />
+          <Input
+            label="Téléphone"
+            name="phoneNumber"
+            type="text"
+            placeholder="Téléphone"
+            aria-label="Téléphone"
+            register={register}
+          />
+          <SubmitButton
+            label="Accepter les CGU et valider"
+            className="button"
+          />
+        </form>
+        <div className="links_container">
+          <Link to="/login" className="Register__login">Déjà inscrit ?</Link>
+        </div>
+      </section>
+    </main>
   );
 }
 
