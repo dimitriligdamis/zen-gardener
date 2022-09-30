@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
+import ROUTES from '../../config/routes.json';
+
 import LoginPage from '../Views/LoginPage';
 import Homepage from '../Views/Homepage';
 
@@ -18,14 +20,14 @@ function App() {
     <div className="App">
       <Page>
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/cgu" element={<Homepage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/tableau-de-bord" element={<Tasks />} />
-          <Route path="/fiches" element={<Fiches />} />
-          <Route path="/profil" element={<Profile />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path={ROUTES.index} element={<Homepage />} />
+          <Route path={ROUTES.register} element={<RegisterPage />} />
+          <Route path={ROUTES.termsOfService} element={<Homepage />} />
+          <Route path={ROUTES.login} element={<LoginPage />} />
+          <Route path={ROUTES.dashboard} element={<Tasks />} />
+          <Route path={ROUTES.sheets} element={<Fiches />} />
+          <Route path={ROUTES.profile} element={<Profile />} />
+          <Route path={ROUTES.catchAll} element={<PageNotFound />} />
         </Routes>
       </Page>
     </div>

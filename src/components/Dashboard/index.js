@@ -10,8 +10,10 @@ import {
   Home,
 } from 'react-feather';
 import { useSelector } from 'react-redux';
-
 import { Link, NavLink } from 'react-router-dom';
+
+import ROUTES from '../../config/routes.json';
+
 import Overlay from '../Overlay';
 
 import './styles.scss';
@@ -28,7 +30,7 @@ function Dashboard() {
         && (
           <nav className="Dashboard">
             <NavLink
-              to="/tableau-de-bord"
+              to={ROUTES.dashboard}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
@@ -37,7 +39,7 @@ function Dashboard() {
               </div>
             </NavLink>
             <NavLink
-              to="/fiches"
+              to={ROUTES.sheets}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
@@ -47,7 +49,7 @@ function Dashboard() {
             </NavLink>
             <NavLink
               end
-              to="/"
+              to={ROUTES.index}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
@@ -56,7 +58,7 @@ function Dashboard() {
               </div>
             </NavLink>
             <NavLink
-              to="/profil"
+              to={ROUTES.profile}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
@@ -84,7 +86,7 @@ function Dashboard() {
           <nav className="Dashboard">
             <NavLink
               end
-              to="/"
+              to={ROUTES.index}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
@@ -93,7 +95,7 @@ function Dashboard() {
               </div>
             </NavLink>
             <NavLink
-              to="/login"
+              to={ROUTES.login}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
@@ -102,7 +104,7 @@ function Dashboard() {
               </div>
             </NavLink>
             <NavLink
-              to="/register"
+              to={ROUTES.register}
               className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
             >
               <div className="Dashboard__item-content">
