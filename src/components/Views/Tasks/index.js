@@ -1,9 +1,12 @@
+import Title from '../../Title';
 import './styles.scss';
 
 function Tasks() {
   return (
     <main className="Tasks">
-      <h1>Ici c'est le tableaux de bord</h1>
+      <Title>
+        <h1>Ici c'est le tableaux de bord</h1>
+      </Title>
     </main>
   );
 }

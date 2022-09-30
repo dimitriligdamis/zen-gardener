@@ -10,6 +10,7 @@ import Page from '../Page';
 import Tasks from '../Views/Tasks';
 import Fiches from '../Views/Fiches';
 import Profile from '../Views/Profile';
+import PageNotFound from '../Views/PageNotFound';
 
 // == Composant
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/tableau-de-bord" element={<Tasks />} />
           <Route path="/fiches" element={<Fiches />} />
           <Route path="/profil" element={<Profile />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Page>
     </div>
