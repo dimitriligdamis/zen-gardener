@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 
+import ROUTES from '../../../config/routes.json';
+
 import { actionRegister } from '../../../redux/session/sessionActions';
 import Input from '../../Form/Input';
 import SubmitButton from '../../Form/SubmitButton';
@@ -17,7 +19,7 @@ function RegisterPage() {
   };
 
   if (userIsLoggedIn) {
-    return (<Navigate to="/tableau-de-bord" />);
+    return (<Navigate to={ROUTES.dashboard} />);
   }
 
   return (
@@ -96,7 +98,7 @@ function RegisterPage() {
           />
         </form>
         <div className="links_container">
-          <Link to="/login" className="Register__login">Déjà inscrit ?</Link>
+          <Link to={ROUTES.login} className="Register__login">Déjà inscrit ?</Link>
         </div>
       </section>
     </main>

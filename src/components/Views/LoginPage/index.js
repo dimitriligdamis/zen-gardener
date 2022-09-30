@@ -2,6 +2,9 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+
+import ROUTES from '../../../config/routes.json';
+
 import { actionLogin } from '../../../redux/session/sessionActions';
 import ErrorMessage from '../../Form/ErrorMessage';
 import Input from '../../Form/Input';
@@ -21,7 +24,7 @@ function LoginPage() {
   };
 
   if (userIsLoggedIn) {
-    return (<Navigate to="/tableau-de-bord" />);
+    return (<Navigate to={ROUTES.dashboard} />);
   }
 
   return (
@@ -57,7 +60,7 @@ function LoginPage() {
         </form>
         <div className="links_container">
           <a className="LoginPage__nopassword">Mot de passe oublié ?</a>
-          {/* <Link className="LoginPage__register" to="/register">S'inscrire</Link> */}
+          {/* <Link className="LoginPage__register" to={ROUTES.register}>S'inscrire</Link> */}
           {errorIsActive && <ErrorMessage message={message} />}
         </div>
       </section>
