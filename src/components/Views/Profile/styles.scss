@@ -1,0 +1,83 @@
+@use 'src/styles/vars';
+
+.Profile {
+  background-color: bisque;
+  padding: 2rem;
+  max-width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+
+  &__logo {
+    color: #fff;
+    font-weight: bold;
+    font-style: italic;
+    background-color: vars.$bg-sign;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__infos-container {
+    position: relative;
+    padding: 4rem 1rem 2rem;
+    display: flex;
+    gap: 2rem;
+    border: 1px solid #000;
+    min-width: 281px;
+  }
+
+  &__my-infos {
+    border: 1px solid #000;
+    position: absolute;
+    padding: .5rem 1rem;
+    top: 0;
+    left: 0;
+  }
+
+  &__edit {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    &:hover {
+      color: vars.$bg-sign;
+      cursor: pointer;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__infos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label {
+    min-width: 100px;
+    margin: 0;
+  }
+
+  &__submit {
+    display: inline-block;
+  }
+}
