@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import LoginPage from '../Views/LoginPage';
 import Homepage from '../Views/Homepage';
@@ -11,9 +13,16 @@ import Tasks from '../Views/Tasks';
 import Fiches from '../Views/Fiches';
 import Profile from '../Views/Profile';
 import PageNotFound from '../Views/PageNotFound';
+import { actionSendCookie } from '../../redux/session/sessionActions';
 
 // == Composant
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actionSendCookie());
+  }, []);
+
   return (
     <div className="App">
       <Page>
