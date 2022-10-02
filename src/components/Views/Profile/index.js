@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Edit } from 'react-feather';
+import {
+  Edit, Framer, Mail, Map, MapPin, Phone, Tag,
+} from 'react-feather';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
@@ -51,7 +53,7 @@ function Profile() {
         >
           <ul className="Profile__infos">
             <li className="Profile__info">
-              <label className="Profile__label">Pseudo:</label>
+              <label className="Profile__label"><Tag /><em>Pseudo:</em></label>
               <input
                 onChange={(e) => {
                   setInputPseudo(e.target.value);
@@ -62,7 +64,7 @@ function Profile() {
               />
             </li>
             <li className="Profile__info">
-              <label className="Profile__label">Adresse:</label>
+              <label className="Profile__label"><MapPin /><em>Adresse:</em></label>
               <input
                 onChange={(e) => {
                   setInputAddress(e.target.value);
@@ -73,7 +75,7 @@ function Profile() {
               />
             </li>
             <li className="Profile__info">
-              <label className="Profile__label">Ville:</label>
+              <label className="Profile__label"><Map /><em>Ville:</em></label>
               <input
                 onChange={(e) => {
                   setInputCity(e.target.value);
@@ -84,7 +86,7 @@ function Profile() {
               />
             </li>
             <li className="Profile__info">
-              <label className="Profile__label">Code postal:</label>
+              <label className="Profile__label"><Framer /><em>Code postal:</em></label>
               <input
                 onChange={(e) => {
                   setInputZipCode(e.target.value);
@@ -95,7 +97,7 @@ function Profile() {
               />
             </li>
             <li className="Profile__info">
-              <label className="Profile__label">Téléphone:</label>
+              <label className="Profile__label"><Phone /><em>Téléphone:</em></label>
               <input
                 onChange={(e) => {
                   setInputPhone(e.target.value);
@@ -106,7 +108,7 @@ function Profile() {
               />
             </li>
             <li className="Profile__info">
-              <label className="Profile__label">Mail:</label>
+              <label className="Profile__label"><Mail /><em>Mail:</em></label>
               <input
                 onChange={(e) => {
                   setInputEmail(e.target.value);
