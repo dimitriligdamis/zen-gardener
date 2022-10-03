@@ -4,6 +4,7 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
+export const SEND_COOKIE = 'SEND_COOKIE';
 
 // Handled by reducer
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -41,4 +42,8 @@ export const actionUpdateSession = (jwtToken = null) => ({
 export const actionRegister = (inputs) => ({
   type: REGISTER,
   ...inputs,
+});
+
+export const actionSendCookie = () => ({
+  type: SEND_COOKIE,
 });

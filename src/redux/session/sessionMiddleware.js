@@ -1,4 +1,4 @@
-import axios from 'axios';
+import client from '../../services/http/client';
 
 import {
   LOGIN,
@@ -6,6 +6,7 @@ import {
   actionUpdateSession,
   actionLoginFailed,
   REGISTER,
+  SEND_COOKIE,
 } from './sessionActions';
 import { actionUserDataReceived } from '../user/userActions';
 import { actionDisplayError } from '../error/errorAction';
@@ -14,14 +15,14 @@ import Config from '../../config';
 import useMockAdapter from '../../services/mockApi/session';
 
 if (Config.API_MOCK_ENABLED) {
-  useMockAdapter(axios, Config.API_URL_SESSION);
+  useMockAdapter(client, Config.API_URL_SESSION);
 }
 
 const sessionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
       const { email, password } = action;
-      axios
+      client
         .post(Config.API_URL_SESSION, {
           email,
           password,
@@ -43,8 +44,8 @@ const sessionMiddleware = (store) => (next) => (action) => {
       break;
     }
 
-    case LOGOUT:
-      axios
+    case LOGOUT: {
+      client
         .delete(Config.API_URL_SESSION)
         .then(() => console.log('Logout successful'))
         .catch((error) => console.log('Logout failed', error))
@@ -53,6 +54,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionUpdateSession(null));
         });
       break;
+    }
 
     case REGISTER: {
       // TODO
@@ -65,7 +67,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
         postalCode,
         phoneNumber,
       } = action;
-      axios
+      client
         .post(Config.API_URL_SESSION, {
           email,
           pseudo,
@@ -82,6 +84,19 @@ const sessionMiddleware = (store) => (next) => (action) => {
           console.error('Error while register', error);
           store.dispatch(actionLoginFailed());
         });
+      break;
+    }
+    case SEND_COOKIE: {
+      client
+        .get(Config.API_URL_USER)
+        .then((response) => {
+          const { userData } = response.data;
+          console.log(response.data);
+          store.dispatch(actionUserDataReceived(userData));
+          store.dispatch(actionUpdateSession());
+        })
+        // 401
+        .catch((error) => console.log('Not connected', error));
       break;
     }
 

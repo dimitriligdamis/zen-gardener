@@ -1,16 +1,16 @@
-import axios from 'axios';
+import client from '../../services/http/client';
 
 import {
   UPDATE_USER_DATA,
   actionUserDataUpdated,
-} from '../userActions';
+} from './userActions';
 import Config from '../../config';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case UPDATE_USER_DATA:
+    case UPDATE_USER_DATA: {
       const { userData } = action;
-      axios
+      client
         .post(Config.API_URL_USER, {
           ...userData,
         })
@@ -24,6 +24,11 @@ const userMiddleware = (store) => (next) => (action) => {
           console.error('Error while updating user data', error);
           // TODO: inform user
         });
+      break;
+    }
+
+    default:
+      break;
   }
 
   return next(action);
