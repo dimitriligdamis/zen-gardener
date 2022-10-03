@@ -4,11 +4,13 @@ import {
   // Framer, Mail, Map, MapPin, Phone, Tag,
 } from 'react-feather';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionUpdateUserData, actionUserDataUpdated } from '../../../redux/user/userActions';
 import './styles.scss';
 
 function Profile() {
+  const dispatch = useDispatch();
   const info = useSelector((state) => state.user);
 
   const [inputDisabled, setInputDisbled] = useState(true);
@@ -22,7 +24,13 @@ function Profile() {
   } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data));
+    const date = new Date(Date.now());
+    date.toString();
+
+    dispatch(actionUpdateUserData(data));
+    dispatch(actionUserDataUpdated(date));
+
+    setInputDisbled(true);
   });
 
   const handleClickEdit = () => {
@@ -40,56 +48,70 @@ function Profile() {
       task_notification,
       week_notification,
     });
-  }, [reset]); // à chaque changement de l'élément rest ou info (A voir)
+  }, [info]); // à chaque changement du state user les champs se remet à jour
 
   return (
-    <main className="Profile">
+    <section className="Profile">
       <Link className="Profile__logo" to="/tableaux">Logo</Link>
       <h1 className="Profile__title">Page de profil de: {pseudo}</h1>
-      <section className="Profile__infos-container">
-        <h3 className="Profile__my-infos">Mes infos</h3>
-        <Edit
-          className="Profile__edit"
-          onClick={handleClickEdit}
-        />
-        <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
+
+        <section className="Profile__infos-container">
+          <h3 className="Profile__my-infos">Mes infos</h3>
+          <Edit
+            className="Profile__edit"
+            onClick={handleClickEdit}
+          />
+
           <article className="Profile__item">
-            <label className="Profile__label" htmlFor="pseudo">Pseudo</label>
+            <label className="Profile__label" htmlFor="pseudo">Pseudo:</label>
             <input disabled={inputDisabled} className="Profile__input" id="pseudo" {...register('pseudo')} />
           </article>
+
           <article className="Profile__item">
-            <label className="Profile__label" htmlFor="address">Adresse</label>
-            <input disabled={inputDisabled} className="Profile__input" id="address" {...register('address')} />
+            <label className="Profile__label" htmlFor="address">Adresse:</label>
+            <textarea disabled={inputDisabled} className="Profile__input" id="address" {...register('address')} />
           </article>
+
           <article className="Profile__item">
-            <label className="Profile__label" htmlFor="city">Ville</label>
+            <label className="Profile__label" htmlFor="city">Ville:</label>
             <input disabled={inputDisabled} className="Profile__input" id="city" {...register('city')} />
           </article>
+
           <article className="Profile__item">
-            <label className="Profile__label" htmlFor="zip_code">Code postal</label>
+            <label className="Profile__label" htmlFor="zip_code">Code postal:</label>
             <input disabled={inputDisabled} className="Profile__input" id="zip_code" {...register('zip_code')} />
           </article>
+
           <article className="Profile__item">
-            <label className="Profile__label" htmlFor="phone">Téléphone</label>
+            <label className="Profile__label" htmlFor="phone">Téléphone:</label>
             <input disabled={inputDisabled} className="Profile__input" id="phone" {...register('phone')} />
           </article>
+
           <article className="Profile__item">
-            <label className="Profile__label" htmlFor="email">Mail</label>
+            <label className="Profile__label" htmlFor="email">Mail:</label>
             <input disabled={inputDisabled} className="Profile__input" id="email" {...register('email')} />
           </article>
+
+        </section>
+
+        <section className="Profile__infos-container">
+          <h3 className="Profile__my-infos">Mes paramètres</h3>
+
           <article className="Profile__item">
             <label className="Profile__label" htmlFor="task_notification">Envoyez moi un email par tâches</label>
             <input disabled={inputDisabled} type="checkbox" className="Profile__input" id="task_notification" {...register('task_notification')} />
           </article>
+
           <article className="Profile__item">
             <label className="Profile__label" htmlFor="week_notification">Envoyez moi un email par semaine</label>
             <input disabled={inputDisabled} type="checkbox" className="Profile__input" id="week_notification" {...register('week_notification')} />
           </article>
-          <button disabled={inputDisabled} className="Profile__submit" type="submit">Valider</button>
-        </form>
 
-      </section>
-    </main>
+        </section>
+        <button disabled={inputDisabled} className="Profile__submit" type="submit">Valider</button>
+      </form>
+    </section>
   );
 }
 

@@ -10,13 +10,15 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case UPDATE_USER_DATA: {
       const { userData } = action;
+      console.log('userData:', userData);
       client
-        .post(Config.API_URL_USER, {
+        .put(Config.API_URL_USER, {
           ...userData,
         })
         .then((response) => {
           // User data updated successfully
           const { updatedAt } = response.data;
+          console.log('ici', updatedAt, response);
           store.dispatch(actionUserDataUpdated(updatedAt));
         })
         .catch((error) => {

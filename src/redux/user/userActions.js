@@ -11,14 +11,9 @@ export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 // ACTION CREATORS
 
 /** Action dispatched when user submits profile data update */
-export const actionUpdateUserData = () => ({
+export const actionUpdateUserData = (userData) => ({
   type: UPDATE_USER_DATA,
-  address: null,
-  city: null,
-  postalCode: null,
-  phoneNumber: null,
-  sendTaskEmails: null,
-  sendWeeklyEmails: null,
+  userData,
 });
 
 /** Action dispatched when user data successfully fetched from API */

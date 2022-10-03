@@ -5,13 +5,13 @@ import {
 } from './userActions';
 
 const userInitialState = {
-  id: 1,
-  pseudo: 'Jéan Ver',
-  email: 'Jean.ver@bonduel.fr',
-  address: "8 rue de l'aubergine",
-  city: 'Le-potager',
-  zip_code: '87520',
-  phone: '0800201010',
+  id: null,
+  pseudo: null,
+  email: null,
+  address: null,
+  city: null,
+  zip_code: null,
+  phone: null,
   task_notification: true,
   week_notification: true,
   updatedAt: null,

@@ -30,7 +30,9 @@
   &__infos-container {
     position: relative;
     padding: 4rem 1rem 2rem;
+    margin-bottom: 2rem;
     display: flex;
+    flex-direction: column;
     gap: 2rem;
     border: 1px solid #000;
     min-width: 281px;
@@ -55,32 +57,11 @@
     }
   }
 
-  &__form {
+  &__item {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  &__infos {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  &__info {
-    display: flex;
-    align-items: center;
   }
 
   &__label {
-    min-width: 100px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  &__submit {
-    display: inline-block;
+    min-width: 95px;
   }
 }
