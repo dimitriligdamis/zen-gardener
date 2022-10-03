@@ -5,7 +5,6 @@ import {
   LOGOUT,
   actionUpdateSession,
   actionLoginFailed,
-  REGISTER,
   SEND_COOKIE,
 } from './sessionActions';
 import { actionUserDataReceived } from '../user/userActions';

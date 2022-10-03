@@ -1,12 +1,15 @@
+/* eslint-disable camelcase */
 import client from '../../services/http/client';
 
 import {
   UPDATE_USER_DATA,
   actionUserDataUpdated,
   REGISTER,
+  actionUserDataReceived,
 } from './userActions';
 import Config from '../../config';
-import { actionLoginFailed } from '../session/sessionActions';
+import { actionLoginFailed, actionUpdateSession } from '../session/sessionActions';
+import { actionDisplayError } from '../error/errorAction';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -24,41 +27,39 @@ const userMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           // Login request failed => log and inform user
           console.error('Error while updating user data', error);
-          // TODO: inform user
         });
       break;
     }
     case REGISTER: {
-      // TODO
-      console.log(action)
       const {
         email,
         pseudo,
         password,
-        adress,
+        address,
         city,
-        postalCode,
-        phoneNumber,
+        zip_code,
+        phone,
       } = action;
       client
         .post(Config.API_URL_MEMBER, {
           pseudo,
           email,
           password,
-          adress,
-          postalCode,
+          address,
+          zip_code,
           city,
-          phoneNumber,
+          phone,
           task_notification: true,
           week_notification: true,
         })
-        .then(() => {
-          // TODO
-          console.log('ca marche')
+        .then((response) => {
+          store.dispatch(actionUserDataReceived(response.data));
+          store.dispatch(actionUpdateSession());
         })
         .catch((error) => {
           console.error('Error while register', error);
           store.dispatch(actionLoginFailed());
+          store.dispatch(actionDisplayError(error.response.data));
         });
       break;
     }
