@@ -37,6 +37,10 @@
     font-weight: 600;
   }
 
+  &__retour {
+    align-self: flex-start;
+  }
+
   &__img {
     width: 500px;
     max-width: fit-content;

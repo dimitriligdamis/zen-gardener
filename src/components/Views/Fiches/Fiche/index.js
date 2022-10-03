@@ -34,6 +34,7 @@ function Fiche() {
       </aside>
       <section className="Fiche__container">
         <h1 className="Fiche__title">{titre}</h1>
+        <span className="Fiche__retour">← Retour à la recherche</span>
         <img className="Fiche__img" alt={titre} src={photos} />
         <div className="Fiche__description">{description}</div>
       </section>
