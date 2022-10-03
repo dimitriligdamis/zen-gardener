@@ -16,7 +16,7 @@ import Overlay from '../Overlay';
 
 import './styles.scss';
 
-function Dashboard() {
+function Menu() {
   const userIsLoggedIn = useSelector((state) => state.session.userIsLoggedIn);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,21 +26,21 @@ function Dashboard() {
       {
         userIsLoggedIn
         && (
-          <nav className="Dashboard">
+          <nav className="Menu">
             <NavLink
               to="/tableau-de-bord"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <Calendar />
-                <p>Tâches</p>
+                <p>Tableau de bord</p>
               </div>
             </NavLink>
             <NavLink
               to="/fiches"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <Layers />
                 <p>Fiches</p>
               </div>
@@ -48,18 +48,18 @@ function Dashboard() {
             <NavLink
               end
               to="/"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <Bell />
                 <p>Notifications</p>
               </div>
             </NavLink>
             <NavLink
               to="/profil"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <User />
                 <p>Profil</p>
               </div>
@@ -68,9 +68,9 @@ function Dashboard() {
               onClick={() => {
                 setMenuOpen(true);
               }}
-              className="Dashboard__item"
+              className="Menu__item"
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <MoreHorizontal />
                 <p>Plus</p>
               </div>
@@ -81,31 +81,31 @@ function Dashboard() {
       {
         !userIsLoggedIn
         && (
-          <nav className="Dashboard">
+          <nav className="Menu">
             <NavLink
               end
               to="/"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <Home />
                 <p>Accueil</p>
               </div>
             </NavLink>
             <NavLink
               to="/login"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <LogIn />
                 <p>Se connecter</p>
               </div>
             </NavLink>
             <NavLink
               to="/register"
-              className={({ isActive }) => (isActive ? 'Dashboard__item Dashboard__item--active' : 'Dashboard__item')}
+              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <PenTool />
                 <p>S'inscrire</p>
               </div>
@@ -114,9 +114,9 @@ function Dashboard() {
               onClick={() => {
                 setMenuOpen(true);
               }}
-              className="Dashboard__item"
+              className="Menu__item"
             >
-              <div className="Dashboard__item-content">
+              <div className="Menu__item-content">
                 <MoreHorizontal />
                 <p>Plus</p>
               </div>
@@ -135,4 +135,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Menu;
