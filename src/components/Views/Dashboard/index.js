@@ -1,7 +1,17 @@
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import Title from '../../Title';
 import './styles.scss';
 
 function Dashboard() {
+  const { userIsLoggedIn } = useSelector((state) => state.session);
+
+  console.log(userIsLoggedIn)
+
+  if (!userIsLoggedIn) {
+    return (<Navigate to="/" />);
+  }
+
   return (
     <main className="Dashboard">
       <Title>
