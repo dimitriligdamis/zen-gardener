@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import { actionRegister } from '../../../redux/session/sessionActions';
+import { actionRegister } from '../../../redux/user/userActions';
 
 import SubmitButton from '../../Form/SubmitButton';
 import './style.scss';
@@ -98,20 +98,20 @@ function RegisterPage() {
           {/* PASSWORD CONFIRM */}
           <input
             className="Register__input"
-            name="passwordConfirm"
+            name="repeat_password"
             type="password"
             placeholder="Confirmer mot de passe*"
             aria-label="Confirmer mot de passe"
             autoComplete="off"
-            {...register('passwordConfirm', {
+            {...register('repeat_password', {
               // Validation list
               validate: (value) => value === password,
 
             })}
-            aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
+            aria-invalid={errors.repeat_password ? 'true' : 'false'}
           />
           {/* Errors messages */}
-          {errors.passwordConfirm?.type === 'validate' && <p className="Register__error">⚠ Les mots de passes ne correspondent pas</p>}
+          {errors.repeat_password?.type === 'validate' && <p className="Register__error">⚠ Les mots de passes ne correspondent pas</p>}
 
           {/* ADRESS */}
           <input
@@ -141,38 +141,38 @@ function RegisterPage() {
           <input
             className="Register__input"
             label="Code Postal"
-            name="postalCode"
+            name="zip_code"
             type="text"
             placeholder="Code Postal"
             aria-label="Code postal"
             autoComplete="off"
-            {...register('postalCode', {
+            {...register('zip_code', {
               // Validation list
               pattern: /^[0-9]{5}$/,
             })}
-            aria-invalid={errors.postalCode ? 'true' : 'false'}
+            aria-invalid={errors.zip_code ? 'true' : 'false'}
           />
           {/* Errors messages */}
-          {errors.postalCode?.type === 'pattern' && <p className="Register__error">⚠ Code postale incorrect</p>}
+          {errors.zip_code?.type === 'pattern' && <p className="Register__error">⚠ Code postale incorrect</p>}
 
           {/* PHONE */}
           <input
             className="Register__input"
             label="Téléphone"
-            name="phoneNumber"
+            name="phone"
             type="text"
             placeholder="Téléphone"
             aria-label="Téléphone"
             autoComplete="off"
-            {...register('phoneNumber', {
+            {...register('phone', {
               // Validation list
               // TODO
               // pattern: /^(+33\s?|0)\d((\s|.|-|_|)?\d{2}){3}(\3\d{2})$/,
             })}
-            aria-invalid={errors.phoneNumber ? 'true' : 'false'}
+            aria-invalid={errors.phone ? 'true' : 'false'}
           />
           {/* Errors messages */}
-          {errors.phoneNumber?.type === 'pattern' && <p className="Register__error">⚠ Numéro de téléphone incorrect</p>}
+          {errors.phone?.type === 'pattern' && <p className="Register__error">⚠ Numéro de téléphone incorrect</p>}
           <SubmitButton
             label="Accepter les CGU et valider"
             className="button"
