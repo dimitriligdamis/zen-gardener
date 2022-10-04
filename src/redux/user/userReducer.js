@@ -12,8 +12,8 @@ const userInitialState = {
   city: null,
   zip_code: null,
   phone: null,
-  task_notification: true,
-  week_notification: true,
+  task_notification: null,
+  week_notification: null,
   updatedAt: null,
 };
 

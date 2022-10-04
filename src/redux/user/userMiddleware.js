@@ -10,21 +10,23 @@ import {
 import Config from '../../config';
 import { actionLoginFailed, actionUpdateSession } from '../session/sessionActions';
 import { actionDisplayError } from '../error/errorAction';
+import authHeader from '../../services/http/auth-header';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case UPDATE_USER_DATA: {
       const { userData } = action;
-      console.log('userData:', userData);
+      console.log('modif:', userData);
       client
-        .patch(Config.API_URL_USER, {
+        .patch(Config.API_URL_MEMBER, {
           ...userData,
-        })
+        }, authHeader())
         .then((response) => {
           // User data updated successfully
           const { updatedAt } = response.data;
           console.log('ici', updatedAt, response);
           store.dispatch(actionUserDataUpdated(updatedAt));
+          store.dispatch(actionUserDataReceived(response.data));
         })
         .catch((error) => {
           // Login request failed => log and inform user
