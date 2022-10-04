@@ -10,7 +10,7 @@ export default class Config {
     }
 
     static get API_MOCK_ENABLED() {
-        return env.API_MOCK_ENABLED;
+        return env.API_MOCK_ENABLED === 'true';
     }
 
     static get API_URL_SESSION() {
