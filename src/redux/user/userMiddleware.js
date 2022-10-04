@@ -12,7 +12,7 @@ const userMiddleware = (store) => (next) => (action) => {
       const { userData } = action;
       console.log('userData:', userData);
       client
-        .put(Config.API_URL_USER, {
+        .patch(Config.API_URL_USER, {
           ...userData,
         })
         .then((response) => {

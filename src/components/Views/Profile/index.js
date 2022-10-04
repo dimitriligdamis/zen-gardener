@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
 import {
   Edit,
@@ -20,7 +22,7 @@ function Profile() {
   } = info;
 
   const {
-    register, handleSubmit, formState: { errors }, reset,
+    register, handleSubmit, reset,
   } = useForm();
 
   const onSubmit = handleSubmit((data) => {
@@ -96,7 +98,7 @@ function Profile() {
         </section>
 
         <section className="Profile__infos-container">
-          <h3 className="Profile__my-infos">Mes paramètres</h3>
+          <h3 className="Profile__my-infos">Paramètres de notifications</h3>
 
           <article className="Profile__item">
             <label className="Profile__label" htmlFor="task_notification">Envoyez moi un email par tâches</label>
