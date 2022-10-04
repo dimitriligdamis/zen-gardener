@@ -14,6 +14,7 @@ import Fiches from '../Views/Fiches';
 import Profile from '../Views/Profile';
 import PageNotFound from '../Views/PageNotFound';
 import { actionSendCookie } from '../../redux/session/sessionActions';
+import Fiche from '../Views/Fiches/Fiche';
 
 // == Composant
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/tableau-de-bord" element={<Dashboard />} />
           <Route path="/fiches" element={<Fiches />} />
+          <Route path="/fiches/1" element={<Fiche />} />
           <Route path="/profil" element={<Profile />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
