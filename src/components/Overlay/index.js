@@ -9,6 +9,7 @@ function Overlay({ menuOpen, setMenuOpen, isConnected }) {
 
   const handleClick = () => {
     dispatch(actionLogout());
+    setMenuOpen(false);
   };
 
   return (
