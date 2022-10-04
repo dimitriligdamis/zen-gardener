@@ -12,8 +12,8 @@ const userInitialState = {
   city: null,
   zip_code: null,
   phone: null,
-  sendTaskEmails: null,
-  sendWeeklyEmails: null,
+  task_notification: true,
+  week_notification: true,
   updatedAt: null,
 };
 
@@ -21,6 +21,7 @@ function reducer(state = userInitialState, action = {}) {
   switch (action.type) {
     case USER_DATA_RECEIVED: {
       const { userData } = action;
+      console.log('userData received', userData);
       return {
         ...state,
         ...userData,
