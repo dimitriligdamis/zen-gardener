@@ -17,8 +17,8 @@ export default class Config {
         return `${Config.API_URL}/session`;
     }
 
-    static get API_URL_USER() {
-        return `${Config.API_URL}/user`;
+    static get API_URL_MEMBER() {
+        return `${Config.API_URL}/member`;
     }
 
     static get API_URL_TASKS() {
