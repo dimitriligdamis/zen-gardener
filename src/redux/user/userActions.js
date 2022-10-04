@@ -2,6 +2,7 @@
 
 // Handled by middleware
 export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
+export const REGISTER = 'REGISTER';
 
 // Handled by reducer
 export const USER_DATA_RECEIVED = 'USER_DATA_RECEIVED';
@@ -31,4 +32,10 @@ export const actionUserDataUpdated = (updatedAt) => ({
 /** Action dispatched when user logged out => we need to clear any use info from app */
 export const actionUserLoggedOut = () => ({
   type: USER_LOGGED_OUT,
+});
+
+/** Action dispatched when user register */
+export const actionRegister = (inputs) => ({
+  type: REGISTER,
+  ...inputs,
 });

@@ -5,7 +5,6 @@ import {
   LOGOUT,
   actionUpdateSession,
   actionLoginFailed,
-  REGISTER,
   SEND_COOKIE,
 } from './sessionActions';
 import { actionUserDataReceived } from '../user/userActions';
@@ -56,39 +55,9 @@ const sessionMiddleware = (store) => (next) => (action) => {
       break;
     }
 
-    case REGISTER: {
-      // TODO
-      const {
-        email,
-        pseudo,
-        password,
-        adress,
-        city,
-        postalCode,
-        phoneNumber,
-      } = action;
-      client
-        .post(Config.API_URL_SESSION, {
-          email,
-          pseudo,
-          password,
-          adress,
-          city,
-          postalCode,
-          phoneNumber,
-        })
-        .then(() => {
-          // TODO
-        })
-        .catch((error) => {
-          console.error('Error while register', error);
-          store.dispatch(actionLoginFailed());
-        });
-      break;
-    }
     case SEND_COOKIE: {
       client
-        .get(Config.API_URL_USER)
+        .get(Config.API_URL_MEMBER)
         .then((response) => {
           const { userData } = response.data;
           console.log(response.data);
