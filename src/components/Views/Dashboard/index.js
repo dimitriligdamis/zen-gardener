@@ -6,7 +6,7 @@ import './styles.scss';
 function Dashboard() {
   const { userIsLoggedIn } = useSelector((state) => state.session);
 
-  console.log(userIsLoggedIn)
+  console.log(userIsLoggedIn);
 
   if (!userIsLoggedIn) {
     return (<Navigate to="/" />);
