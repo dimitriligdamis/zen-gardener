@@ -1,13 +1,25 @@
-import Title from '../../Title';
+import { useForm } from 'react-hook-form';
+
 import './styles.scss';
 
 function About() {
+  const {
+    register, handleSubmit, watch, formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  console.log('watch:', watch('example')); // watch input value by passing the name of it
   return (
-    <section className="About">
-      <Title>
-        <h1>Ici c'est la page à propos</h1>
-      </Title>
-    </section>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input defaultValue="test" {...register('example')} />
+
+      {/* include validation with required or other standard HTML validation rules */}
+      <input {...register('exampleRequired', { required: true })} />
+      {/* errors will return when field validation fails  */}
+      {errors.exampleRequired && <span>This field is required</span>}
+
+      <input type="submit" />
+    </form>
   );
 }
 
