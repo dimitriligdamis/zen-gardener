@@ -11,7 +11,7 @@ function Dashboard() {
   const [currentTaskViewMode, setCurrentTaskViewMode] = useState(Views.MONTH);
 
   const onAddTask = () => { /* TODO */ };
-
+  
   return (
     <>
       <h1>Bonjour, Jéan Vert !</h1>

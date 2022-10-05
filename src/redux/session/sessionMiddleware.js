@@ -5,7 +5,6 @@ import {
   LOGOUT,
   actionUpdateSession,
   actionLoginFailed,
-  SEND_COOKIE,
 } from './sessionActions';
 import { actionUserDataReceived, actionUserLoggedOut } from '../user/userActions';
 import { actionDisplayError } from '../error/errorAction';
@@ -55,20 +54,6 @@ const sessionMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionUserLoggedOut(null));
           localStorage.removeItem('token');
         });
-      break;
-    }
-
-    case SEND_COOKIE: {
-      client
-        .get(Config.API_URL_MEMBER, authHeader())
-        .then((response) => {
-          const userData = response.data;
-          console.log(userData);
-          store.dispatch(actionUserDataReceived(userData));
-          store.dispatch(actionUpdateSession());
-        })
-        // 401
-        .catch((error) => console.log('Not connected', error));
       break;
     }
 

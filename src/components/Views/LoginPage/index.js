@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { actionLogin } from '../../../redux/session/sessionActions';
 
 import ErrorMessage from '../../Form/ErrorMessage';
@@ -13,15 +12,10 @@ function LoginPage() {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { errorIsActive, message } = useSelector((state) => state.error);
-  const { userIsLoggedIn } = useSelector((state) => state.session);
 
   const onSubmit = ({ email, password }) => {
     dispatch(actionLogin(email, password));
   };
-
-  if (userIsLoggedIn) {
-    return (<Navigate to="/tableau-de-bord" />);
-  }
 
   return (
     <>
