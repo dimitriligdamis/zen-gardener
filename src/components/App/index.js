@@ -15,6 +15,9 @@ import Fiche from '../Views/Fiches/Fiche';
 import RequireAuth from '../AccessControl/RequireAuth';
 import PersistLogin from '../AccessControl/PersistLogin';
 import RequireNotAuth from '../AccessControl/RequireNotAuth';
+import CGU from '../Views/CGU';
+import Contact from '../Views/Contact';
+import About from '../Views/About';
 
 // == Composant
 function App() {
@@ -25,7 +28,9 @@ function App() {
           <Route element={<PersistLogin />}>
 
             {/* PUBLIC PAGES */}
-            <Route path="/cgu" element={<Homepage />} />
+            <Route path="/cgu" element={<CGU />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
 
             {/* NOT AUTH PAGES */}
             <Route element={<RequireNotAuth />}>
@@ -48,7 +53,6 @@ function App() {
         </Route>
       </Routes>
     </div>
-
   );
 }
 

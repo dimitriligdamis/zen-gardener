@@ -10,11 +10,11 @@ import { actionUserDataReceived, actionUserLoggedOut } from '../user/userActions
 import { actionDisplayError } from '../error/errorAction';
 import Config from '../../config';
 
-import useMockAdapter from '../../services/mockApi/session';
+import sessionMockAdapter from '../../services/mockApi/session';
 import authHeader from '../../services/http/auth-header';
 
 if (Config.API_MOCK_ENABLED) {
-  useMockAdapter(client, Config.API_URL_SESSION);
+  sessionMockAdapter(client, Config.API_URL_SESSION);
 }
 
 const sessionMiddleware = (store) => (next) => (action) => {

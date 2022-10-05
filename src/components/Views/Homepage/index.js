@@ -5,7 +5,7 @@ import Title from '../../Title';
 import './styles.scss';
 
 function Homepage() {
-  const { userIsLoggedIn } = useSelector ((state) => state.session);
+  const { userIsLoggedIn } = useSelector((state) => state.session);
   if (userIsLoggedIn) {
     return (<Navigate to="/tableau-de-bord" />);
   }

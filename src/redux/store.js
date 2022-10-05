@@ -2,8 +2,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 
 import reducer from 'src/redux/rootReducer';
 import Config from '../config';
-import sessionMiddleware from './session/sessionMiddleware';
 import userMiddleware from './user/userMiddleware';
+import sessionMiddleware from './session/sessionMiddleware';
+import tasksMiddleware from './tasks/tasksMiddleware';
 
 const isDevelopment = Config.ENVIRONMENT === 'development';
 let composeEnhancers;
@@ -16,7 +17,7 @@ else {
 }
 
 const enhancers = composeEnhancers(
-  applyMiddleware(sessionMiddleware, userMiddleware),
+  applyMiddleware(sessionMiddleware, userMiddleware, tasksMiddleware),
 );
 
 const store = createStore(reducer, enhancers);
