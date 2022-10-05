@@ -5,7 +5,7 @@ import SubmitButton from '../../Form/SubmitButton';
 import './styles.scss';
 
 function Conntact() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => console.log(data);
 
   return (
@@ -15,8 +15,8 @@ function Conntact() {
         <div className="Contact__field">
           <label className="Contact__label" htmlFor="inputSubject">
             <p className="Contact__body">Sur quel sujet avez vous besoin d'aide ?</p>
-            <select id="inputSubject" className="Contact__select" required>
-              <option value="" selected>Choississez un sujet</option>
+            <select id="inputSubject" className="Contact__select" defaultValue="default">
+              <option value="default" disabled>Choississez un sujet</option>
               <option value="grapefruit">Pamplemousse</option>
               <option value="lime">Citron vert</option>
               <option value="coconut">Noix de coco</option>
@@ -27,7 +27,8 @@ function Conntact() {
         <div className="Contact__field">
           <label className="Contact__label" htmlFor="inputDetails">
             <p className="Contact__body">Mettez ci-dessous les détails de votre demande</p>
-            <textarea className="Contact__textarea" id="inputDetails" placeholder="Merci de renseigner le maximum d'information que possible..." {...register('example')} />
+            <textarea {...register('inputDetails', { required: true })} className="Contact__textarea" id="inputDetails" placeholder="Merci de renseigner le maximum d'information que possible..." />
+            {errors.inputDetails && <span>This field is required</span>}
           </label>
         </div>
         <SubmitButton className="Contact__submit" label="Envoyer votre demande" />
