@@ -16,6 +16,11 @@ function Overlay({ menuOpen, setMenuOpen, isConnected }) {
     setMenuOpen(false);
   };
 
+  const openMailbox = () => {
+    window.location.href = 'mailto:ozengardener@gmail.com';
+    setMenuOpen(false);
+  };
+
   return (
     <div className={menuOpen ? 'Overlay Overlay--open' : 'Overlay'}>
       <a
@@ -26,7 +31,7 @@ function Overlay({ menuOpen, setMenuOpen, isConnected }) {
       <div className="Overlay__content">
         {isConnected && <Link onClick={handleClick} type="button" className="Overlay__link">Déconnexion</Link>}
         <Link onClick={closeMenu} to="/about" className="Overlay__link">À propos</Link>
-        <Link onClick={closeMenu} to="/contact" className="Overlay__link">Contact</Link>
+        <Link onClick={openMailbox} className="Overlay__link">Contact</Link>
         <Link onClick={closeMenu} to="/cgu" className="Overlay__link">CGU</Link>
       </div>
     </div>

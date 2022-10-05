@@ -17,7 +17,7 @@ function PersistLogin() {
     (async function () {
       try {
         await client
-        // Send token to the server
+          // Send token to the server
           .get(Config.API_URL_MEMBER, authHeader())
           // Token is valid
           .then((response) => {
