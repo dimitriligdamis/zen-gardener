@@ -21,7 +21,6 @@ function reducer(state = userInitialState, action = {}) {
   switch (action.type) {
     case USER_DATA_RECEIVED: {
       const { userData } = action;
-      console.log('userData received', userData);
       return {
         ...state,
         ...userData,

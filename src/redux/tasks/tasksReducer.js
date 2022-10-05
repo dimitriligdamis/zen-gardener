@@ -9,24 +9,7 @@ import {
 } from './tasksActions';
 
 const tasksInitialState = {
-  tasks: [
-    {
-      id: 1,
-      label: 'Tache 1',
-      begin_date: new Date('2022-10-10T11:00:00'),
-      limit_date: new Date('2022-10-11T11:00:00'),
-      user_id: 1,
-      sheet_id: 1,
-    },
-    {
-      id: 2,
-      label: 'Tache 2',
-      begin_date: new Date('2022-10-12T11:00:00'),
-      limit_date: new Date('2022-10-13T11:00:00'),
-      user_id: 1,
-      sheet_id: 2,
-    },
-  ],
+  tasks: [],
   createdFailed: false,
   updatedFailed: false,
   deleteFailed: false,

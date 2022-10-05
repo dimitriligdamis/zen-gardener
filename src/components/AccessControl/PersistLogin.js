@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
-import client from '../../services/http/client';
+import Client from '../../services/http/client';
 import Config from '../../config';
 import { actionUserDataReceived } from '../../redux/user/userActions';
 import { actionUpdateSession } from '../../redux/session/sessionActions';
-import authHeader from '../../services/http/auth-header';
 
 function PersistLogin() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,15 +15,15 @@ function PersistLogin() {
   useEffect(() => {
     (async function () {
       try {
-        await client
+        await Client.getInstance()
         // Send token to the server
-          .get(Config.API_URL_MEMBER, authHeader())
+          .get(Config.API_URL_MEMBER)
           // Token is valid
           .then((response) => {
             const userData = response.data;
             dispatch(actionUserDataReceived(userData));
             dispatch(actionUpdateSession());
-            console.log('Valid Token');
+            //console.log('Valid Token');
           })
           // No token / Token is not valid
           .catch((error) => console.log('No token', error));

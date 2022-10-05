@@ -1,23 +1,27 @@
-import client from '../../services/http/client';
+import Client from '../../services/http/client';
 
 import {
   FETCH_SHEET_BY_ID,
-  FETCH_SHEET_BY_QUERY,
+  FETCH_SHEETS_BY_QUERY,
   actionFetchSheetById,
+  actionTaskCreated,
+  actionTaskCreateFailed,
+  actionTaskDataReceived,
+  actionTaskUpdateFailed,
 } from './tasksActions';
 import Config from '../../config';
 
 import tasksMockAdapter from '../../services/mockApi/tasks';
 
 if (Config.API_MOCK_ENABLED) {
-  tasksMockAdapter(client, Config.API_URL_TASKS);
+  tasksMockAdapter(Client.instance, Config.API_URL_TASKS);
 }
 
 const tasksMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_SHEET_BY_ID: {
       const { id } = action;
-      client
+      Client.instance
         .get(`${Config.API_URL_SHEETS}/${id}`)
         .then((response) => {
           console.dir(response);
@@ -33,7 +37,7 @@ const tasksMiddleware = (store) => (next) => (action) => {
 
     case FETCH_SHEETS_BY_QUERY: {
       const { query, zeroBasedPageNumber, numberOfSheetsByQuery } = action;
-      client
+      Client.instance
         .get(`${Config.API_URL_SHEETS}?q=${query}&p=${zeroBasedPageNumber}&n=${numberOfSheetsByQuery}`)
         .then((response) => {
           const newTask = response.data;
