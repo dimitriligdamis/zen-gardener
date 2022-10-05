@@ -3,7 +3,6 @@
 // Handled by middleware
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
-export const SEND_COOKIE = 'SEND_COOKIE';
 
 // Handled by reducer
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -35,8 +34,4 @@ export const actionLoginFailed = () => ({
 export const actionUpdateSession = (jwtToken = null) => ({
   type: UPDATE_SESSION,
   jwtToken,
-});
-
-export const actionSendCookie = () => ({
-  type: SEND_COOKIE,
 });

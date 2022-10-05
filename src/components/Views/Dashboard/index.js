@@ -8,10 +8,6 @@ function Dashboard() {
 
   console.log(userIsLoggedIn)
 
-  if (!userIsLoggedIn) {
-    return (<Navigate to="/" />);
-  }
-
   return (
     <main className="Dashboard">
       <Title>

@@ -57,6 +57,7 @@ const userMiddleware = (store) => (next) => (action) => {
           week_notification: true,
         })
         .then((response) => {
+          console.log(response.data);
           store.dispatch(actionUserDataReceived(response.data));
           store.dispatch(actionUpdateSession());
         })
