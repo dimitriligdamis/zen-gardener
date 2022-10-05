@@ -9,6 +9,11 @@ function Overlay({ menuOpen, setMenuOpen, isConnected }) {
 
   const handleClick = () => {
     dispatch(actionLogout());
+    setMenuOpen(false);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
@@ -20,9 +25,9 @@ function Overlay({ menuOpen, setMenuOpen, isConnected }) {
       </a>
       <div className="Overlay__content">
         {isConnected && <Link onClick={handleClick} type="button" className="Overlay__link">Déconnexion</Link>}
-        <a className="Overlay__link" href="#">À propos</a>
-        <a className="Overlay__link" href="#">Contact</a>
-        <a className="Overlay__link" href="#">CGU</a>
+        <Link onClick={closeMenu} to="/about" className="Overlay__link">À propos</Link>
+        <Link onClick={closeMenu} to="/contact" className="Overlay__link">Contact</Link>
+        <Link onClick={closeMenu} to="/cgu" className="Overlay__link">CGU</Link>
       </div>
     </div>
   );

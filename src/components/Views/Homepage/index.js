@@ -1,8 +1,14 @@
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import Card from '../../Card';
 import Title from '../../Title';
 import './styles.scss';
 
 function Homepage() {
+  const { userIsLoggedIn } = useSelector((state) => state.session);
+  if (userIsLoggedIn) {
+    return (<Navigate to="/tableau-de-bord" />);
+  }
   return (
     <main className="Homepage">
       <Title>

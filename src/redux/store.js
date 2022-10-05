@@ -17,9 +17,7 @@ else {
 }
 
 const enhancers = composeEnhancers(
-  applyMiddleware(userMiddleware),
-  applyMiddleware(sessionMiddleware),
-  applyMiddleware(tasksMiddleware),
+  applyMiddleware(sessionMiddleware, userMiddleware, tasksMiddleware),
 );
 
 const store = createStore(reducer, enhancers);

@@ -1,4 +1,4 @@
-import { LOGIN_FAILED, UPDATE_SESSION } from './sessionActions';
+import { LOGIN_FAILED, LOGOUT, UPDATE_SESSION } from './sessionActions';
 
 const sessionInitialState = {
   userIsLoggedIn: false,
@@ -18,6 +18,12 @@ function reducer(state = sessionInitialState, action = {}) {
       return {
         ...state,
         userIsLoggedIn: true,
+        lastLoginFailed: false,
+      };
+    }
+    case LOGOUT: {
+      return {
+        userIsLoggedIn: false,
         lastLoginFailed: false,
       };
     }

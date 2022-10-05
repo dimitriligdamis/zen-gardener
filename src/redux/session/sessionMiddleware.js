@@ -5,14 +5,14 @@ import {
   LOGOUT,
   actionUpdateSession,
   actionLoginFailed,
-  REGISTER,
   SEND_COOKIE,
 } from './sessionActions';
-import { actionUserDataReceived } from '../user/userActions';
+import { actionUserDataReceived, actionUserLoggedOut } from '../user/userActions';
 import { actionDisplayError } from '../error/errorAction';
 import Config from '../../config';
 
 import sessionMockAdapter from '../../services/mockApi/session';
+import authHeader from '../../services/http/auth-header';
 
 if (Config.API_MOCK_ENABLED) {
   sessionMockAdapter(client, Config.API_URL_SESSION);
@@ -29,9 +29,10 @@ const sessionMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           // Login request successful => save session and user data
-          const { userData } = response.data;
-          store.dispatch(actionUserDataReceived(userData));
+          const { userData, jwtToken } = response.data;
           store.dispatch(actionUpdateSession());
+          store.dispatch(actionUserDataReceived(userData));
+          localStorage.setItem('token', jwtToken);
         })
         .catch((error) => {
           // Login request failed => log and inform user
@@ -46,52 +47,23 @@ const sessionMiddleware = (store) => (next) => (action) => {
 
     case LOGOUT: {
       client
-        .delete(Config.API_URL_SESSION)
+        .delete(Config.API_URL_SESSION, authHeader())
         .then(() => console.log('Logout successful'))
         .catch((error) => console.log('Logout failed', error))
         .finally(() => {
           // Clearing session anyway for security reasons
-          store.dispatch(actionUpdateSession(null));
+          store.dispatch(actionUserLoggedOut(null));
+          localStorage.removeItem('token');
         });
       break;
     }
 
-    case REGISTER: {
-      // TODO
-      const {
-        email,
-        pseudo,
-        password,
-        adress,
-        city,
-        postalCode,
-        phoneNumber,
-      } = action;
-      client
-        .post(Config.API_URL_SESSION, {
-          email,
-          pseudo,
-          password,
-          adress,
-          city,
-          postalCode,
-          phoneNumber,
-        })
-        .then(() => {
-          // TODO
-        })
-        .catch((error) => {
-          console.error('Error while register', error);
-          store.dispatch(actionLoginFailed());
-        });
-      break;
-    }
     case SEND_COOKIE: {
       client
-        .get(Config.API_URL_USER)
+        .get(Config.API_URL_MEMBER, authHeader())
         .then((response) => {
-          const { userData } = response.data;
-          console.log(response.data);
+          const userData = response.data;
+          console.log(userData);
           store.dispatch(actionUserDataReceived(userData));
           store.dispatch(actionUpdateSession());
         })
