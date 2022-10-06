@@ -3,7 +3,7 @@ import {
   SHEET_RECEIVED,
   SHEET_FETCH_FAILED,
 } from './sheetsActions';
-import { upsertArray } from '../../utils/arrayUtils';
+import { arrayUpsert } from '../../utils/arrayUtils';
 
 const sheetsInitialState = {
   sheets: [
@@ -32,7 +32,7 @@ function reducer(state = sheetsInitialState, action = {}) {
       let currentSheetList = { ...state.sheets };
 
       sheetCollection.forEach(((sheet) => {
-        currentSheetList = upsertArray(currentSheetList, sheet);
+        currentSheetList = arrayUpsert(currentSheetList, sheet);
       }));
 
       return {
@@ -46,7 +46,7 @@ function reducer(state = sheetsInitialState, action = {}) {
       const { sheet } = action;
       let currentSheetList = { ...state.sheets };
 
-      currentSheetList = upsertArray(currentSheetList, sheet);
+      currentSheetList = arrayUpsert(currentSheetList, sheet);
       return {
         ...state.sheets,
         sheets: currentSheetList,

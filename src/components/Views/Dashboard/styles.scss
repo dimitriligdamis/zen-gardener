@@ -1,3 +1,10 @@
+// MANDATOTY SETTING
+// Always set calendar height
+.rbc-calendar {
+    min-height: 50rem;
+}
+
+
 // TO BE REMOVED (only used for testing purposes)
 .Page {
     background: none !important;
