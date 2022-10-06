@@ -21,17 +21,24 @@ export const actionFetchSheetById = (id) => ({
 /** Action dispatched when fetching multiple tasks
  * from sheet page and search bar
  */
-export const actionFetchSheetsByQuery = (query, numberOfSheetsByQuery, zeroBasedPageNumber) => ({
+export const actionFetchSheetsByQuery = (
+  query,
+  numberOfSheetsByQuery,
+  zeroBasedPageNumber,
+  add,
+) => ({
   type: FETCH_SHEETS_BY_QUERY,
   query,
   numberOfSheetsByQuery,
   zeroBasedPageNumber,
+  add,
 });
 
 /** Action dispatched when multiple sheets have been received */
-export const actionSheetCollectionReceived = (sheetData) => ({
+export const actionSheetCollectionReceived = (sheetData, add) => ({
   type: SHEET_COLLECTION_RECEIVED,
   sheetData,
+  add,
 });
 
 /** Action dispatched when one sheet has been received */
