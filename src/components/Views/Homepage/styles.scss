@@ -1,8 +1,103 @@
+@use 'src/styles/vars';
+
 .Homepage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(238 235 255);
+  background-color: darken(vars.$bg-sign, 5%);
+  // rgba(238, 235, 255, 0.8)
+  padding: 1rem;
+  color: #fff;
+  // rgb(9, 30, 66)
+  letter-spacing: 0.5px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+
+  &__logo {
+    color: #fff;
+    font-weight: bold;
+    font-style: italic;
+    background-color: vars.$bg-sign;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+  }
+
+  &__introduction {
+    border-bottom: 1px solid #626568;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 2.5rem;
+    gap: 3rem;
+    padding: 1rem 1rem 3rem;
+    margin-bottom: 3rem;
+    max-width: 700px;
+  }
+
+  &__subtitle {
+    font-size: 2rem;
+    font-weight: bold;
+    max-width: 300px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  &__button {
+    margin: 1rem 0;
+    display: inline-block;
+    background-color: #dfb725;
+    color: #000;
+    padding: 2rem;
+    border-radius: 5px;
+    font-size: 1.8rem;
+
+    &:hover {
+      color: #fff;
+      background-color: darken(#dfb725, 20%);
+    }
+
+    &--func {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      // transform: translateX(-50%);
+    }
+  }
+
+  &__fonctionalites {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    border-bottom: 1px solid #626568;
+    padding: 1rem 1rem 3rem;
+    margin-bottom: 3rem;
+  }
+
+  &__fonctionality {
+    max-width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 270px;
+    position: relative;
+  }
+
+  &__tag {
+    width: 20%;
+  }
+
+  &__fonctionality-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
 
   &__list {
     display: flex;
@@ -10,6 +105,14 @@
     justify-content: center;
     margin-top: 2rem;
     gap: 2rem;
+  }
+
+  & .Card:hover {
+    cursor: default;
+  }
+
+  & .Card__infos {
+    color: #000;
   }
 
 }
