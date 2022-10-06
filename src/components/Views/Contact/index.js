@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { init, sendForm } from 'emailjs-com';
 import SubmitButton from '../../Form/SubmitButton';
 
-import publicKey from '../../../../email.json';
+// import publicKey from '../../../../email.json';
 
 import './styles.scss';
 
-const { YOUR_PUBLIC_KEY, SERVICE_ID, TEMPLATE_ID } = publicKey;
-// Public key from EmailJS
-init(YOUR_PUBLIC_KEY);
+// const { YOUR_PUBLIC_KEY, SERVICE_ID, TEMPLATE_ID } = publicKey;
+// // Public key from EmailJS
+// init(YOUR_PUBLIC_KEY);
 
 function Conntact() {
   const { register, handleSubmit, formState: { errors } } = useForm();

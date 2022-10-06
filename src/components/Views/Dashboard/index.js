@@ -18,9 +18,8 @@ function Dashboard() {
     dispatch(actionFetchTasks());
   }, []);
 
-
   return (
-    <>
+    <section className="Dashboard">
       <h1>Bonjour, {user.pseudo} !</h1>
       <div className="tasks">
         <header className="tasks__header">
@@ -44,7 +43,7 @@ function Dashboard() {
           <div><a href="#">Fiche 2 : carottes martiennes</a></div>
         </main>
       </div>
-    </>
+    </section>
   );
 }
 
