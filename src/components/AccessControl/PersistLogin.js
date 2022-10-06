@@ -7,6 +7,7 @@ import Config from '../../config';
 import { actionUserDataReceived } from '../../redux/user/userActions';
 import { actionUpdateSession } from '../../redux/session/sessionActions';
 import authHeader from '../../services/http/auth-header';
+import Loading from '../Loading';
 
 function PersistLogin() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +18,7 @@ function PersistLogin() {
     (async function () {
       try {
         await client
-        // Send token to the server
+          // Send token to the server
           .get(Config.API_URL_MEMBER, authHeader())
           // Token is valid
           .then((response) => {
@@ -40,7 +41,7 @@ function PersistLogin() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {!isLoading && <Outlet />}
     </>
   );
