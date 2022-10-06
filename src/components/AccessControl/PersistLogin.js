@@ -8,6 +8,9 @@ import { actionUserDataReceived } from '../../redux/user/userActions';
 import { actionUpdateSession } from '../../redux/session/sessionActions';
 import authHeader from '../../services/http/auth-header';
 
+import './style.scss';
+import logo from '../../assets/img/carrot.svg';
+
 function PersistLogin() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +43,11 @@ function PersistLogin() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+      <div className="loading_container">
+        <img alt="Loading" src={logo} className="loading" />
+      </div>
+      )}
       {!isLoading && <Outlet />}
     </>
   );

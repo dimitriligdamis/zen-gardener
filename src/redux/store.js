@@ -5,6 +5,7 @@ import Config from '../config';
 import userMiddleware from './user/userMiddleware';
 import sessionMiddleware from './session/sessionMiddleware';
 import tasksMiddleware from './tasks/tasksMiddleware';
+import sheetsMiddleware from './sheets/sheetsMiddleware';
 
 const isDevelopment = Config.ENVIRONMENT === 'development';
 let composeEnhancers;
@@ -17,7 +18,7 @@ else {
 }
 
 const enhancers = composeEnhancers(
-  applyMiddleware(sessionMiddleware, userMiddleware, tasksMiddleware),
+  applyMiddleware(sessionMiddleware, userMiddleware, tasksMiddleware, sheetsMiddleware),
 );
 
 const store = createStore(reducer, enhancers);
