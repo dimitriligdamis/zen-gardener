@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { init, sendForm } from 'emailjs-com';
+// import { init, sendForm } from 'emailjs-com';
 import SubmitButton from '../../Form/SubmitButton';
 
 // import publicKey from '../../../../email.json';
