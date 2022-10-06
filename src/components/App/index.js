@@ -43,7 +43,7 @@ function App() {
             <Route element={<RequireAuth />}>
               <Route path="/tableau-de-bord" element={<Dashboard />} />
               <Route path="/fiches" element={<Fiches />} />
-              <Route path="/fiches/1" element={<Fiche />} />
+              <Route path="/fiches/:id" element={<Fiche />} />
               <Route path="/profil" element={<Profile />} />
             </Route>
 

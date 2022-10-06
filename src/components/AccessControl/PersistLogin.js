@@ -10,6 +10,9 @@ import { actionUpdateSession } from '../../redux/session/sessionActions';
 import Loading from '../Loading';
 
 
+import './style.scss';
+import logo from '../../assets/img/carrot.svg';
+
 function PersistLogin() {
   const [isLoading, setIsLoading] = useState(true);
 
