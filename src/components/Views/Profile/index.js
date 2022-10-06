@@ -53,6 +53,7 @@ function Profile() {
   }, [info]); // à chaque changement du state user les champs se remet à jour
 
   return (
+
     <section className="Profile">
       <Link className="Profile__logo" to="/tableaux">Logo</Link>
       <h1 className="Profile__title">Page de profil de: {pseudo}</h1>
@@ -94,7 +95,6 @@ function Profile() {
             <label className="Profile__label" htmlFor="email">Mail:</label>
             <input disabled={inputDisabled} className="Profile__input" id="email" {...register('email')} />
           </article>
-
         </section>
 
         <section className="Profile__infos-container">

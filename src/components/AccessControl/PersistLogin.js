@@ -7,6 +7,9 @@ import Config from '../../config';
 import { actionUserDataReceived } from '../../redux/user/userActions';
 import { actionUpdateSession } from '../../redux/session/sessionActions';
 
+import Loading from '../Loading';
+
+
 function PersistLogin() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,6 +21,7 @@ function PersistLogin() {
         await Client.getInstance()
         // Send token to the server
           .get(Config.API_URL_MEMBER)
+
           // Token is valid
           .then((response) => {
             const userData = response.data;
@@ -39,7 +43,7 @@ function PersistLogin() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {!isLoading && <Outlet />}
     </>
   );

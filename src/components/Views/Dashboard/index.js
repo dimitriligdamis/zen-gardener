@@ -18,6 +18,7 @@ function Dashboard() {
     dispatch(actionFetchTasks());
   }, []);
 
+
   return (
     <>
       <h1>Bonjour, {user.pseudo} !</h1>
