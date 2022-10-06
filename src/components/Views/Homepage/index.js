@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import tag from 'src/assets/img/calendar.png';
-import logo from 'src/assets/img/logo.png';
 import legume from 'src/assets/img/legume.png';
 import notif from 'src/assets/img/notif.png';
+import Logo from '../../Logo';
 
 import Card from '../../Card';
 import './styles.scss';
@@ -15,7 +15,7 @@ function Homepage() {
   }
   return (
     <main className="Homepage">
-      <img className="Homepage__Logo" src={logo} alt="tag" />
+      <Logo to="/" />
       {/* <h1 className="Homepage__title">Welcome to Zen-Gardener</h1> */}
       <section className="Homepage__introduction">
         <h2 className="Homepage__subtitle">Zen-Gardener vous fait voir le jardinage sous un nouvelle angle.</h2>
@@ -36,13 +36,13 @@ function Homepage() {
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={notif} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Soyez notifier</h3>
-          <p className="Homepage__fonctionality-body">Système de notification qui vous alerte sur les tâches à venir</p>
+          <p className="Homepage__fonctionality-body">Système de notification qui vous alerte sur les tâches à venir par mail et sur l'application. Et c'est totalement paramétrable.</p>
           <Link className="Homepage__button Homepage__button--func" to="/register">Preview</Link>
         </article>
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={legume} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Découvrez nos fiches</h3>
-          <p className="Homepage__fonctionality-body">Accèdez à des fiches en illimité qui vous aideront au quotidien pour jardiner et pourront être lier à vos tâches</p>
+          <p className="Homepage__fonctionality-body">Accèdez à des fiches en illimité qui vous aideront au quotidien pour jardiner et pourront être lier à vos tâches.</p>
           <Link className="Homepage__button Homepage__button--func" to="/register">Preview</Link>
         </article>
       </section>

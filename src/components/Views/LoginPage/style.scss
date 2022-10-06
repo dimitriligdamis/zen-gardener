@@ -54,7 +54,7 @@
     text-align: center;
     width: 100%;
     caret-color: vars.$bg-sign;
-  
+
     &:focus,
     &:hover {
       outline: none;
@@ -62,14 +62,14 @@
       border-radius: 1rem;
       border-color: vars.$color-sign-bar;
     }
-  
+
     &::placeholder {
       color: #fff;
     }
-  
-    &:focus::placeholder {
-      opacity: 0;
-      transition: opacity .3s;
+
+    &:focus {
+      background-color: #fff;
+      color: vars.$bg-sign;
     }
   }
 

@@ -7,8 +7,8 @@ import {
 } from 'react-feather';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { actionUpdateUserData, actionUserDataUpdated } from '../../../redux/user/userActions';
+import Logo from '../../Logo';
 import './styles.scss';
 
 function Profile() {
@@ -55,7 +55,7 @@ function Profile() {
   return (
 
     <section className="Profile">
-      <Link className="Profile__logo" to="/tableaux">Logo</Link>
+      <Logo to="/tableau-de-bord" />
       <h1 className="Profile__title">Page de profil de: {pseudo}</h1>
       <form onSubmit={onSubmit}>
 
