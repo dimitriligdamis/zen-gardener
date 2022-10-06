@@ -1,4 +1,4 @@
-import client from '../../services/http/client';
+import Client from '../../services/http/client';
 
 import {
   FETCH_TASKS,
@@ -24,11 +24,9 @@ if (Config.API_MOCK_ENABLED) {
 const tasksMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_TASKS: {
-      console.log('FETCH_TASKS');
-      client
+      Client.instance
         .get(Config.API_URL_TASKS)
         .then((response) => {
-          console.dir(response);
           const taskList = response.data;
           store.dispatch(actionTaskDataReceived(taskList));
         })
@@ -40,9 +38,8 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case CREATE_TASK: {
-      console.log('CREATE_TASK');
       const { task } = action;
-      client
+      Client.instance
         .post(Config.API_URL_TASKS, { task })
         .then((response) => {
           const newTask = response.data;
@@ -56,9 +53,8 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case UPDATE_TASK: {
-      console.log('UPDATE_TASK');
       const { task } = action;
-      client
+      Client.instance
         .put(`${Config.API_URL_TASKS}/${task.id}`, { task })
         .then((response) => {
           const updatedTask = response.data;
@@ -72,9 +68,8 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case DELETE_TASK: {
-      console.log('DELETE_TASK');
       const { taskId } = action;
-      client
+      Client.instance
         .delete(`${Config.API_URL_TASKS}/${taskId}`)
         .then(() => {
           store.dispatch(actionTaskDeleted(taskId));

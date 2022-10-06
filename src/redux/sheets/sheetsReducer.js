@@ -47,7 +47,7 @@ function reducer(state = sheetsInitialState, action = {}) {
       const { sheet } = action;
       let currentSheetList = { ...state.sheets };
 
-      currentSheetList = upsertArray(currentSheetList, sheet);
+      currentSheetList = arrayUpsert(currentSheetList, sheet);
       return {
         ...state.sheets,
         sheets: currentSheetList,

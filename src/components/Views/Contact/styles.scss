@@ -31,6 +31,7 @@
     margin-bottom: 1rem;
   }
 
+
   &__select {
     display: block;
     width: 100%;
@@ -48,13 +49,13 @@
     }
   }
 
-  &__textarea {
+  &__textarea,
+  &__input {
     padding: 1rem;
     background-color: #f0f2f5;
     color: #8b8e92;
     border: 1px solid #8b8e92;
     border-radius: 5px;
-    min-height: 100px;
     width: 100%;
 
     &:hover {
@@ -68,6 +69,10 @@
     }
   }
 
+  &__textarea {
+    min-height: 100px;
+  }
+
   & button[type=submit] {
     color: #2d83f3;
     max-width: 170px;
@@ -77,5 +82,10 @@
       background-color: #e4e6eb;
       color: darken(#2d83f3, 10%);
     }
+  }
+
+  & span[role=alert] {
+    color: red;
+    margin-top: 1em;
   }
 }

@@ -1,4 +1,4 @@
-import client from '../../services/http/client';
+import Client from '../../services/http/client';
 
 import {
   LOGIN,
@@ -11,17 +11,16 @@ import { actionDisplayError } from '../error/errorAction';
 import Config from '../../config';
 
 import sessionMockAdapter from '../../services/mockApi/session';
-import authHeader from '../../services/http/auth-header';
 
 if (Config.API_MOCK_ENABLED) {
-  sessionMockAdapter(client, Config.API_URL_SESSION);
+  sessionMockAdapter(Client.getInstance(), Config.API_URL_SESSION);
 }
 
 const sessionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
       const { email, password } = action;
-      client
+      Client.getInstance()
         .post(Config.API_URL_SESSION, {
           email,
           password,
@@ -31,7 +30,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
           const { userData, jwtToken } = response.data;
           store.dispatch(actionUpdateSession());
           store.dispatch(actionUserDataReceived(userData));
-          localStorage.setItem('token', jwtToken);
+          Client.setToken(jwtToken);
         })
         .catch((error) => {
           // Login request failed => log and inform user
@@ -45,14 +44,14 @@ const sessionMiddleware = (store) => (next) => (action) => {
     }
 
     case LOGOUT: {
-      client
-        .delete(Config.API_URL_SESSION, authHeader())
+      Client.getInstance()
+        .delete(Config.API_URL_SESSION)
         .then(() => console.log('Logout successful'))
         .catch((error) => console.log('Logout failed', error))
         .finally(() => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUserLoggedOut(null));
-          localStorage.removeItem('token');
+          Client.getInstance().clearToken();
         });
       break;
     }

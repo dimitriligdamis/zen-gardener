@@ -1,50 +1,48 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Views } from 'react-big-calendar';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import TaskCalendar from '../../Tasks/TaskCalendar';
+import { actionFetchTasks } from '../../../redux/tasks/tasksActions';
+
+import TaskCalendar from '../../Tasks/TaskCalendar';
 
 import './styles.scss';
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks.tasks);
-  const [currentTaskViewMode, setCurrentTaskViewMode] = useState(Views.MONTH);
+  const user = useSelector((state) => state.user);
 
   const onAddTask = () => { /* TODO */ };
-  
+
+  useEffect(() => {
+    dispatch(actionFetchTasks());
+  }, []);
+
+
   return (
     <>
-      <h1>Bonjour, Jéan Vert !</h1>
+      <h1>Bonjour, {user.pseudo} !</h1>
       <div className="tasks">
         <header className="tasks__header">
           <h2>Mes prochaines tâches</h2>
           <div className="tasks__header__actions">
-            <button id="calendar-view-button" type="button" onClick={() => setCurrentTaskViewMode(Views.MONTH)}>Vue Calendrier</button>
-            <button id="planning-view-button" type="button" onClick={() => setCurrentTaskViewMode(Views.AGENDA)}>Vue Planning</button>
             <button id="add-task-button" type="button" onClick={onAddTask}>Ajouter une tâche</button>
           </div>
         </header>
         <main className="tasks__content">
-          {/* <TaskCalendar
+          <TaskCalendar
             taskEvents={tasks}
-            view={currentTaskViewMode}
-            /> */}
-          {
-            tasks.map((task) => (
-              <div className="planning-event" key={task.id}>
-                <span>Début : {task.begin_date.toLocaleDateString()}</span>
-                <span>Fin : {task.limit_date.toLocaleDateString()}</span>
-                <span>Label : {task.label}</span>
-                <span>Fiche : {task.sheet_id}</span>
-              </div>
-            ))
-          }
+          />
         </main>
       </div>
       <div className="sheets">
         <header>
           <h2>Mes fiches favorites</h2>
         </header>
+        <main>
+          <div><a href="#">Fiche 1 : carottes lunaires</a></div>
+          <div><a href="#">Fiche 2 : carottes martiennes</a></div>
+        </main>
       </div>
     </>
   );

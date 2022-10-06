@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import client from '../../services/http/client';
+import Client from '../../services/http/client';
 
 import {
   UPDATE_USER_DATA,
@@ -10,17 +10,16 @@ import {
 import Config from '../../config';
 import { actionLoginFailed, actionUpdateSession } from '../session/sessionActions';
 import { actionDisplayError } from '../error/errorAction';
-import authHeader from '../../services/http/auth-header';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case UPDATE_USER_DATA: {
       const { userData } = action;
       console.log('modif:', userData);
-      client
+      Client.instance
         .patch(Config.API_URL_MEMBER, {
           ...userData,
-        }, authHeader())
+        })
         .then((response) => {
           // User data updated successfully
           const { updatedAt } = response.data;
@@ -44,7 +43,7 @@ const userMiddleware = (store) => (next) => (action) => {
         zip_code,
         phone,
       } = action;
-      client
+      Client.instance
         .post(Config.API_URL_MEMBER, {
           pseudo,
           email,
