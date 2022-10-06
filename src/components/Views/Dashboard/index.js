@@ -1,16 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { actionFetchTasks } from '../../../redux/tasks/tasksActions';
-
 import TaskCalendar from '../../Tasks/TaskCalendar';
-
+import SheetMapper from '../../Sheets/SheetMapper';
+import FavoriteSheetsByMonth from '../../Sheets/FavoriteSheetsByMonth';
 import './styles.scss';
+
+const SheetDisplayModes = {
+  CATEGORY: 'CATEGORY',
+  MONTH: 'MONTH',
+};
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks.tasks);
+
   const user = useSelector((state) => state.user);
+  const { tasks } = useSelector((state) => state.tasks);
+  const { sheets, favorites } = useSelector((state) => state.sheets);
+  const favoriteSheets = SheetMapper.idsToSheets(favorites, sheets);
+
+  const [sheetDisplayMode, setSheetDisplayMode] = useState(SheetDisplayModes.MONTH);
 
   const onAddTask = () => { /* TODO */ };
 
@@ -38,10 +48,13 @@ function Dashboard() {
         <header>
           <h2>Mes fiches favorites</h2>
         </header>
-        <main>
-          <div><a href="#">Fiche 1 : carottes lunaires</a></div>
-          <div><a href="#">Fiche 2 : carottes martiennes</a></div>
-        </main>
+        <div className="sheets__buttons">
+          <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.CATEGORY)}>Par catégorie</button>
+          <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.MONTH)}>Par mois</button>
+        </div>
+
+        { sheetDisplayMode === SheetDisplayModes.MONTH
+        && <FavoriteSheetsByMonth sheetList={favoriteSheets} /> }
       </div>
     </section>
   );

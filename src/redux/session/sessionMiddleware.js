@@ -51,7 +51,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
         .finally(() => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUserLoggedOut(null));
-          Client.getInstance().clearToken();
+          Client.clearToken();
         });
       break;
     }
