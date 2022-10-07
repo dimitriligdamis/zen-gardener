@@ -1,40 +1,41 @@
 import {
-  SHEET_COLLECTION_RECEIVED,
+  SAVE_SHEETS,
   SHEET_RECEIVED,
   SHEET_FETCH_FAILED,
+  ADD_TO_SEARCH_RESULTS,
+  CLEAR_SEARCH_RESULT,
 } from './sheetsActions';
 import { arrayUpsert } from '../../utils/arrayUtils';
 
 const sheetsInitialState = {
   sheets: [],
-  sheetsFoundId: [],
+  searchResultIds: [],
+  favoriteIds: [],
   fetchFailed: false,
 };
 
 function reducer(state = sheetsInitialState, action = {}) {
   switch (action.type) {
-    case SHEET_COLLECTION_RECEIVED: {
-      const { sheetData, add } = action;
+    case SAVE_SHEETS: {
+      const { sheetData } = action;
       let currentSheetList = state.sheets;
-      console.log('currentSheetList before', currentSheetList);
 
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
-      });
-
-      console.log('currentSheetList after', currentSheetList);
-
-      let sheetsFoundId = sheetData.map(({ id }) => id);
-
-      if (add) {
-        sheetsFoundId = [...state.sheetsFoundId, ...sheetsFoundId];
-      }
+      }));
 
       return {
         ...state,
         sheets: currentSheetList,
-        sheetsFoundId,
         fetchFailed: false,
+      };
+    }
+
+    case ADD_TO_SEARCH_RESULTS: {
+      const { sheetIds } = action;
+      return {
+        ...state,
+        searchResultIds: [...state.searchResultIds, ...sheetIds],
       };
     }
 
@@ -48,6 +49,13 @@ function reducer(state = sheetsInitialState, action = {}) {
         ...state,
         sheets: currentSheetList,
         fetchFailed: false,
+      };
+    }
+
+    case CLEAR_SEARCH_RESULT: {
+      return {
+        ...state,
+        searchResultIds: [],
       };
     }
 

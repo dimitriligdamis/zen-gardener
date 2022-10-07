@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { actionFetchSheetById } from '../../../../redux/sheets/sheetsActions';
+import { Heart } from 'react-feather';
+import { actionFetchSheetById, actionAddToFavorites } from '../../../../redux/sheets/sheetsActions';
+
 import Loading from '../../../Loading';
 import './style.scss';
 
@@ -37,6 +39,10 @@ function Fiche() {
 
   const caracteristiqueArray = turnCaracteristiquesInArray(caracteristique);
 
+  const handleClickFavorite = () => {
+    dispatch(actionAddToFavorites(id));
+  };
+
   return (
     <section className="Fiche">
       <section className="Fiche__container">
@@ -46,8 +52,12 @@ function Fiche() {
             <span className="Fiche__links--retour">← Retour à la recherche</span>
           </NavLink>
           <div className="Fiche__links--buttons">
-            <button className="Fiche__links--button" type="button" />
-            <button className="Fiche__links--button" type="button" />
+            <button className="Fiche__links--button" type="button" onClick={handleClickFavorite}>
+              <Heart />
+            </button>
+            <button className="Fiche__links--button" type="button">
+              Ajouter une tâche
+            </button>
           </div>
         </div>
         <img className="Fiche__img" alt={title} src={photo} />

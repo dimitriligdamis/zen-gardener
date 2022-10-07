@@ -2,10 +2,15 @@ import Client from '../../services/http/client';
 
 import {
   FETCH_SHEET_BY_ID,
-  actionSheetReceived,
   FETCH_SHEETS_BY_QUERY,
-  actionSheetCollectionReceived,
+  FETCH_FAVORITE_SHEETS,
+  ADD_TO_FAVORITES,
+  actionSheetReceived,
+  actionSaveSheets,
+  actionAddToSearchResults,
   actionSheetFetchFailed,
+  actionFetchFavoriteSheets,
+  actionSaveFavorites,
 } from './sheetsActions';
 
 import Config from '../../config';
@@ -34,17 +39,49 @@ const sheetsMiddleware = (store) => (next) => (action) => {
     }
 
     case FETCH_SHEETS_BY_QUERY: {
-      const { query, zeroBasedPageNumber, numberOfSheetsByQuery, add } = action;
+      const { query, zeroBasedPageNumber, numberOfSheetsByQuery } = action;
 
       Client.instance
         .get(`${Config.API_URL_SHEETS}?q=${query}&p=${zeroBasedPageNumber}&n=${numberOfSheetsByQuery}`)
         .then((response) => {
-          const newSheet = response.data;
-          store.dispatch(actionSheetCollectionReceived(newSheet, add));
+          const newSheets = response.data;
+          store.dispatch(actionSaveSheets(newSheets));
+          const searchResultIds = newSheets.map(({ id }) => id);
+          store.dispatch(actionAddToSearchResults(searchResultIds));
         })
         .catch((error) => {
           console.error('Error while creating Sheet', error);
           store.dispatch(actionSheetFetchFailed());
+        });
+      break;
+    }
+
+    case FETCH_FAVORITE_SHEETS: {
+      Client.instance
+        .get(`${Config.API_URL_MEMBER}/sheet`)
+        .then((response) => {
+          const newSheets = response.data;
+          store.dispatch(actionSaveSheets(newSheets));
+          const searchResultIds = newSheets.map(({ id }) => id);
+          store.dispatch(actionSaveFavorites(searchResultIds));
+        })
+        .catch((error) => {
+          console.error('Error while creating Sheet', error);
+          store.dispatch(actionSheetFetchFailed());
+        });
+      break;
+    }
+
+    case ADD_TO_FAVORITES: {
+      const { sheetId } = action;
+      console.log(sheetId);
+      Client.instance
+        .post(`${Config.API_URL_MEMBER}/sheet/${sheetId}`)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error('Error while adding sheet to favorite', error);
         });
       break;
     }
