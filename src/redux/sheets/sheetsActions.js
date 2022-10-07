@@ -13,6 +13,8 @@ export const SAVE_FAVORITES = 'SAVE_FAVORITES';
 export const SHEET_RECEIVED = 'SHEET_RECEIVED';
 export const SHEET_FETCH_FAILED = 'SHEET_FETCH_FAILED';
 export const CLEAR_SEARCH_RESULT = 'CLEAR_SEARCH_RESULT';
+export const DELETE_FROM_FAVORITES = 'DELETE_FROM_FAVORITES';
+export const UNSAVE_FROM_FAVORITES = 'UNSAVE_FROM_FAVORITES';
 
 // ACTION CREATORS
 
@@ -61,9 +63,19 @@ export const actionSaveFavorites = (sheetIds) => ({
   sheetIds,
 });
 
+export const actionUnsaveFromFavorites = (sheetId) => ({
+  type: UNSAVE_FROM_FAVORITES,
+  sheetId,
+});
+
 /** Action dispatched when multiple sheets have been received */
 export const actionAddToFavorites = (sheetId) => ({
   type: ADD_TO_FAVORITES,
+  sheetId,
+});
+
+export const actionDeleteFromFavorites = (sheetId) => ({
+  type: DELETE_FROM_FAVORITES,
   sheetId,
 });
 

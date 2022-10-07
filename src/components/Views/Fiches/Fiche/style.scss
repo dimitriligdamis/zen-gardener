@@ -66,6 +66,16 @@
     }
   }
 
+  &__heart {
+    color: black;
+    stroke-width: 1px;
+
+    &--full {
+      color: red;
+      stroke-width: 3px;
+    }
+  }
+
 
   &__img {
     width: 520px;

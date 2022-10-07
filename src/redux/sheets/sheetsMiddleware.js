@@ -9,8 +9,9 @@ import {
   actionSaveSheets,
   actionAddToSearchResults,
   actionSheetFetchFailed,
-  actionFetchFavoriteSheets,
   actionSaveFavorites,
+  DELETE_FROM_FAVORITES,
+  actionUnsaveFromFavorites,
 } from './sheetsActions';
 
 import Config from '../../config';
@@ -61,9 +62,11 @@ const sheetsMiddleware = (store) => (next) => (action) => {
         .get(`${Config.API_URL_MEMBER}/sheet`)
         .then((response) => {
           const newSheets = response.data;
-          store.dispatch(actionSaveSheets(newSheets));
-          const searchResultIds = newSheets.map(({ id }) => id);
-          store.dispatch(actionSaveFavorites(searchResultIds));
+          if (newSheets) {
+            store.dispatch(actionSaveSheets(newSheets));
+            const searchResultIds = newSheets.map(({ id }) => id);
+            store.dispatch(actionSaveFavorites(searchResultIds));
+          }
         })
         .catch((error) => {
           console.error('Error while creating Sheet', error);
@@ -74,11 +77,30 @@ const sheetsMiddleware = (store) => (next) => (action) => {
 
     case ADD_TO_FAVORITES: {
       const { sheetId } = action;
-      console.log(sheetId);
       Client.instance
         .post(`${Config.API_URL_MEMBER}/sheet/${sheetId}`)
         .then((response) => {
-          console.log(response);
+          if (response.status === 200) {
+            console.log('added to favorite');
+            store.dispatch(actionSaveFavorites([sheetId]));
+          }
+          else {
+            console.log(response);
+          }
+        })
+        .catch((error) => {
+          console.error('Error while adding sheet to favorite', error);
+        });
+      break;
+    }
+
+    case DELETE_FROM_FAVORITES: {
+      const { sheetId } = action;
+      Client.instance
+        .delete(`${Config.API_URL_MEMBER}/sheet/${sheetId}`)
+        .then((response) => {
+          console.log('unfavorited', response);
+          store.dispatch(actionUnsaveFromFavorites(sheetId));
         })
         .catch((error) => {
           console.error('Error while adding sheet to favorite', error);
