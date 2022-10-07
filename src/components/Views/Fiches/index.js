@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Search } from 'react-feather';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,15 +11,26 @@ import './styles.scss';
 
 function Fiches() {
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, getValues } = useForm();
 
+  const [page, setPage] = useState(1);
   const { sheetsFoundId, sheets } = useSelector((state) => state.sheets);
 
   const sheetsOnScreen = sheets.filter((sheet) => sheetsFoundId.includes(sheet.id));
 
+  // Search request
   const onSubmit = (data) => {
-    // console.log(`Recherche : ${data.sheets_search}`);
-    dispatch(actionFetchSheetsByQuery(data.sheets_search, 2, 1));
+    console.log(`Recherche : ${data.sheets_search}`);
+    dispatch(actionFetchSheetsByQuery(data.sheets_search, 6, 1));
+    setPage(1);
+  };
+
+  // Request more sheet
+  const loadMore = () => {
+    const query = getValues('sheets_search');
+    const nextPage = page + 1;
+    dispatch(actionFetchSheetsByQuery(query, 6, nextPage, true));
+    setPage(nextPage);
   };
 
   return (
@@ -43,11 +55,13 @@ function Fiches() {
       </form>
       <ul className="Fiches__list">
         {sheetsOnScreen.map((sheet) => (
-          <NavLink to={`/fiches/${sheet.id}`}>
-            <Card key={sheet.id} sheet={sheet} />
+          <NavLink key={sheet.id} to={`/fiches/${sheet.id}`}>
+            <Card sheet={sheet} />
           </NavLink>
         ))}
       </ul>
+      {sheetsFoundId.length > 0
+        && <button onClick={loadMore} type="button" className="Fiches__button_more">Voir plus</button>}
     </main>
   );
 }
