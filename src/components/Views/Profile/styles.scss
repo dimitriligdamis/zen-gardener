@@ -1,7 +1,7 @@
 @use 'src/styles/vars';
 
 .Profile {
-  background-color: #e2e8f0;
+  background-color: rgba(226, 232, 240, 0.8);
   padding: 2rem;
   max-width: 70rem;
   margin: 0 auto;
@@ -70,6 +70,27 @@
     &:disabled {
       border-color: transparent;
       background-color: inherit;
+    }
+  }
+
+  &__submit {
+    display: block;
+    width: 50%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+    border: none;
+    background-color: vars.$bg-sign;
+    color: #fff;
+    border-radius: 5px;
+
+
+    &:hover {
+      background-color: darken($color: vars.$bg-sign, $amount: 10%);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
     }
   }
 }
