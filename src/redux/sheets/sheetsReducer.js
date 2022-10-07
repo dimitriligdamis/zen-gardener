@@ -20,7 +20,7 @@ function reducer(state = sheetsInitialState, action = {}) {
 
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
-      }));
+      });
 
       console.log('currentSheetList after', currentSheetList);
 

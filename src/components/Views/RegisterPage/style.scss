@@ -42,6 +42,7 @@
   }
 
   &__input {
+    font-weight: bold;
     line-height: 28px;
     border: 1px solid transparent;
     border-bottom-color: vars.$color-sign-bar;
@@ -53,7 +54,7 @@
     text-align: center;
     width: 100%;
     caret-color: vars.$bg-sign;
-  
+
     &:focus,
     &:hover {
       outline: none;
@@ -61,14 +62,14 @@
       border-radius: 1rem;
       border-color: vars.$color-sign-bar;
     }
-  
+
     &::placeholder {
       color: #fff;
     }
-  
-    &:focus::placeholder {
-      opacity: 0;
-      transition: opacity .3s;
+
+    &:focus {
+      background-color: #fff;
+      color: vars.$bg-sign;
     }
   }
 
