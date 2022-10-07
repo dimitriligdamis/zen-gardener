@@ -54,22 +54,6 @@ function Dashboard() {
             <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.CATEGORY)}>Par catégorie</button>
             <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.MONTH)}>Par mois</button>
           </div>
-        </header>
-        <main className="tasks__content">
-          <TaskCalendar
-            taskEvents={tasks}
-          />
-        </main>
-      </div>
-      <div className="sheets">
-        <header>
-          <h2>Mes fiches favorites</h2>
-        </header>
-        <div className="sheets__buttons">
-          <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.CATEGORY)}>Par catégorie</button>
-          <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.MONTH)}>Par mois</button>
-        </div>
-
           {sheetDisplayMode === SheetDisplayModes.MONTH
             && <FavoriteSheetsByMonth sheetList={favoriteSheets} />}
         </div>

@@ -16,13 +16,10 @@ function reducer(state = sheetsInitialState, action = {}) {
     case SHEET_COLLECTION_RECEIVED: {
       const { sheetData, add } = action;
       let currentSheetList = state.sheets;
-      console.log('currentSheetList before', currentSheetList);
 
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
-      });
-
-      console.log('currentSheetList after', currentSheetList);
+      }));
 
       let sheetsFoundId = sheetData.map(({ id }) => id);
 
