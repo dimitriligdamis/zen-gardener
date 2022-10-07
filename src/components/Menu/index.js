@@ -45,16 +45,12 @@ function Menu() {
                 <p>Fiches</p>
               </div>
             </NavLink>
-            <NavLink
-              end
-              to="/"
-              className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
-            >
+            <Link className="Menu__item">
               <div className="Menu__item-content">
                 <Bell />
                 <p>Notifications</p>
               </div>
-            </NavLink>
+            </Link>
             <NavLink
               to="/profil"
               className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}
