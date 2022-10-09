@@ -17,8 +17,8 @@ function Dashboard() {
 
   const user = useSelector((state) => state.user);
   const { tasks } = useSelector((state) => state.tasks);
-  const { sheets, favorites } = useSelector((state) => state.sheets);
-  const favoriteSheets = SheetMapper.idsToSheets(favorites, sheets);
+  const { sheets, favoriteIds } = useSelector((state) => state.sheets);
+  const favoriteSheets = SheetMapper.idsToSheets(favoriteIds, sheets);
 
   const [sheetDisplayMode, setSheetDisplayMode] = useState(SheetDisplayModes.MONTH);
 

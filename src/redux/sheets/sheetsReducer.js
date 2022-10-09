@@ -21,7 +21,6 @@ function reducer(state = sheetsInitialState, action = {}) {
     case SAVE_SHEETS: {
       const { sheetData } = action;
       let currentSheetList = state.sheets;
-      console.log('coucou', sheetData)
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
       }));
