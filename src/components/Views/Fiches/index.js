@@ -3,7 +3,7 @@ import { Search } from 'react-feather';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { actionFetchSheetsByQuery } from '../../../redux/sheets/sheetsActions';
+import { actionFetchSheetsByQuery, actionClearSearchResult } from '../../../redux/sheets/sheetsActions';
 
 import Card from '../../Card';
 
@@ -14,14 +14,15 @@ function Fiches() {
   const { register, handleSubmit, getValues } = useForm();
 
   const [page, setPage] = useState(1);
-  const { sheetsFoundId, sheets } = useSelector((state) => state.sheets);
+  const { searchResultIds, sheets } = useSelector((state) => state.sheets);
 
-  const sheetsOnScreen = sheets.filter((sheet) => sheetsFoundId.includes(sheet.id));
+  const sheetsOnScreen = sheets.filter((sheet) => searchResultIds.includes(sheet.id));
 
   // Search request
   const onSubmit = (data) => {
     console.log(`Recherche : ${data.sheets_search}`);
-    dispatch(actionFetchSheetsByQuery(data.sheets_search, 6, 1));
+    dispatch(actionClearSearchResult());
+    dispatch(actionFetchSheetsByQuery(data.sheets_search, 6, 1, false));
     setPage(1);
   };
 
@@ -60,7 +61,7 @@ function Fiches() {
           </NavLink>
         ))}
       </ul>
-      {sheetsFoundId.length > 0
+      {searchResultIds.length > 0
         && <button onClick={loadMore} type="button" className="Fiches__button_more">Voir plus</button>}
     </main>
   );

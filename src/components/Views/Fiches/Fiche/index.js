@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { actionFetchSheetById } from '../../../../redux/sheets/sheetsActions';
+import { Heart } from 'react-feather';
+import { actionFetchSheetById, actionAddToFavorites, actionDeleteFromFavorites } from '../../../../redux/sheets/sheetsActions';
+
 import Loading from '../../../Loading';
 import './style.scss';
 
@@ -10,16 +12,19 @@ function Fiche() {
   id = parseInt(id, 10);
 
   const dispatch = useDispatch();
-  const { sheets } = useSelector((state) => state.sheets);
+  const { sheets, favoriteIds } = useSelector((state) => state.sheets);
 
+  // Check if sheet is already in state
   const sheetDisplay = sheets.find((sheet) => sheet.id === id);
 
-  console.log('find in cache :', sheetDisplay);
-
+  // Loading if sheet is not in state
   if (!sheetDisplay) {
     dispatch(actionFetchSheetById(id));
     return (<Loading />);
   }
+
+  // Check if this sheet is in favorite
+  const isFavorite = favoriteIds.includes(id)
 
   const {
     title,
@@ -28,6 +33,7 @@ function Fiche() {
     caracteristique,
   } = sheetDisplay;
 
+  // Shaping caracteristics
   const turnCaracteristiquesInArray = (caract) => {
     let caractSplit = caract.split(']');
     caractSplit.pop();
@@ -36,6 +42,15 @@ function Fiche() {
   };
 
   const caracteristiqueArray = turnCaracteristiquesInArray(caracteristique);
+
+  const handleClickFavorite = () => {
+    if (!isFavorite) {
+      dispatch(actionAddToFavorites(id));
+    }
+    else {
+      dispatch(actionDeleteFromFavorites(id));
+    }
+  };
 
   return (
     <section className="Fiche">
@@ -46,8 +61,12 @@ function Fiche() {
             <span className="Fiche__links--retour">← Retour à la recherche</span>
           </NavLink>
           <div className="Fiche__links--buttons">
-            <button className="Fiche__links--button" type="button" />
-            <button className="Fiche__links--button" type="button" />
+            <button className="Fiche__links--button" type="button" onClick={handleClickFavorite}>
+              <Heart className={isFavorite ? 'Fiche__heart--full' : 'Fiche__heart'} />
+            </button>
+            <button className="Fiche__links--button" type="button">
+              Ajouter une tâche
+            </button>
           </div>
         </div>
         <img className="Fiche__img" alt={title} src={photo} />

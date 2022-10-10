@@ -1,43 +1,49 @@
 import {
-  SHEET_COLLECTION_RECEIVED,
+  SAVE_SHEETS,
   SHEET_RECEIVED,
   SHEET_FETCH_FAILED,
+  ADD_TO_SEARCH_RESULTS,
+  CLEAR_SEARCH_RESULT,
+  SAVE_FAVORITES,
+  UNSAVE_FROM_FAVORITES,
 } from './sheetsActions';
 import { arrayUpsert } from '../../utils/arrayUtils';
 
 const sheetsInitialState = {
   sheets: [],
-  sheetsFoundId: [],
+  searchResultIds: [],
+  noMorePageInSearch: false,
+  favoriteIds: [],
   fetchFailed: false,
 };
 
 function reducer(state = sheetsInitialState, action = {}) {
   switch (action.type) {
-    case SHEET_COLLECTION_RECEIVED: {
-      const { sheetData, add } = action;
+    case SAVE_SHEETS: {
+      const { sheetData } = action;
+      console.log(sheetData)
       let currentSheetList = state.sheets;
-
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
       }));
-
-      let sheetsFoundId = sheetData.map(({ id }) => id);
-
-      if (add) {
-        sheetsFoundId = [...state.sheetsFoundId, ...sheetsFoundId];
-      }
-
       return {
         ...state,
         sheets: currentSheetList,
-        sheetsFoundId,
         fetchFailed: false,
+      };
+    }
+
+    case ADD_TO_SEARCH_RESULTS: {
+      const { sheetIds } = action;
+      return {
+        ...state,
+        searchResultIds: [...state.searchResultIds, ...sheetIds],
       };
     }
 
     case SHEET_RECEIVED: {
       const { sheet } = action;
-      let currentSheetList = { ...state.sheets.sheets };
+      let currentSheetList = { ...state.sheets };
 
       currentSheetList = arrayUpsert(currentSheetList, sheet[0]);
 
@@ -48,6 +54,13 @@ function reducer(state = sheetsInitialState, action = {}) {
       };
     }
 
+    case CLEAR_SEARCH_RESULT: {
+      return {
+        ...state,
+        searchResultIds: [],
+      };
+    }
+
     case SHEET_FETCH_FAILED: {
       return {
         ...state,
@@ -55,6 +68,20 @@ function reducer(state = sheetsInitialState, action = {}) {
       };
     }
 
+    case SAVE_FAVORITES: {
+      return {
+        ...state,
+        favoriteIds: [...state.favoriteIds, ...action.sheetIds],
+      };
+    }
+
+    case UNSAVE_FROM_FAVORITES: {
+      const favoriteIds = state.favoriteIds.filter((fav) => fav !== action.sheetId);
+      return {
+        ...state,
+        favoriteIds,
+      };
+    }
     default:
       return state;
   }

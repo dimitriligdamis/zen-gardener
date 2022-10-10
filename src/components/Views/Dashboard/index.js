@@ -17,14 +17,15 @@ function Dashboard() {
 
   const user = useSelector((state) => state.user);
   const { tasks } = useSelector((state) => state.tasks);
-  const { sheets, favorites } = useSelector((state) => state.sheets);
-  const favoriteSheets = SheetMapper.idsToSheets(favorites, sheets);
+  const { sheets, favoriteIds } = useSelector((state) => state.sheets);
+  const favoriteSheets = SheetMapper.idsToSheets(favoriteIds, sheets);
 
   const [sheetDisplayMode, setSheetDisplayMode] = useState(SheetDisplayModes.MONTH);
 
   const onAddTask = () => { /* TODO */ };
 
   useEffect(() => {
+    dispatch(actionFetchTasks());
     dispatch(actionFetchTasks());
   }, []);
 
@@ -54,8 +55,10 @@ function Dashboard() {
             <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.CATEGORY)}>Par catégorie</button>
             <button type="button" onClick={() => setSheetDisplayMode(SheetDisplayModes.MONTH)}>Par mois</button>
           </div>
-          {sheetDisplayMode === SheetDisplayModes.MONTH
+          <main className="tasks__content">
+            {sheetDisplayMode === SheetDisplayModes.MONTH
             && <FavoriteSheetsByMonth sheetList={favoriteSheets} />}
+          </main>
         </div>
       </section>
     </section>
