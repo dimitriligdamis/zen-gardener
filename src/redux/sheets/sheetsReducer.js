@@ -26,7 +26,6 @@ function reducer(state = sheetsInitialState, action = {}) {
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
       }));
-
       return {
         ...state,
         sheets: currentSheetList,
