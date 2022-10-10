@@ -56,7 +56,7 @@ function Profile() {
 
     <section className="Profile">
       <Logo to="/tableau-de-bord" />
-      <h1 className="Profile__title">Page de profil de: {pseudo}</h1>
+      <h1 className="Profile__title">Page de profil de : {pseudo}</h1>
       <form onSubmit={onSubmit}>
 
         <section className="Profile__infos-container">
