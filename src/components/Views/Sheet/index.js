@@ -2,12 +2,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { Heart } from 'react-feather';
-import { actionFetchSheetById, actionAddToFavorites, actionDeleteFromFavorites } from '../../../../redux/sheets/sheetsActions';
+import { actionFetchSheetById, actionAddToFavorites, actionDeleteFromFavorites } from '../../../redux/sheets/sheetsActions';
 
-import Loading from '../../../Loading';
+import Loading from '../../Loading';
 import './style.scss';
 
-function Fiche() {
+function Sheet() {
   let { id } = useParams();
   id = parseInt(id, 10);
 
@@ -53,34 +53,34 @@ function Fiche() {
   };
 
   return (
-    <section className="Fiche">
-      <section className="Fiche__container">
-        <h1 className="Fiche__title">{title}</h1>
-        <div className="Fiche__links">
+    <section className="Sheet">
+      <section className="Sheet__container">
+        <h1 className="Sheet__title">{title}</h1>
+        <div className="Sheet__links">
           <NavLink to="/fiches">
-            <span className="Fiche__links--retour">← Retour à la recherche</span>
+            <span className="Sheet__links--retour">← Retour à la recherche</span>
           </NavLink>
-          <div className="Fiche__links--buttons">
-            <button className="Fiche__links--button" type="button" onClick={handleClickFavorite}>
-              <Heart className={isFavorite ? 'Fiche__heart--full' : 'Fiche__heart'} />
+          <div className="Sheet__links--buttons">
+            <button className="Sheet__links--button" type="button" onClick={handleClickFavorite}>
+              <Heart className={isFavorite ? 'Sheet__heart--full' : 'Sheet__heart'} />
             </button>
-            <button className="Fiche__links--button" type="button">
+            <button className="Sheet__links--button" type="button">
               Ajouter une tâche
             </button>
           </div>
         </div>
-        <img className="Fiche__img" alt={title} src={photo} />
-        <div className="Fiche__carac-list">
-          {caracteristiqueArray.map((carac) => <div key={carac} className="Fiche__carac">{carac}</div>)}
+        <img className="Sheet__img" alt={title} src={photo} />
+        <div className="Sheet__carac-list">
+          {caracteristiqueArray.map((carac) => <div key={carac} className="Sheet__carac">{carac}</div>)}
         </div>
-        <div className="Fiche__description">{description}</div>
+        <div className="Sheet__description">{description}</div>
       </section>
     </section>
   );
 }
 
-Fiche.propTypes = {
+Sheet.propTypes = {
 
 };
 
-export default Fiche;
+export default Sheet;

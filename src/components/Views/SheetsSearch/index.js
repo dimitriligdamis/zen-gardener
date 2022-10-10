@@ -9,7 +9,7 @@ import Card from '../../Card';
 
 import './styles.scss';
 
-function Fiches() {
+function SheetsSearch() {
   const dispatch = useDispatch();
   const { register, handleSubmit, getValues } = useForm();
 
@@ -35,11 +35,11 @@ function Fiches() {
   };
 
   return (
-    <main className="Fiches">
-      <h1 className="Fiches__title">Rechercher une fiche</h1>
-      <form className="Fiches__form" onSubmit={handleSubmit(onSubmit)}>
+    <main className="SheetsSearch">
+      <h1 className="SheetsSearch__title">Rechercher une fiche</h1>
+      <form className="SheetsSearch__form" onSubmit={handleSubmit(onSubmit)}>
         <input
-          className="Fiches__form__input"
+          className="SheetsSearch__form__input"
           name="sheets_search"
           type="texte"
           aria-label="Recherche de fiche"
@@ -48,13 +48,13 @@ function Fiches() {
           {...register('sheets_search')}
         />
         <button
-          className="Fiches__form__button"
+          className="SheetsSearch__form__button"
           type="submit"
         >
           <Search />
         </button>
       </form>
-      <ul className="Fiches__list">
+      <ul className="SheetsSearch__list">
         {sheetsOnScreen.map((sheet) => (
           <NavLink key={sheet.id} to={`/fiches/${sheet.id}`}>
             <Card sheet={sheet} />
@@ -62,9 +62,9 @@ function Fiches() {
         ))}
       </ul>
       {searchResultIds.length > 0
-        && <button onClick={loadMore} type="button" className="Fiches__button_more">Voir plus</button>}
+        && <button onClick={loadMore} type="button" className="SheetsSearch__button_more">Voir plus</button>}
     </main>
   );
 }
 
-export default Fiches;
+export default SheetsSearch;

@@ -9,10 +9,10 @@ import './styles.css';
 import RegisterPage from '../Views/RegisterPage';
 import Page from '../Page';
 import Dashboard from '../Views/Dashboard';
-import Fiches from '../Views/Fiches';
+import SheetsSearch from '../Views/SheetsSearch';
 import Profile from '../Views/Profile';
 import PageNotFound from '../Views/PageNotFound';
-import Fiche from '../Views/Fiches/Fiche';
+import Sheet from '../Views/Sheet';
 import RequireAuth from '../AccessControl/RequireAuth';
 import PersistLogin from '../AccessControl/PersistLogin';
 import RequireNotAuth from '../AccessControl/RequireNotAuth';
@@ -49,8 +49,8 @@ function App() {
             {/* AUTH PAGES */}
             <Route element={<RequireAuth />}>
               <Route path="/tableau-de-bord" element={<Dashboard />} />
-              <Route path="/fiches" element={<Fiches />} />
-              <Route path="/fiches/:id" element={<Fiche />} />
+              <Route path="/fiches" element={<SheetsSearch />} />
+              <Route path="/fiches/:id" element={<Sheet />} />
               <Route path="/profil" element={<Profile />} />
             </Route>
 
