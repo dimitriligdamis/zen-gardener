@@ -18,10 +18,9 @@ function Homepage() {
 
   useEffect(() => {
     axios.get(`${Config.API_URL_PUBLIC_SHEETS}n=3`).then((response) => {
-      console.log(response.data);
       setRandomSheets(response.data);
     }).catch((error) => {
-      console.log(error);
+      throw error;
     });
   }, []);
   if (userIsLoggedIn) {

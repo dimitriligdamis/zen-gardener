@@ -4,7 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import LoginPage from '../Views/LoginPage';
 import Homepage from '../Views/Homepage';
 
-import './styles.css';
+import './styles.scss';
 
 import RegisterPage from '../Views/RegisterPage';
 import Page from '../Page';
