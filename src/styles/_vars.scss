@@ -1,11 +1,19 @@
+//Font
+$font-title: 'Aref Ruqaa Ink', serif;
+$font-paragraph: 'Lato', sans-serif;
+
+
 // dimensions
 $dashboard-bottom: calc(100vh - 50px);
 
 
-// color
-
+// background color
+$bg-blur: rgba(92, 86, 86, 0.8);
 $bg-main: bisque;
 $bg-sign: rgba(0, 84, 79, 0.8);
 
 
+//color
+$white: #fff;
+$black: #000;
 $color-sign-bar: lighten($bg-sign, 20%);
