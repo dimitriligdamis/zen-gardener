@@ -80,7 +80,7 @@ const sheetsMiddleware = (store) => (next) => (action) => {
       Client.instance
         .post(`${Config.API_URL_MEMBER}/sheet/${sheetId}`)
         .then((response) => {
-          console.log('added to favorite');
+          console.log('add to favorite');
           store.dispatch(actionSaveFavorites([sheetId]));
         })
         .catch((error) => {

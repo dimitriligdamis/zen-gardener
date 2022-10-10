@@ -13,8 +13,6 @@ export const arrayUpsert = (elementArray, upToDateElement) => {
   }
 
   let resultArray = elementArray;
-  console.log('result array : ', resultArray);
-  console.log('uptodate elm : ', upToDateElement);
 
   // Check if upToDateElement id already exists in elementArray using filter
   const elementExists = resultArray
