@@ -24,7 +24,7 @@ function Sheet() {
   }
 
   // Check if this sheet is in favorite
-  const isFavorite = favoriteIds.includes(id)
+  const isFavorite = favoriteIds.includes(id);
 
   const {
     title,
