@@ -7,10 +7,16 @@ import moment from 'moment';
 // to format dates according to user localization
 // and sets 'monday' first of week
 import 'moment/locale/fr';
-import { useCallback, useEffect, useRef } from 'react';
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
+import { Trash, ArrowUpCircle } from 'react-feather';
 import Modal from '../Modal';
 
 function TaskCalendar({ taskEvents }) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [data, setData] = useState({});
+
   const localizer = momentLocalizer(moment);
 
   const clickRef = useRef(null);
@@ -22,9 +28,12 @@ function TaskCalendar({ taskEvents }) {
   const onSelectEvent = useCallback((calEvent) => {
     window.clearTimeout(clickRef?.current);
     clickRef.current = window.setTimeout(() => {
-      window.alert(JSON.stringify(calEvent, 'onSelectEvent'));
+      setData(calEvent);
+      setModalIsOpen(true);
     }, 250);
   }, []);
+
+  console.log('data changé:', data);
 
   const messages = {
     date: 'Date',
@@ -47,6 +56,16 @@ function TaskCalendar({ taskEvents }) {
     showMore: (total) => `+${total} autre(s)`,
   };
 
+  // function handleclick update
+  const handleClickUpdate = () => {
+    console.log('Update');
+  };
+
+  // function handleclick delete
+  const handleClickDelete = () => {
+    console.log('A la poubelle !');
+  };
+
   return (
     <>
       <Calendar
@@ -63,8 +82,9 @@ function TaskCalendar({ taskEvents }) {
         onSelectEvent={onSelectEvent}
       />
 
-      <Modal>
-        <h1>Ma modal est ouverte</h1>
+      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
+        <button type="button" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
+        <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
       </Modal>
     </>
   );

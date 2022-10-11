@@ -98,7 +98,7 @@ function reducer(state = tasksInitialState, action = {}) {
     case CLEAR_TASKS_STATE:
       return {
         ...tasksInitialState,
-      }
+      };
 
     default:
       return state;
