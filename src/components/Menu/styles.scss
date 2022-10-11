@@ -14,12 +14,6 @@
   box-shadow: vars.$box-shadow-up;
   background-color: vars.$white;
 
-  // @media screen and (min-width: 1400px) {
-  //   min-height: 100vh;
-  //   flex-direction: column;
-  //   align-items: flex-start;
-  // }
-
   &__item {
     flex-grow: 1;
     text-align: center;

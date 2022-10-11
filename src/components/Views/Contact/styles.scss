@@ -12,7 +12,7 @@
   }
 
   &__form {
-    background-color: #fff;
+    background-color: vars.$white;
     padding: 2rem;
     max-width: 550px;
     width: 97%;
@@ -65,7 +65,7 @@
     &:focus {
       border-color: #2d83f3;
       outline: none;
-      background-color: #fff;
+      background-color: vars.$white;
     }
   }
 

@@ -5,7 +5,7 @@
   min-height: vars.$dashboard-bottom;
   display: flex;
   justify-content: center;
-  padding: 3rem 3rem 1rem;
+  padding: vars.$padding-corner;
 
   @media screen and (max-width: vars.$breakoint-phone) {
     padding: 1rem;
