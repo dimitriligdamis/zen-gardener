@@ -1,3 +1,6 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
+
 import PropTypes from 'prop-types';
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -11,9 +14,13 @@ import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Trash, ArrowUpCircle } from 'react-feather';
+import { useDispatch } from 'react-redux';
 import Modal from '../Modal';
+import { actionDeleteTask } from '../../redux/tasks/tasksActions';
 
 function TaskCalendar({ taskEvents }) {
+  const dispatch = useDispatch();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [data, setData] = useState({});
 
@@ -32,8 +39,6 @@ function TaskCalendar({ taskEvents }) {
       setModalIsOpen(true);
     }, 250);
   }, []);
-
-  console.log('data changé:', data);
 
   const messages = {
     date: 'Date',
@@ -63,11 +68,14 @@ function TaskCalendar({ taskEvents }) {
 
   // function handleclick delete
   const handleClickDelete = () => {
-    console.log('A la poubelle !');
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
+      dispatch(actionDeleteTask(data.id));
+      setModalIsOpen(false);
+    }
   };
 
   return (
-    <>
+    <section className="TaskCalendar">
       <Calendar
         events={taskEvents}
         startAccessor="start"
@@ -83,10 +91,13 @@ function TaskCalendar({ taskEvents }) {
       />
 
       <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
+        <section>
+          <h1 className="TaskCalendar__title">{data.title}</h1>
+        </section>
         <button type="button" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
         <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
       </Modal>
-    </>
+    </section>
   );
 }
 
