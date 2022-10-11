@@ -19,7 +19,7 @@ function About() {
           <p className="About__speciality">Back-end</p>
           <article className="About__link">
             <a href="https://www.linkedin.com/in/clothilde-drouot-001090b5/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
-            <a href="https://github.com/ClothildeDrouot" target="_blank" rel="noreferrer"><a href="https://github.com/ClothildeDrouot" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a></a>
+            <a href="https://github.com/ClothildeDrouot" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
         <li className="About__card">
