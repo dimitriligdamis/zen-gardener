@@ -103,5 +103,3 @@ export const actionClearSheetsState = () => ({
 export const actionNoMoreResult = () => ({
   type: NO_MORE_RESULT,
 });
-
-
