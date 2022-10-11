@@ -31,7 +31,6 @@ function reducer(state = tasksInitialState, action = {}) {
 
     case TASK_CREATED: {
       const { task } = action;
-      console.log(task);
       return {
         ...state,
         tasks: [...state.tasks, task],
