@@ -2,6 +2,8 @@ import {
   USER_DATA_UPDATED,
   USER_LOGGED_OUT,
   USER_DATA_RECEIVED,
+  REGISTER_FAILED,
+  REMOVE_REGISTER_ERROR_MESSAGE,
 } from './userActions';
 
 const userInitialState = {
@@ -15,6 +17,8 @@ const userInitialState = {
   task_notification: null,
   week_notification: null,
   updatedAt: null,
+  registerFailed: false,
+  errorMessage: '',
 };
 
 function reducer(state = userInitialState, action = {}) {
@@ -40,6 +44,21 @@ function reducer(state = userInitialState, action = {}) {
         updatedAt,
       };
     }
+
+    case REGISTER_FAILED:
+      return {
+        ...state,
+        registerFailed: true,
+        errorMessage: action.message,
+      };
+
+    case REMOVE_REGISTER_ERROR_MESSAGE:
+      return {
+        ...state,
+        registerFailed: false,
+        errorMessage: '',
+      };
+
     default:
       return state;
   }

@@ -14,6 +14,8 @@ export const TASK_DELETED = 'TASK_DELETED';
 export const TASK_CREATE_FAILED = 'TASK_CREATE_FAILED';
 export const TASK_UPDATE_FAILED = 'TASK_UPDATE_FAILED';
 export const TASK_DELETE_FAILED = 'TASK_DELETE_FAILED';
+export const TASK_IMPORTED = 'TASK_IMPORTED';
+export const DELETE_IMPORTED_TASK_MESSAGE = 'DELETE_IMPORTED_TASK_MESSAGE';
 
 // ACTION CREATORS
 
@@ -80,4 +82,12 @@ export const actionTaskUpdateFailed = (failed = true) => ({
 export const actionTaskDeleteFailed = (failed = true) => ({
   type: TASK_DELETE_FAILED,
   failed,
+});
+
+export const actionTaskImported = () => ({
+  type: TASK_IMPORTED,
+});
+
+export const actionDeleteImportedTaskMessage = () => ({
+  type: DELETE_IMPORTED_TASK_MESSAGE,
 });
