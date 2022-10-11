@@ -10,8 +10,10 @@
   min-height: vars.$dashboard-bottom;
 
   &__title {
-    font-size: 3rem;
+    font-size: 4rem;
     color: vars.$white;
+    font-family: vars.$font-title;
+    margin-bottom: 2rem;
   }
 
   &__list {
@@ -40,4 +42,27 @@
     display: flex;
     gap: 5px;
   }
+
+  &__name {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: vars.$font-title;
+  }
+
+  &__role {
+    font-size: 1.7rem;
+    font-style: italic;
+    font-weight: 700;
+    color: darken($color: vars.$bg-sign, $amount: 2);
+  }
+
+  &__linkedin,
+  &__github {
+
+    &:hover {
+      color: vars.$bg-sign;
+    }
+  }
+
+
 }

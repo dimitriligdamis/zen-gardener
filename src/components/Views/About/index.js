@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { GitHub, Linkedin } from 'react-feather';
 import './styles.scss';
 import dimitriPP from 'src/assets/img/dimitri.jpg';
@@ -17,8 +18,8 @@ function About() {
           <em className="About__role">Product Owner</em>
           <p className="About__speciality">Back-end</p>
           <article className="About__link">
-            <Linkedin className="About__linkedin" />
-            <GitHub className="About__github" />
+            <a href="https://www.linkedin.com/in/clothilde-drouot-001090b5/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a href="https://github.com/ClothildeDrouot" target="_blank" rel="noreferrer"><a href="https://github.com/ClothildeDrouot" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a></a>
           </article>
         </li>
         <li className="About__card">
@@ -27,8 +28,8 @@ function About() {
           <em className="About__role">Scrum Master</em>
           <p className="About__speciality">Front-end</p>
           <article className="About__link">
-            <Linkedin className="About__linkedin" />
-            <GitHub className="About__github" />
+            <a href="https://www.linkedin.com/in/nicolas-marques-412229248/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a href="https://github.com/NicolasMRQS" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
         <li className="About__card">
@@ -37,8 +38,8 @@ function About() {
           <em className="About__role">Lead Dev Back</em>
           <p className="About__speciality">Back-end</p>
           <article className="About__link">
-            <Linkedin className="About__linkedin" />
-            <GitHub className="About__github" />
+            <a href="https://www.linkedin.com/in/jean-leherle/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a href="https://github.com/Jean-Leherle" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
 
@@ -48,8 +49,8 @@ function About() {
           <em className="About__role">Lead Dev Front</em>
           <p className="About__speciality">Front-end</p>
           <article className="About__link">
-            <Linkedin className="About__linkedin" />
-            <GitHub className="About__github" />
+            <a href="https://www.linkedin.com/in/olivier-battini/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a href="https://github.com/OlivierBattini" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
         <li className="About__card">
@@ -58,8 +59,8 @@ function About() {
           <em className="About__role">Git Master</em>
           <p className="About__speciality">Front-end</p>
           <article className="About__link">
-            <Linkedin className="About__linkedin" />
-            <GitHub className="About__github" />
+            <a href="https://www.linkedin.com/in/dimitriligdamis/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a href="https://github.com/dimitriligdamis" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
       </ul>

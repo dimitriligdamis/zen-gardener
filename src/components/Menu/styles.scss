@@ -32,6 +32,10 @@
     &--active {
       color: vars.$bg-sign;
     }
+
+    &:hover {
+      color: vars.$bg-sign;
+    }
   }
 
   &__item[type='button'] {
