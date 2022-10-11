@@ -7,9 +7,11 @@ import {
   actionLoginFailed,
 } from './sessionActions';
 import { actionUserDataReceived, actionUserLoggedOut } from '../user/userActions';
-import Config from '../../config';
+import { actionClearSheetsState, actionFetchFavoriteSheets } from '../sheets/sheetsActions';
 
+import Config from '../../config';
 import sessionMockAdapter from '../../services/mockApi/session';
+import { actionClearTasksState } from '../tasks/tasksActions';
 
 if (Config.API_MOCK_ENABLED) {
   sessionMockAdapter(Client.getInstance(), Config.API_URL_SESSION);
@@ -30,6 +32,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionUpdateSession());
           store.dispatch(actionUserDataReceived(userData));
           Client.setToken(jwtToken);
+          store.dispatch(actionFetchFavoriteSheets());
         })
         .catch((error) => {
           // Login request failed => log and inform user
@@ -51,6 +54,8 @@ const sessionMiddleware = (store) => (next) => (action) => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUserLoggedOut(null));
           Client.clearToken();
+          store.dispatch(actionClearTasksState());
+          store.dispatch(actionClearSheetsState());
         });
       break;
     }

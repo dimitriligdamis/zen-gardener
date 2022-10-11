@@ -6,6 +6,8 @@ import {
   CLEAR_SEARCH_RESULT,
   SAVE_FAVORITES,
   UNSAVE_FROM_FAVORITES,
+  CLEAR_SHEETS_STATE,
+  NO_MORE_RESULT,
 } from './sheetsActions';
 import { arrayUpsert } from '../../utils/arrayUtils';
 
@@ -29,6 +31,7 @@ function reducer(state = sheetsInitialState, action = {}) {
         ...state,
         sheets: currentSheetList,
         fetchFailed: false,
+        noMorePageInSearch: false,
       };
     }
 
@@ -80,6 +83,20 @@ function reducer(state = sheetsInitialState, action = {}) {
         favoriteIds,
       };
     }
+
+    case CLEAR_SHEETS_STATE: {
+      return {
+        ...sheetsInitialState,
+      }
+    }
+
+    case NO_MORE_RESULT: {
+      return {
+        ...state,
+        noMorePageInSearch: true,
+      }
+    }
+
     default:
       return state;
   }
