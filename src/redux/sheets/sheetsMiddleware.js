@@ -51,7 +51,7 @@ const sheetsMiddleware = (store) => (next) => (action) => {
           const searchResultIds = newSheets.map(({ id }) => id);
           store.dispatch(actionAddToSearchResults(searchResultIds));
           if (newSheets.length === 0) {
-            store.dispatch(actionNoMoreResult())
+            store.dispatch(actionNoMoreResult());
           }
         })
         .catch((error) => {

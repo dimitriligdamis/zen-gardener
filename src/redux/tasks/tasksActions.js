@@ -98,4 +98,3 @@ export const actionDeleteImportedTaskMessage = () => ({
 export const actionClearTasksState = () => ({
   type: CLEAR_TASKS_STATE,
 });
-

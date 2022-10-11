@@ -2,11 +2,17 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-function Modal({ data, open, children }) {
+function Modal({
+  modalIsOpen, setModalIsOpen, children,
+}) {
+  const handleClick = () => {
+    setModalIsOpen(false);
+  };
+
   return (
-    <div className="Modal">
+    <div className={modalIsOpen ? 'Modal Modal--open' : 'Modal'}>
       <div className="Modal__content">
-        <span className="Modal__close">&times;</span>
+        <span onClick={handleClick} className="Modal__close">&times;</span>
         {children}
       </div>
     </div>
@@ -14,11 +20,18 @@ function Modal({ data, open, children }) {
 }
 
 Modal.propTypes = {
-  data: PropTypes.shape({
-    title: PropTypes.string,
-    start: PropTypes.string,
-  }).isRequired,
-  children: PropTypes.element.isRequired,
+  // data: PropTypes.shape({
+  //   id: PropTypes.string,
+  //   title: PropTypes.string,
+  //   start: PropTypes.instanceOf(Date),
+  //   end: PropTypes.instanceOf(Date),
+  // }).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  modalIsOpen: PropTypes.bool.isRequired,
+  setModalIsOpen: PropTypes.func.isRequired,
 };
 
 export default Modal;

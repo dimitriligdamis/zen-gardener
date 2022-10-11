@@ -57,7 +57,7 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(actionUserDataReceived(response.data));
-          store.dispatch(actionLogin(email, password))
+          store.dispatch(actionLogin(email, password));
           store.dispatch(actionUpdateSession());
         })
         .catch((error) => {

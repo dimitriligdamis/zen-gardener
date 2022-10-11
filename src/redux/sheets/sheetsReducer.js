@@ -87,14 +87,14 @@ function reducer(state = sheetsInitialState, action = {}) {
     case CLEAR_SHEETS_STATE: {
       return {
         ...sheetsInitialState,
-      }
+      };
     }
 
     case NO_MORE_RESULT: {
       return {
         ...state,
         noMorePageInSearch: true,
-      }
+      };
     }
 
     default:
