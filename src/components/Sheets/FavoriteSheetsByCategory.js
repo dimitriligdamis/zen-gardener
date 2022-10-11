@@ -41,7 +41,7 @@ function FavoriteSheetsByCategory({ sheetList }) {
         </li>,
       );
     });
-    outputJsx.push(<ul>{liElements}</ul>);
+    outputJsx.push(<ul key={`category-${categoryName}-list`}>{liElements}</ul>);
   });
 
   return outputJsx;

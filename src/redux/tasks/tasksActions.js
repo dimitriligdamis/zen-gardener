@@ -27,10 +27,12 @@ export const actionFetchTasks = () => ({
 /** Action dispatched when user submits new task to API */
 export const actionCreateTask = (task) => ({
   type: CREATE_TASK,
-  label: task.label,
-  begin_date: task.begin_date,
-  limit_date: task.limit_date,
-  sheet_id: task.sheet_id,
+  task,
+
+//  label: task.label,
+// begin_date: task.begin_date,
+//  limit_date: task.limit_date,
+//  sheet_id: task.sheet_id,
 });
 
 /** Action dispatched when user submits new task to API */
@@ -41,7 +43,7 @@ export const actionUpdateTask = (task) => ({
 
 /** Action dispatched when user submits new task to API */
 export const actionDeleteTask = (taskId) => ({
-  type: FETCH_TASKS,
+  type: DELETE_TASK,
   taskId,
 });
 
