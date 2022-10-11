@@ -8,6 +8,7 @@ import {
   TASK_DELETE_FAILED,
   TASK_IMPORTED,
   DELETE_IMPORTED_TASK_MESSAGE,
+  CLEAR_TASKS_STATE,
 } from './tasksActions';
 
 const tasksInitialState = {
@@ -93,6 +94,11 @@ function reducer(state = tasksInitialState, action = {}) {
         ...state,
         taskImported: false,
       };
+
+    case CLEAR_TASKS_STATE:
+      return {
+        ...tasksInitialState,
+      }
 
     default:
       return state;

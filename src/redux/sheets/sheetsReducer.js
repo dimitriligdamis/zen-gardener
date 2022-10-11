@@ -6,6 +6,7 @@ import {
   CLEAR_SEARCH_RESULT,
   SAVE_FAVORITES,
   UNSAVE_FROM_FAVORITES,
+  CLEAR_SHEETS_STATE,
 } from './sheetsActions';
 import { arrayUpsert } from '../../utils/arrayUtils';
 
@@ -79,6 +80,12 @@ function reducer(state = sheetsInitialState, action = {}) {
         ...state,
         favoriteIds,
       };
+    }
+
+    case CLEAR_SHEETS_STATE: {
+      return {
+        ...sheetsInitialState,
+      }
     }
     default:
       return state;

@@ -51,7 +51,7 @@ const sheetsMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionAddToSearchResults(searchResultIds));
         })
         .catch((error) => {
-          console.error('Error while creating Sheet', error);
+          console.error('Error while fetching Sheet', error);
           store.dispatch(actionSheetFetchFailed());
         });
       break;
@@ -69,7 +69,7 @@ const sheetsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.error('Error while creating Sheet', error);
+          console.error('Error while fetching favorite Sheet', error);
           store.dispatch(actionSheetFetchFailed());
         });
       break;

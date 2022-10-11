@@ -15,6 +15,7 @@ export const SHEET_FETCH_FAILED = 'SHEET_FETCH_FAILED';
 export const CLEAR_SEARCH_RESULT = 'CLEAR_SEARCH_RESULT';
 export const DELETE_FROM_FAVORITES = 'DELETE_FROM_FAVORITES';
 export const UNSAVE_FROM_FAVORITES = 'UNSAVE_FROM_FAVORITES';
+export const CLEAR_SHEETS_STATE = 'CLEAR_SHEETS_STATE';
 
 // ACTION CREATORS
 
@@ -95,3 +96,8 @@ export const actionSheetFetchFailed = (failed = true) => ({
   type: SHEET_FETCH_FAILED,
   failed,
 });
+
+export const actionClearSheetsState = () => ({
+  type: CLEAR_SHEETS_STATE,
+});
+
