@@ -3,7 +3,7 @@
 .Dashboard {
   background-color: vars.$bg-blur;
   min-height: vars.$dashboard-bottom;
-  padding: 3rem 3rem 1rem;
+  padding: vars.$padding-corner;
   box-shadow: vars.$box-shadow;
 
   @media screen and (max-width: vars.$breakoint-phone) {
