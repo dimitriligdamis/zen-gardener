@@ -44,7 +44,8 @@ const tasksMiddleware = (store) => (next) => (action) => {
       Client.instance
         .post(Config.API_URL_TASKS, task)
         .then((response) => {
-          const newTask = response.data;
+          const newTask = response.data[0];
+          console.log(newTask)
           store.dispatch(actionTaskCreated(newTask));
         })
         .catch((error) => {
