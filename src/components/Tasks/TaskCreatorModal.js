@@ -2,7 +2,9 @@ import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 
 function TaskCreatorModal({ visible }) {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const {
+    register, handleSubmit, watch, formState: { errors },
+  } = useForm();
 
   return (
     <div>

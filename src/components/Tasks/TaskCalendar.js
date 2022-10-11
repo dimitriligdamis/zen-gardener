@@ -7,9 +7,24 @@ import moment from 'moment';
 // to format dates according to user localization
 // and sets 'monday' first of week
 import 'moment/locale/fr';
+import { useCallback, useEffect, useRef } from 'react';
+import Modal from '../Modal';
 
 function TaskCalendar({ taskEvents }) {
   const localizer = momentLocalizer(moment);
+
+  const clickRef = useRef(null);
+
+  useEffect(() => () => {
+    window.clearTimeout(clickRef?.current);
+  }, []);
+
+  const onSelectEvent = useCallback((calEvent) => {
+    window.clearTimeout(clickRef?.current);
+    clickRef.current = window.setTimeout(() => {
+      window.alert(JSON.stringify(calEvent, 'onSelectEvent'));
+    }, 250);
+  }, []);
 
   const messages = {
     date: 'Date',
@@ -33,18 +48,25 @@ function TaskCalendar({ taskEvents }) {
   };
 
   return (
-    <Calendar
-      events={taskEvents}
-      startAccessor="start"
-      endAccessor="end"
-      views={[Views.AGENDA, Views.MONTH]}
-      localizer={localizer}
-      defaultView={Views.AGENDA}
-      defaultDate={moment().toDate()}
-      messages={messages}
-      hideTimeIndicator
-      popup
-    />
+    <>
+      <Calendar
+        events={taskEvents}
+        startAccessor="start"
+        endAccessor="end"
+        views={[Views.AGENDA, Views.MONTH]}
+        localizer={localizer}
+        defaultView={Views.AGENDA}
+        defaultDate={moment().toDate()}
+        messages={messages}
+        hideTimeIndicator
+        popup
+        onSelectEvent={onSelectEvent}
+      />
+
+      <Modal>
+        <h1>Ma modal est ouverte</h1>
+      </Modal>
+    </>
   );
 }
 
