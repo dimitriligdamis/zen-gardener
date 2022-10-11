@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { getMonthName } from '../../utils/dateUtils';
-import Config from '../../config';
+import { capitalizeFirstLetter } from '../../utils/stringUtils';
 
 function FavoriteSheetsByMonth({ sheetList }) {
   // Extract actions from provided sheets
@@ -31,17 +31,17 @@ function FavoriteSheetsByMonth({ sheetList }) {
   // Loop through the 12 next months
   for (let m = 0; m < 12; m += 1) {
     const month = ((zbCurrentMonth + m) % 12) + 1;
-    const monthName = getMonthName(month);
+    const monthName = capitalizeFirstLetter(getMonthName(month));
 
-    const monthActions = formattedActions
+    const monthActionsJsx = formattedActions
       .filter((action) => action.monthBegin === month)
       .map((action) => (
-        <p key={`action-${action.sheetId}-${action.label}`}><a href={`${Config.API_URL_SHEETS}/${action.sheetId}`}>{action.label}</a></p>
+        <p key={`action-${action.sheetId}-${action.label}`}><a href={`/fiches/${action.sheetId}`}>{action.label}</a></p>
       ));
 
-    if (monthActions.length > 0) {
+    if (monthActionsJsx.length > 0) {
       outputJsx.push(<h2 key={`month-${monthName}`}>{monthName}</h2>);
-      outputJsx.push(monthActions);
+      outputJsx.push(monthActionsJsx);
     }
   }
 
