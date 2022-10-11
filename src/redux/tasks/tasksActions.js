@@ -24,13 +24,16 @@ export const actionFetchTasks = () => ({
 
 /** Action dispatched when user submits new task to API */
 export const actionCreateTask = (task) => ({
-  type: FETCH_TASKS,
-  task,
+  type: CREATE_TASK,
+  label: task.label,
+  begin_date: task.begin_date,
+  limit_date: task.limit_date,
+  sheet_id: task.sheet_id,
 });
 
 /** Action dispatched when user submits new task to API */
 export const actionUpdateTask = (task) => ({
-  type: CREATE_TASK,
+  type: UPDATE_TASK,
   task,
 });
 

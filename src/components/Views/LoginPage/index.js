@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionLogin } from '../../../redux/session/sessionActions';
 
-import ErrorMessage from '../../Form/ErrorMessage';
+import Message from '../../Form/Message';
 import SubmitButton from '../../Form/SubmitButton';
 
 import './style.scss';
@@ -56,7 +56,7 @@ function LoginPage() {
           </div>
         </section>
       </main>
-      {errorIsActive && <ErrorMessage message={message} />}
+      {errorIsActive && <Message message={message} isError />}
     </>
   );
 }
