@@ -1,7 +1,7 @@
 @use 'src/styles/vars';
 
 .Profile {
-  background-color: rgba(226, 232, 240, 0.8);
+  background-color: darken(vars.$white, 5%);
   padding: 2rem;
   max-width: 70rem;
   margin: 0 auto;
@@ -16,11 +16,13 @@
   }
 
   &__title {
+    font-size: 2rem;
     font-weight: bold;
+    font-family: vars.$font-title;
   }
 
   &__infos-container {
-    background-color: #fff;
+    background-color: vars.$white;
     position: relative;
     padding: 4rem 1rem 2rem;
     margin-bottom: 2rem;
@@ -81,7 +83,7 @@
     padding: 1rem 3rem;
     border: none;
     background-color: vars.$bg-sign;
-    color: #fff;
+    color: vars.$white;
     border-radius: 5px;
 
 
