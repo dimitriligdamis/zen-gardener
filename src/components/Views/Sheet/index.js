@@ -74,9 +74,6 @@ function Sheet() {
             <button className="Sheet__links--button" type="button" onClick={handleClickFavorite}>
               <Heart className={isFavorite ? 'Sheet__heart--full' : 'Sheet__heart'} />
             </button>
-            <button className="Sheet__links--button" type="button">
-              Ajouter une tâche
-            </button>
           </div>
         </div>
         <div className="Sheet__img_container">
