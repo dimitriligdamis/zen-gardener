@@ -8,6 +8,7 @@ export const REGISTER = 'REGISTER';
 export const USER_DATA_RECEIVED = 'USER_DATA_RECEIVED';
 export const USER_DATA_UPDATED = 'USER_DATA_UPDATED';
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
+export const REGISTER_FAILED = 'REGISTER_FAILED';
 
 // ACTION CREATORS
 
@@ -38,4 +39,15 @@ export const actionUserLoggedOut = () => ({
 export const actionRegister = (inputs) => ({
   type: REGISTER,
   ...inputs,
+});
+
+export const actionRegisterFailed = (message) => ({
+  type: REGISTER_FAILED,
+  message,
+});
+
+export const REMOVE_REGISTER_ERROR_MESSAGE = 'REMOVE_REGISTER_ERROR_MESSAGE';
+
+export const actionRemoveRegisterErrorMessage = () => ({
+  type: REMOVE_REGISTER_ERROR_MESSAGE,
 });
