@@ -33,7 +33,7 @@ function reducer(state = tasksInitialState, action = {}) {
       console.log(task);
       return {
         ...state,
-        tasks: [...state.tasks].push(task),
+        tasks: [...state.tasks, task],
         createFailed: false,
       };
     }

@@ -8,11 +8,8 @@ import moment from 'moment';
 // and sets 'monday' first of week
 import 'moment/locale/fr';
 
-import TaskMapper from './TaskMapper';
-
 function TaskCalendar({ taskEvents }) {
   const localizer = momentLocalizer(moment);
-  const bigCalEvents = TaskMapper.toBigCalEvents(taskEvents);
 
   const messages = {
     date: 'Date',
@@ -37,7 +34,7 @@ function TaskCalendar({ taskEvents }) {
 
   return (
     <Calendar
-      events={bigCalEvents}
+      events={taskEvents}
       startAccessor="start"
       endAccessor="end"
       views={[Views.AGENDA, Views.MONTH]}
