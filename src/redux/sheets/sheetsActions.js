@@ -16,6 +16,7 @@ export const CLEAR_SEARCH_RESULT = 'CLEAR_SEARCH_RESULT';
 export const DELETE_FROM_FAVORITES = 'DELETE_FROM_FAVORITES';
 export const UNSAVE_FROM_FAVORITES = 'UNSAVE_FROM_FAVORITES';
 export const CLEAR_SHEETS_STATE = 'CLEAR_SHEETS_STATE';
+export const NO_MORE_RESULT = 'NO_MORE_RESULT';
 
 // ACTION CREATORS
 
@@ -33,13 +34,11 @@ export const actionFetchSheetsByQuery = (
   query,
   numberOfSheetsByQuery,
   zeroBasedPageNumber,
-  add,
 ) => ({
   type: FETCH_SHEETS_BY_QUERY,
   query,
   numberOfSheetsByQuery,
   zeroBasedPageNumber,
-  add,
 });
 
 export const actionFetchFavoriteSheets = () => ({
@@ -100,4 +99,9 @@ export const actionSheetFetchFailed = (failed = true) => ({
 export const actionClearSheetsState = () => ({
   type: CLEAR_SHEETS_STATE,
 });
+
+export const actionNoMoreResult = () => ({
+  type: NO_MORE_RESULT,
+});
+
 

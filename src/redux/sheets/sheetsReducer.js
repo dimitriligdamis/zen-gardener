@@ -7,6 +7,7 @@ import {
   SAVE_FAVORITES,
   UNSAVE_FROM_FAVORITES,
   CLEAR_SHEETS_STATE,
+  NO_MORE_RESULT,
 } from './sheetsActions';
 import { arrayUpsert } from '../../utils/arrayUtils';
 
@@ -30,6 +31,7 @@ function reducer(state = sheetsInitialState, action = {}) {
         ...state,
         sheets: currentSheetList,
         fetchFailed: false,
+        noMorePageInSearch: false,
       };
     }
 
@@ -87,6 +89,14 @@ function reducer(state = sheetsInitialState, action = {}) {
         ...sheetsInitialState,
       }
     }
+
+    case NO_MORE_RESULT: {
+      return {
+        ...state,
+        noMorePageInSearch: true,
+      }
+    }
+
     default:
       return state;
   }
