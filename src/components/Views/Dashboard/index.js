@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { actionFetchTasks, actionCreateTask } from '../../../redux/tasks/tasksActions';
 import TaskCalendar from '../../Tasks/TaskCalendar';
 import SheetMapper from '../../Sheets/SheetMapper';
+import TaskMapper from '../../Tasks/TaskMapper';
 import FavoriteSheetsByMonth from '../../Sheets/FavoriteSheetsByMonth';
 import FavoriteSheetsByCategory from '../../Sheets/FavoriteSheetsByCategory';
 import { toDateInputFormat } from '../../../utils/dateUtils';
@@ -66,7 +67,7 @@ function Dashboard() {
 
           <main className="tasks__calendar">
             <TaskCalendar
-              taskEvents={tasks}
+              taskEvents={TaskMapper.toBigCalEvents(tasks)}
             />
           </main>
         </section>
