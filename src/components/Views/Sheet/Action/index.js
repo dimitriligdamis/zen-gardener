@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { Upload } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreateTask, actionDeleteImportedTaskMessage, actionTaskImported } from '../../../../redux/tasks/tasksActions';
@@ -12,6 +13,10 @@ function Action({ action, sheetId }) {
   const dispatch = useDispatch();
 
   const { taskImported } = useSelector((state) => state.tasks);
+
+  useEffect(() => {
+    dispatch(actionDeleteImportedTaskMessage());
+  }, []);
 
   const handleClick = () => {
     const beginDate = getDateByMonthNumber(action.month_begin);
