@@ -14,11 +14,8 @@ function Action({ action, sheetId }) {
   const { taskImported } = useSelector((state) => state.tasks);
 
   const handleClick = () => {
-    console.log('date début avant', action.month_begin)
     const beginDate = getDateByMonthNumber(action.month_begin);
     const limitDate = getDateByMonthNumber(action.month_limit, beginDate);
-    console.log('date début :', beginDate)
-    console.log('date fin :', limitDate)
     dispatch(actionCreateTask({
       label: action.label,
       begin_date: beginDate,
