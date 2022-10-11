@@ -7,6 +7,7 @@ export const LOGOUT = 'LOGOUT';
 // Handled by reducer
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const UPDATE_SESSION = 'UPDATE_SESSION';
+export const REMOVE_LOGIN_ERROR_MESSAGE = 'REMOVE_LOGIN_ERROR_MESSAGE';
 
 // ACTION CREATORS
 
@@ -25,6 +26,10 @@ export const actionLogout = () => ({
 /** Action dispatched when user login request is failure */
 export const actionLoginFailed = () => ({
   type: LOGIN_FAILED,
+});
+
+export const actionRemoveLoginErrorMessage = () => ({
+  type: REMOVE_LOGIN_ERROR_MESSAGE,
 });
 
 /** Action dispatched when :

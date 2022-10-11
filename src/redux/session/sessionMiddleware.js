@@ -7,7 +7,6 @@ import {
   actionLoginFailed,
 } from './sessionActions';
 import { actionUserDataReceived, actionUserLoggedOut } from '../user/userActions';
-import { actionDisplayError } from '../error/errorAction';
 import Config from '../../config';
 
 import sessionMockAdapter from '../../services/mockApi/session';
@@ -37,7 +36,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
           console.error('Error while logging in', error);
           store.dispatch(actionLoginFailed());
           if (error.response.status === 401) {
-            store.dispatch(actionDisplayError('Combinaison email / mot de passe incorrect'));
+            store.dispatch(actionLoginFailed());
           }
         });
       break;
