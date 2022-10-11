@@ -5,6 +5,8 @@ import { actionFetchTasks } from '../../../redux/tasks/tasksActions';
 import TaskCalendar from '../../Tasks/TaskCalendar';
 import SheetMapper from '../../Sheets/SheetMapper';
 import FavoriteSheetsByMonth from '../../Sheets/FavoriteSheetsByMonth';
+import FavoriteSheetsByCategory from '../../Sheets/FavoriteSheetsByCategory';
+
 import './styles.scss';
 
 const SheetDisplayModes = {
@@ -26,15 +28,15 @@ function Dashboard() {
 
   useEffect(() => {
     dispatch(actionFetchTasks());
-    dispatch(actionFetchTasks());
   }, []);
 
   return (
-    <section className="Dashboard">
-      <h1 className="Dashboard__hello">Bonjour, {user.pseudo} !</h1>
-      <section className="Dashboard__content">
+    <div className="Dashboard">
 
-        <div className="Dashboard__item tasks">
+      <h1 className="Dashboard__hello">Bonjour, {user.pseudo} !</h1>
+      <div className="Dashboard__content">
+
+        <section className="Dashboard__item tasks">
           <header className="tasks__header">
             <h2 className="Dashboard__subtitle">Mes prochaines tâches</h2>
             <div className="tasks__header__actions">
@@ -46,8 +48,9 @@ function Dashboard() {
               taskEvents={tasks}
             />
           </main>
-        </div>
-        <div className="Dashboard__item sheets">
+        </section>
+
+        <section className="Dashboard__item sheets">
           <header>
             <h2 className="Dashboard__subtitle">Mes fiches favorites</h2>
           </header>
@@ -58,10 +61,13 @@ function Dashboard() {
           <main className="tasks__content">
             {sheetDisplayMode === SheetDisplayModes.MONTH
             && <FavoriteSheetsByMonth sheetList={favoriteSheets} />}
+            {sheetDisplayMode === SheetDisplayModes.CATEGORY
+            && <FavoriteSheetsByCategory sheetList={favoriteSheets} />}
           </main>
-        </div>
-      </section>
-    </section>
+        </section>
+
+      </div>
+    </div>
   );
 }
 

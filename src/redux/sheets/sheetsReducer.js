@@ -21,7 +21,7 @@ function reducer(state = sheetsInitialState, action = {}) {
   switch (action.type) {
     case SAVE_SHEETS: {
       const { sheetData } = action;
-      console.log(sheetData);
+      
       let currentSheetList = state.sheets;
       sheetData.forEach(((sheet) => {
         currentSheetList = arrayUpsert(currentSheetList, sheet);
@@ -43,8 +43,7 @@ function reducer(state = sheetsInitialState, action = {}) {
 
     case SHEET_RECEIVED: {
       const { sheet } = action;
-      let currentSheetList = { ...state.sheets };
-
+      let currentSheetList = [...state.sheets];
       currentSheetList = arrayUpsert(currentSheetList, sheet[0]);
 
       return {

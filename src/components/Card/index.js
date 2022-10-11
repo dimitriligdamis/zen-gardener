@@ -11,7 +11,14 @@ function Card({ sheet }) {
   return (
     <div className="Card">
       <h1 className="Card__title">{title}</h1>
-      <img className="Card__image" src={photo} alt={title} />
+      <div className="Card__img_container">
+        <img className="Card__image" src={photo} alt={title} />
+        <div className="Card__categories_container">
+          {sheet.categories && sheet.categories.map((categorie) => (
+            <div className="Card__categorie" key={categorie.id}>{categorie.label}</div>
+          ))}
+        </div>
+      </div>
       <div className="Card__infos">
         <p className="Card__description">Description de la fiche:</p>
         <p className="Card__details">{description}</p>
@@ -26,6 +33,7 @@ Card.propTypes = {
     title: PropTypes.string,
     photo: PropTypes.string,
     description: PropTypes.string,
+    categories: PropTypes.array,
   }).isRequired,
 };
 

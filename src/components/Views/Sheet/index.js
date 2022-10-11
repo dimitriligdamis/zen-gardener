@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { Heart } from 'react-feather';
@@ -6,6 +7,7 @@ import { actionFetchSheetById, actionAddToFavorites, actionDeleteFromFavorites }
 
 import Loading from '../../Loading';
 import './style.scss';
+import Action from './Action';
 
 function Sheet() {
   let { id } = useParams();
@@ -18,8 +20,14 @@ function Sheet() {
   const sheetDisplay = sheets.find((sheet) => sheet.id === id);
 
   // Loading if sheet is not in state
+
+  useEffect(() => {
+    if (!sheetDisplay) {
+      dispatch(actionFetchSheetById(id));
+    }
+  }, [sheetDisplay]);
+
   if (!sheetDisplay) {
-    dispatch(actionFetchSheetById(id));
     return (<Loading />);
   }
 
@@ -31,6 +39,8 @@ function Sheet() {
     photo,
     description,
     caracteristique,
+    categories,
+    actions,
   } = sheetDisplay;
 
   // Shaping caracteristics
@@ -69,18 +79,28 @@ function Sheet() {
             </button>
           </div>
         </div>
-        <img className="Sheet__img" alt={title} src={photo} />
+        <div className="Sheet__img_container">
+          <img className="Sheet__img" alt={title} src={photo} />
+          <div className="Sheet__categories_container">
+            {categories && categories.map((categorie) => (
+              <div className="Sheet__categorie" key={categorie.id}>{categorie.label}</div>
+            ))}
+          </div>
+        </div>
+        <div className="Sheet__actions_container">
+          {actions.map((action) => <Action key={action.id} action={action} sheetId={id} />)}
+        </div>
         <div className="Sheet__carac-list">
+          <h2>Caractéristiques :</h2>
           {caracteristiqueArray.map((carac) => <div key={carac} className="Sheet__carac">{carac}</div>)}
         </div>
-        <div className="Sheet__description">{description}</div>
+        <div className="Sheet__description">
+          <h2>Description :</h2>
+          <p>{description}</p>
+        </div>
       </section>
     </section>
   );
 }
-
-Sheet.propTypes = {
-
-};
 
 export default Sheet;
