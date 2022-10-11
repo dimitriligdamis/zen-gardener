@@ -18,7 +18,7 @@ function TaskCalendar({ taskEvents }) {
     date: 'Date',
     time: 'Heure',
     event: 'Évènement',
-    allDay: 'Toute la journée',
+    allDay: '',
     week: 'Semaine',
     work_week: 'Semaine de travail',
     day: 'Jour',
@@ -45,6 +45,8 @@ function TaskCalendar({ taskEvents }) {
       defaultView={Views.AGENDA}
       defaultDate={moment().toDate()}
       messages={messages}
+      hideTimeIndicator
+      popup
     />
   );
 }

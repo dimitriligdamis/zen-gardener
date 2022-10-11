@@ -18,7 +18,7 @@ import Config from '../../config';
 import tasksMockAdapter from '../../services/mockApi/tasks';
 
 if (Config.API_MOCK_ENABLED) {
-  tasksMockAdapter(client, Config.API_URL_TASKS);
+  tasksMockAdapter(Client.instance, Config.API_URL_TASKS);
 }
 
 const tasksMiddleware = (store) => (next) => (action) => {
@@ -38,9 +38,10 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case CREATE_TASK: {
+      console.log('CREATE_TASK');
       const { task } = action;
       Client.instance
-        .post(Config.API_URL_TASKS, { task })
+        .post(Config.API_URL_TASKS, task)
         .then((response) => {
           const newTask = response.data;
           store.dispatch(actionTaskCreated(newTask));

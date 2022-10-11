@@ -27,9 +27,10 @@ function reducer(state = tasksInitialState, action = {}) {
 
     case TASK_CREATED: {
       const { task } = action;
+      console.log(task);
       return {
         ...state.tasks,
-        tasks: [...state.tasks].push(task),
+        tasks: [...state.tasks, task],
         createFailed: false,
       };
     }
