@@ -42,8 +42,7 @@ function reducer(state = sheetsInitialState, action = {}) {
 
     case SHEET_RECEIVED: {
       const { sheet } = action;
-      let currentSheetList = { ...state.sheets };
-
+      let currentSheetList = [...state.sheets];
       currentSheetList = arrayUpsert(currentSheetList, sheet[0]);
 
       return {

@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionLogin } from '../../../redux/session/sessionActions';
+import { actionLogin, actionRemoveLoginErrorMessage } from '../../../redux/session/sessionActions';
 
-import ErrorMessage from '../../Form/ErrorMessage';
+import Message from '../../Form/Message';
 import SubmitButton from '../../Form/SubmitButton';
 
 import './style.scss';
@@ -11,7 +12,13 @@ import './style.scss';
 function LoginPage() {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { errorIsActive, message } = useSelector((state) => state.error);
+  const { lastLoginFailed } = useSelector((state) => state.session);
+
+  useEffect(() => {
+    if (lastLoginFailed) {
+      dispatch(actionRemoveLoginErrorMessage());
+    }
+  }, []);
 
   const onSubmit = ({ email, password }) => {
     dispatch(actionLogin(email, password));
@@ -56,7 +63,7 @@ function LoginPage() {
           </div>
         </section>
       </main>
-      {errorIsActive && <ErrorMessage message={message} />}
+      {lastLoginFailed && <Message message="Combinaison email / mot de passe incorrecte" isError actionRemove={actionRemoveLoginErrorMessage} />}
     </>
   );
 }

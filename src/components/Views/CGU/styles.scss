@@ -1,5 +1,7 @@
+@use 'src/styles/vars';
+
 .CGU {
-  background-color: #fff;
+  background-color: vars.$white;
   padding: 2rem;
   text-align: justify;
   max-width: 1000px;

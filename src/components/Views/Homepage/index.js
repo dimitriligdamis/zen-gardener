@@ -3,13 +3,26 @@ import { Link, Navigate } from 'react-router-dom';
 import tag from 'src/assets/img/calendar.png';
 import legume from 'src/assets/img/legume.png';
 import notif from 'src/assets/img/notif.png';
+import { useEffect, useState } from 'react';
 import Logo from '../../Logo';
 
 import Card from '../../Card';
 import './styles.scss';
+import Config from '../../../config';
+
+const axios = require('axios');
 
 function Homepage() {
   const { userIsLoggedIn } = useSelector((state) => state.session);
+  const [randomSheets, setRandomSheets] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${Config.API_URL_PUBLIC_SHEETS}n=3`).then((response) => {
+      setRandomSheets(response.data);
+    }).catch((error) => {
+      throw error;
+    });
+  }, []);
   if (userIsLoggedIn) {
     return (<Navigate to="/tableau-de-bord" />);
   }
@@ -49,9 +62,9 @@ function Homepage() {
       <section className="Homepage__sheet-example">
         <h2 className="Homepage__subtitle">Voici des exemples de fiches que nous proposons</h2>
         <ul className="Homepage__list">
-          <li><Card /></li>
-          <li><Card /></li>
-          <li><Card /></li>
+          {randomSheets.map((randomSheet) => (
+            <li key={randomSheet.id}><Card sheet={randomSheet} /></li>
+          ))}
         </ul>
       </section>
     </main>

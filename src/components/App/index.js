@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import LoginPage from '../Views/LoginPage';
 import Homepage from '../Views/Homepage';
 
-import './styles.css';
+import './styles.scss';
 
 import RegisterPage from '../Views/RegisterPage';
 import Page from '../Page';
@@ -21,11 +20,6 @@ import Contact from '../Views/Contact';
 import About from '../Views/About';
 
 function App() {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
   // == Composant
 
   return (

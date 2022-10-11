@@ -1,16 +1,43 @@
 @use '/src/styles/vars';
 
 .SheetsSearch {
+  background-color: vars.$bg-blur;
+  min-height: vars.$dashboard-bottom;
   display: flex;
-  flex-direction: column;
-  // padding: 3rem 3rem;
-  align-items: center;
+  justify-content: center;
+  padding: vars.$padding-corner;
+
+  @media screen and (max-width: vars.$breakoint-phone) {
+    padding: 1rem;
+  }
+
+  &__container {
+    background-color: darken(vars.$white, 15%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    width: 80%;
+    padding: 1rem 0;
+
+    @media screen and (max-width: vars.$breakoint-phone) {
+      width: 100%;
+      border-radius: 15px;
+    }
+  }
+
+  &__header {
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: vars.$box-shadow;
+    background-color: vars.$white;
+    width: 50%;
+  }
 
   &__title {
     display: block;
-    background-color: bisque;
-    padding: 1em;
     font-size: 2rem;
+    font-family: vars.$font-title;
     font-weight: 600;
     border-radius: 1rem;
     text-align: center;
@@ -29,7 +56,7 @@
       max-width: 40rem;
       min-width: 15%;
       border-radius: 1rem 0 0 1rem;
-      border: 3px solid #00544e;
+      border: 1px solid vars.$bg-sign;
       border-right: none;
     }
 
@@ -37,14 +64,14 @@
       height: 35px;
       width: 5rem;
       border-radius: 0 1rem 1rem 0;
-      background-color: #00544e;
-      border: 3px solid #00544e;
-      color: white;
+      background-color: vars.$bg-sign;
+      border: 1px solid vars.$bg-sign;
+      color: vars.$white;
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: white;
-        color: #00544e;
+        background-color: vars.$white;
+        color: vars.$bg-sign;
         transition: all 0.3s ease;
       }
 
@@ -71,14 +98,14 @@
     margin: 2rem 0;
     border-radius: 1rem;
     font-size: 1.6rem;
-    background-color: #00544e;
-    border: 3px solid #00544e;
+    background-color: vars.$bg-sign;
+    border: 1px solid vars.$bg-sign;
     color: white;
     transition: all 0.3s ease;
 
     &:hover {
       background-color: white;
-      color: #00544e;
+      color: vars.$bg-sign;
       transition: all 0.3s ease;
     }
 

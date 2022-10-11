@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
-import { actionRegister } from '../../../redux/user/userActions';
-import ErrorMessage from '../../Form/ErrorMessage';
+import { Link } from 'react-router-dom';
+import { actionRegister, actionRemoveRegisterErrorMessage } from '../../../redux/user/userActions';
+import Message from '../../Form/Message';
 
 import SubmitButton from '../../Form/SubmitButton';
 import './style.scss';
@@ -15,20 +16,21 @@ function RegisterPage() {
     formState: { errors },
     watch,
   } = useForm();
-  const { userIsLoggedIn } = useSelector((state) => state.session);
+  const { registerFailed } = useSelector((state) => state.user);
+
+  // Clear error message when changing route
+  useEffect(() => {
+    if (registerFailed) {
+      dispatch(actionRemoveRegisterErrorMessage());
+    }
+  }, []);
 
   const onSubmit = (data) => {
     dispatch(actionRegister(data));
   };
 
-  if (userIsLoggedIn) {
-    return (<Navigate to="/tableau-de-bord" />);
-  }
-
   // Watch password to confirm password confirmation
   const password = watch('password', '');
-
-  const { errorIsActive, message } = useSelector((state) => state.error);
 
   return (
     <>
@@ -170,8 +172,7 @@ function RegisterPage() {
               autoComplete="off"
               {...register('phone', {
                 // Validation list
-                // TODO
-                // pattern: /^(+33\s?|0)\d((\s|.|-|_|)?\d{2}){3}(\3\d{2})$/,
+                pattern: /^([+]33\s?|0)\d((\s|.|-|_|)?\d{2}){3}(\3[0-9]{2})$/,
               })}
               aria-invalid={errors.phone ? 'true' : 'false'}
             />
@@ -187,7 +188,7 @@ function RegisterPage() {
           </div>
         </section>
       </main>
-      {errorIsActive && <ErrorMessage message={message} />}
+      {registerFailed && <Message message="Erreur lors de l'inscription, veuillez réessayer" isError actionRemove={actionRemoveRegisterErrorMessage} />}
     </>
   );
 }

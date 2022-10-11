@@ -6,6 +6,8 @@ import {
   TASK_CREATE_FAILED,
   TASK_UPDATE_FAILED,
   TASK_DELETE_FAILED,
+  TASK_IMPORTED,
+  DELETE_IMPORTED_TASK_MESSAGE,
 } from './tasksActions';
 
 const tasksInitialState = {
@@ -13,6 +15,7 @@ const tasksInitialState = {
   createdFailed: false,
   updatedFailed: false,
   deleteFailed: false,
+  taskImported: false,
 };
 
 function reducer(state = tasksInitialState, action = {}) {
@@ -29,8 +32,8 @@ function reducer(state = tasksInitialState, action = {}) {
       const { task } = action;
       console.log(task);
       return {
-        ...state.tasks,
-        tasks: [...state.tasks, task],
+        ...state,
+        tasks: [...state.tasks].push(task),
         createFailed: false,
       };
     }
@@ -78,6 +81,18 @@ function reducer(state = tasksInitialState, action = {}) {
         deleteFailed: action.failed,
       };
     }
+
+    case TASK_IMPORTED:
+      return {
+        ...state,
+        taskImported: true,
+      };
+
+    case DELETE_IMPORTED_TASK_MESSAGE:
+      return {
+        ...state,
+        taskImported: false,
+      };
 
     default:
       return state;

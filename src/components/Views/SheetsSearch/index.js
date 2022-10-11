@@ -20,7 +20,6 @@ function SheetsSearch() {
 
   // Search request
   const onSubmit = (data) => {
-    console.log(`Recherche : ${data.sheets_search}`);
     dispatch(actionClearSearchResult());
     dispatch(actionFetchSheetsByQuery(data.sheets_search, 6, 1, false));
     setPage(1);
@@ -36,33 +35,37 @@ function SheetsSearch() {
 
   return (
     <main className="SheetsSearch">
-      <h1 className="SheetsSearch__title">Rechercher une fiche</h1>
-      <form className="SheetsSearch__form" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          className="SheetsSearch__form__input"
-          name="sheets_search"
-          type="texte"
-          aria-label="Recherche de fiche"
-          placeholder="Recherche..."
-          autoComplete="off"
-          {...register('sheets_search')}
-        />
-        <button
-          className="SheetsSearch__form__button"
-          type="submit"
-        >
-          <Search />
-        </button>
-      </form>
-      <ul className="SheetsSearch__list">
-        {sheetsOnScreen.map((sheet) => (
-          <NavLink key={sheet.id} to={`/fiches/${sheet.id}`}>
-            <Card sheet={sheet} />
-          </NavLink>
-        ))}
-      </ul>
-      {searchResultIds.length > 0
-        && <button onClick={loadMore} type="button" className="SheetsSearch__button_more">Voir plus</button>}
+      <section className="SheetsSearch__container">
+        <article className="SheetsSearch__header">
+          <h1 className="SheetsSearch__title">Rechercher une fiche</h1>
+          <form className="SheetsSearch__form" onSubmit={handleSubmit(onSubmit)}>
+            <input
+              className="SheetsSearch__form__input"
+              name="sheets_search"
+              type="texte"
+              aria-label="Recherche de fiche"
+              placeholder="Recherche..."
+              autoComplete="off"
+              {...register('sheets_search')}
+            />
+            <button
+              className="SheetsSearch__form__button"
+              type="submit"
+            >
+              <Search />
+            </button>
+          </form>
+        </article>
+        <ul className="SheetsSearch__list">
+          {sheetsOnScreen.map((sheet) => (
+            <NavLink key={sheet.id} to={`/fiches/${sheet.id}`}>
+              <Card sheet={sheet} />
+            </NavLink>
+          ))}
+        </ul>
+        {searchResultIds.length > 0
+          && <button onClick={loadMore} type="button" className="SheetsSearch__button_more">Voir plus</button>}
+      </section>
     </main>
   );
 }

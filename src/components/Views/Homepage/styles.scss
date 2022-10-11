@@ -5,10 +5,8 @@
   flex-direction: column;
   align-items: center;
   background-color: darken(vars.$bg-sign, 5%);
-  // rgba(238, 235, 255, 0.8)
   padding: 1rem;
-  color: #fff;
-  // rgb(9, 30, 66)
+  color: vars.$white;
   letter-spacing: 0.5px;
   max-width: 1200px;
   margin: 0 auto;
@@ -19,7 +17,7 @@
   }
 
   &__introduction {
-    border-bottom: 1px solid #626568;
+    border-bottom: vars.$bar;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,15 +42,15 @@
   &__button {
     margin: 1rem 0;
     display: inline-block;
-    background-color: #dfb725;
-    color: #000;
+    background-color: vars.$bg-button;
+    color: vars.$black;
     padding: 2rem;
     border-radius: 5px;
     font-size: 1.8rem;
 
     &:hover {
-      color: #fff;
-      background-color: darken(#dfb725, 20%);
+      color: vars.$white;
+      background-color: darken(vars.$bg-button, 20%);
     }
 
     &--func {
@@ -103,7 +101,7 @@
   }
 
   & .Card__infos {
-    color: #000;
+    color: vars.$black;
   }
 
 }
