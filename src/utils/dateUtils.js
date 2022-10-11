@@ -7,3 +7,16 @@ import moment from 'moment';
  * See docs : https://momentjs.com/docs/#/displaying/format/
  */
 export const getMonthName = (monthNumber, locale = 'fr') => moment().locale(locale).month(monthNumber).format('MMMM');
+
+/**
+ * @param {number} monthNumber One based number of the month (1-12)
+ * @param {Date} fromDate Date from which the next month date is calculated
+ */
+export const getDateByMonthNumber = (monthNumber, fromDate = new Date()) => {
+  fromDate.setDate(1);
+  if (monthNumber < fromDate.getMonth()) {
+    fromDate.setFullYear(fromDate.getFullYear() + 1);
+  }
+  fromDate.setMonth(monthNumber);
+  return fromDate;
+};

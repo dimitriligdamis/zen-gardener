@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import Client from '../../services/http/client';
 
 import {
@@ -18,7 +19,7 @@ import Config from '../../config';
 import tasksMockAdapter from '../../services/mockApi/tasks';
 
 if (Config.API_MOCK_ENABLED) {
-  tasksMockAdapter(client, Config.API_URL_TASKS);
+  tasksMockAdapter(Client, Config.API_URL_TASKS);
 }
 
 const tasksMiddleware = (store) => (next) => (action) => {
@@ -38,9 +39,16 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case CREATE_TASK: {
-      const { task } = action;
+      const {
+        label, begin_date, limit_date, sheet_id,
+      } = action;
       Client.instance
-        .post(Config.API_URL_TASKS, { task })
+        .post(Config.API_URL_TASKS, {
+          label,
+          begin_date,
+          limit_date,
+          sheet_id,
+        })
         .then((response) => {
           const newTask = response.data;
           store.dispatch(actionTaskCreated(newTask));

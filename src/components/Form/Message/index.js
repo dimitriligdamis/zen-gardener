@@ -5,19 +5,19 @@ import { actionDeleteError } from '../../../redux/error/errorAction';
 
 import './style.scss';
 
-function ErrorMessage({ message }) {
+function Message({ message, isError }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="error-message">
+    <div className={isError ? 'Message Message--error' : 'Message'}>
       <X className="alert-logo" onClick={() => dispatch(actionDeleteError())} />
       {message}
     </div>
   );
 }
 
-ErrorMessage.propTypes = {
+Message.propTypes = {
   message: PropTypes.string.isRequired,
 };
 
-export default ErrorMessage;
+export default Message;

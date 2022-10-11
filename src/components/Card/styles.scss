@@ -25,11 +25,33 @@
     color: #fff;
   }
 
+  &__img_container {
+    position: relative;
+  }
+
   &__image {
     width: 100%;
     height: 250px;
     margin-bottom: 1rem;
     object-fit: cover;
+  }
+  
+  &__categories_container {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  &__categorie {
+    background-color: rgb(154, 255, 141);
+    padding: 0.2em 0.4em;
+    border-radius: 8px;
+    text-transform: capitalize;
+    width: fit-content;
   }
 
 
