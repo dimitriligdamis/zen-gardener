@@ -20,10 +20,11 @@ export const toDateInputFormat = (date) => date.toISOString().split('T')[0];
  * @param {Date} fromDate Date from which the next month date is calculated
  */
 export const getDateByMonthNumber = (monthNumber, fromDate = new Date()) => {
-  fromDate.setDate(1);
-  if (monthNumber < fromDate.getMonth()) {
-    fromDate.setFullYear(fromDate.getFullYear() + 1);
+  const date = new Date();
+  date.setDate(1);
+  date.setMonth(monthNumber);
+  if (date < fromDate) {
+    date.setFullYear(fromDate.getFullYear() + 1);
   }
-  fromDate.setMonth(monthNumber);
-  return fromDate;
+  return date;
 };
