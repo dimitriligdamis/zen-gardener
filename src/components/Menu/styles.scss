@@ -1,0 +1,52 @@
+@use 'src/styles/vars';
+
+.Menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  font-family: vars.$font-title;
+  letter-spacing: 1px;
+  display: flex;
+  height: 50px;
+
+  box-shadow: vars.$box-shadow-up;
+  background-color: vars.$white;
+
+  // @media screen and (min-width: 1400px) {
+  //   min-height: 100vh;
+  //   flex-direction: column;
+  //   align-items: flex-start;
+  // }
+
+  &__item {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &--active {
+      color: vars.$bg-sign;
+    }
+
+    &:hover {
+      color: vars.$bg-sign;
+    }
+  }
+
+  &__item[type='button'] {
+    border: none;
+    background-color: vars.$white;
+  }
+
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

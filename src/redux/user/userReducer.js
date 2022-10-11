@@ -10,10 +10,10 @@ const userInitialState = {
   email: null,
   address: null,
   city: null,
-  postalCode: null,
-  phoneNumber: null,
-  sendTaskEmails: null,
-  sendWeeklyEmails: null,
+  zip_code: null,
+  phone: null,
+  task_notification: null,
+  week_notification: null,
   updatedAt: null,
 };
 

@@ -5,7 +5,7 @@ import MockAdapter from 'axios-mock-adapter';
  * @param {string} API URL, e.g. '/session'
  * @returns {axios}
  */
-const useMockAdapter = (axios, apiUrl) => {
+const sessionMockAdapter = (axios, apiUrl) => {
   const mockAdapter = new MockAdapter(axios);
 
   mockAdapter
@@ -22,7 +22,6 @@ const useMockAdapter = (axios, apiUrl) => {
     .reply(() => [
       200, // HTTP 200 OK
       {
-        jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
         userData: {
           id: 1234,
           pseudo: 'Igor',
@@ -49,4 +48,4 @@ const useMockAdapter = (axios, apiUrl) => {
   return axios;
 };
 
-export default useMockAdapter;
+export default sessionMockAdapter;

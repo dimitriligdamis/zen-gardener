@@ -3,7 +3,6 @@
 // Handled by middleware
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
-export const REGISTER = 'REGISTER';
 
 // Handled by reducer
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -35,10 +34,4 @@ export const actionLoginFailed = () => ({
 export const actionUpdateSession = (jwtToken = null) => ({
   type: UPDATE_SESSION,
   jwtToken,
-});
-
-/** Action dispatched when user register */
-export const actionRegister = (inputs) => ({
-  type: REGISTER,
-  ...inputs,
 });

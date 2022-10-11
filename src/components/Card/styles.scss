@@ -6,9 +6,12 @@
   transition: 0.3s;
   max-width: 400px;
   min-height: 250px;
+  height: 100%;
   margin: 0 auto;
   border-radius: 5px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -22,20 +25,50 @@
     color: #fff;
   }
 
+  &__img_container {
+    position: relative;
+  }
+
   &__image {
     width: 100%;
+    height: 250px;
     margin-bottom: 1rem;
+    object-fit: cover;
+  }
+  
+  &__categories_container {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  &__categorie {
+    background-color: rgb(154, 255, 141);
+    padding: 0.2em 0.4em;
+    border-radius: 8px;
+    text-transform: capitalize;
+    width: fit-content;
   }
 
 
   &__infos {
     background-color: azure;
     min-height: 100px;
+    padding: 5px;
+    flex-grow: 1;
   }
 
   &__description {
     font-weight: bold;
     text-decoration: underline;
+    margin: 0.3rem 0;
+  }
+
+  &__details {
     margin: 0.3rem 0;
   }
 }
