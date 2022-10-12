@@ -13,10 +13,12 @@ import 'moment/locale/fr';
 import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
+
 import { Trash, ArrowUpCircle } from 'react-feather';
 import { useDispatch } from 'react-redux';
-import Modal from '../Modal';
 import { actionDeleteTask } from '../../redux/tasks/tasksActions';
+import Modal from '../Modal';
+import { dateInputFormat } from '../../utils/dateUtils';
 
 function TaskCalendar({ taskEvents }) {
   const dispatch = useDispatch();
@@ -63,7 +65,7 @@ function TaskCalendar({ taskEvents }) {
 
   // function handleclick update
   const handleClickUpdate = () => {
-    console.log('Update');
+    console.log(data);
   };
 
   // function handleclick delete
@@ -92,10 +94,30 @@ function TaskCalendar({ taskEvents }) {
 
       <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
         <section>
-          <h1 className="TaskCalendar__title">{data.title}</h1>
+          <button type="button" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
+          <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
         </section>
-        <button type="button" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
-        <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
+        <form>
+          <input
+            type="text"
+            value={data.title}
+          />
+          <label htmlFor="begin_date"><p>Date de début :</p>
+            <input
+              name="begin_date"
+              id="begin_date"
+              type="date"
+              value={dateInputFormat(data.start)}
+            />
+          </label>
+          <label htmlFor="limit_date"><p>Date de début :</p>
+            <input
+              name="limit_date"
+              type="date"
+              value={dateInputFormat(data.end)}
+            />
+          </label>
+        </form>
       </Modal>
     </section>
   );
