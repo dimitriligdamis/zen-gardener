@@ -18,7 +18,6 @@ import RequireNotAuth from '../AccessControl/RequireNotAuth';
 import CGU from '../Views/CGU';
 import Contact from '../Views/Contact';
 import About from '../Views/About';
-import Loading from '../Loading';
 
 function App() {
   // == Composant
@@ -43,7 +42,7 @@ function App() {
 
             {/* AUTH PAGES */}
             <Route element={<RequireAuth />}>
-              <Route path="/tableau-de-bord" element={<Loading />} />
+              <Route path="/tableau-de-bord" element={<Dashboard />} />
               <Route path="/fiches" element={<SheetsSearch />} />
               <Route path="/fiches/:id" element={<Sheet />} />
               <Route path="/profil" element={<Profile />} />
