@@ -36,7 +36,7 @@ function FavoriteSheetsByMonth({ sheetList }) {
     const monthActionsJsx = formattedActions
       .filter((action) => action.monthBegin === month)
       .map((action) => (
-        <p key={`action-${action.sheetId}-${action.label}`}><a href={`/fiches/${action.sheetId}`}>{action.label}</a></p>
+        <p key={`action-${action.sheetId}-${action.label}`}><Link href={`/fiches/${action.sheetId}`}>{action.label}</Link></p>
       ));
 
     if (monthActionsJsx.length > 0) {

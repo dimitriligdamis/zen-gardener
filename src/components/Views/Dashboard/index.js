@@ -45,6 +45,7 @@ function Dashboard() {
     console.log(task);
     dispatch(actionCreateTask(task));
     setCreateTaskModalIsVisible(false);
+    reset();
   };
 
   const favoriteSheets = SheetMapper.idsToSheets(favoriteIds, sheets);
