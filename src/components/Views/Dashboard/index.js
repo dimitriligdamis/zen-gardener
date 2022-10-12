@@ -11,6 +11,7 @@ import FavoriteSheetsByCategory from '../../Sheets/FavoriteSheetsByCategory';
 import { toDateInputFormat } from '../../../utils/dateUtils';
 
 import './styles.scss';
+import Modal from '../../Modal';
 
 const SheetDisplayModes = {
   CATEGORY: 'CATEGORY',
@@ -25,7 +26,7 @@ function Dashboard() {
   const { sheets, favoriteIds } = useSelector((state) => state.sheets);
 
   const [sheetDisplayMode, setSheetDisplayMode] = useState(SheetDisplayModes.MONTH);
-  const [addTaskModalIsVisible, setAddTaskModalIsVisible] = useState(true);
+  const [createTaskModalIsVisible, setCreateTaskModalIsVisible] = useState(false);
 
   const {
     register,
@@ -43,6 +44,7 @@ function Dashboard() {
     };
     console.log(task);
     dispatch(actionCreateTask(task));
+    setCreateTaskModalIsVisible(false);
   };
 
   const favoriteSheets = SheetMapper.idsToSheets(favoriteIds, sheets);
@@ -61,7 +63,7 @@ function Dashboard() {
           <header className="tasks__header">
             <h2 className="Dashboard__subtitle">Mes prochaines tâches</h2>
             <div className="tasks__header__actions">
-              <button id="add-task-button" className="dashboard-button" type="button" onClick={() => setAddTaskModalIsVisible(true)}>Ajouter une tâche</button>
+              <button id="add-task-button" className="dashboard-button" type="button" onClick={() => setCreateTaskModalIsVisible(true)}>Ajouter une tâche</button>
             </div>
           </header>
 
@@ -89,78 +91,65 @@ function Dashboard() {
           </main>
         </section>
 
-        {addTaskModalIsVisible
-          && (
-            <div>
-              <button
-                type="button"
-                className="close-button"
-                onClick={() => {
-                  reset();
-                  setAddTaskModalIsVisible(false);
-                }}
-              >
-                x
-              </button>
-              <form action="" onSubmit={handleSubmit(onSubmitNewTask)}>
+        <Modal modalIsOpen={createTaskModalIsVisible} setModalIsOpen={setCreateTaskModalIsVisible}>
+            <h2>Ajouter une tâche</h2>
+            <form action="" onSubmit={handleSubmit(onSubmitNewTask)}>
+              <label htmlFor="taskTitle">
+                <span>Date de début</span>
+                <input
+                  id="taskTitle"
+                  name="taskTitle"
+                  type="text"
+                  {...register(
+                    'taskTitle',
+                    {
+                      required: true,
+                      minLength: 8,
+                    },
+                  )}
+                />
+                {errors.taskTitle && <span className="error">Tapez au moins 8 caractères pour le titre de la tâche</span>}
+              </label>
 
-                <label htmlFor="taskTitle">
-                  <span>Date de début</span>
-                  <input
-                    id="taskTitle"
-                    name="taskTitle"
-                    type="text"
-                    {...register(
-                      'taskTitle',
-                      {
-                        required: true,
-                        minLength: 8,
-                      },
-                    )}
-                  />
-                  {errors.taskTitle && <span className="error">Tapez au moins 8 caractères pour le titre de la tâche</span>}
-                </label>
+              <label htmlFor="taskBegin">
+                <span>Date de début</span>
+                <input
+                  id="taskBegin"
+                  name="taskBegin"
+                  type="date"
+                  min={toDateInputFormat(new Date())}
+                  defaultValue={toDateInputFormat(new Date())}
+                  {...register(
+                    'taskBegin',
+                    {
+                      required: true,
+                      validate: (value) => new Date(value) <= new Date(getValues('taskEnd')),
+                    },
+                  )}
+                />
+                {errors.taskBegin && <span className="error">La date de début doit être antérieure à la date de fin</span>}
+              </label>
 
-                <label htmlFor="taskBegin">
-                  <span>Date de début</span>
-                  <input
-                    id="taskBegin"
-                    name="taskBegin"
-                    type="date"
-                    min={toDateInputFormat(new Date())}
-                    defaultValue={toDateInputFormat(new Date())}
-                    {...register(
-                      'taskBegin',
-                      {
-                        required: true,
-                        validate: (value) => new Date(value) <= new Date(getValues('taskEnd')),
-                      },
-                    )}
-                  />
-                  {errors.taskBegin && <span className="error">La date de début doit être antérieure à la date de fin</span>}
-                </label>
+              <label htmlFor="taskEnd">
+                <span>Date de début</span>
+                <input
+                  id="taskEnd"
+                  name="taskEnd"
+                  type="date"
+                  min={toDateInputFormat(new Date())}
+                  defaultValue={toDateInputFormat(new Date())}
+                  {...register(
+                    'taskEnd',
+                    {
+                      required: true,
+                    },
+                  )}
+                />
+              </label>
 
-                <label htmlFor="taskEnd">
-                  <span>Date de début</span>
-                  <input
-                    id="taskEnd"
-                    name="taskEnd"
-                    type="date"
-                    min={toDateInputFormat(new Date())}
-                    defaultValue={toDateInputFormat(new Date())}
-                    {...register(
-                      'taskEnd',
-                      {
-                        required: true,
-                      },
-                    )}
-                  />
-                </label>
-
-                <button type="submit">Ajouter</button>
-              </form>
-            </div>
-          )}
+              <button type="submit">Ajouter</button>
+            </form>
+          </Modal>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 
-function TaskCreatorModal({ visible }) {
+function CreateTaskForm({ visible }) {
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm();
@@ -64,8 +64,8 @@ function TaskCreatorModal({ visible }) {
   );
 }
 
-TaskCreatorModal.propTypes = {
+CreateTaskForm.propTypes = {
   visible: PropTypes.bool.isRequired,
 };
 
-export default TaskCreatorModal;
+export default CreateTaskForm;
