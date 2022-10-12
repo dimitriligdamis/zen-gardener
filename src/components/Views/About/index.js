@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
+import { Link } from 'react-router-dom';
 import { GitHub, Linkedin } from 'react-feather';
+
 import './styles.scss';
 import dimitriPP from 'src/assets/img/dimitri.jpg';
 import nicolasPP from 'src/assets/img/nicolas.jpg';

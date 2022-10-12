@@ -14,12 +14,14 @@ import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { Trash, ArrowUpCircle } from 'react-feather';
 import { useDispatch } from 'react-redux';
+
 import { actionDeleteTask, actionUpdateTask } from '../../redux/tasks/tasksActions';
 import Modal from '../Modal';
 import { dateInputFormat } from '../../utils/dateUtils';
+
+import './styles.scss';
 
 function TaskCalendar({ taskEvents }) {
   const dispatch = useDispatch();
