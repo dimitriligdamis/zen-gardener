@@ -1,12 +1,11 @@
 import './styles.scss';
+import carrot from 'src/assets/img/carrot.svg';
 
 function Loading() {
   return (
     <div className="loader">
       <div className="box-1" />
-      <span>
-        Loading.....
-      </span>
+      <img className="loader-img" alt="loading" src={carrot} />
     </div>
   );
 }
