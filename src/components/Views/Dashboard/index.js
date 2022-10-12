@@ -94,9 +94,9 @@ function Dashboard() {
 
         <Modal modalIsOpen={createTaskModalIsVisible} setModalIsOpen={setCreateTaskModalIsVisible}>
             <h2>Ajouter une tâche</h2>
-            <form action="" onSubmit={handleSubmit(onSubmitNewTask)}>
+            <form className="Modal__form" action="" onSubmit={handleSubmit(onSubmitNewTask)}>
               <label htmlFor="taskTitle">
-                <span>Date de début</span>
+                <p>Nom de la tâche</p>
                 <input
                   id="taskTitle"
                   name="taskTitle"
@@ -109,11 +109,11 @@ function Dashboard() {
                     },
                   )}
                 />
-                {errors.taskTitle && <span className="error">Tapez au moins 8 caractères pour le titre de la tâche</span>}
+                {errors.taskTitle && <p className="Modal__error">⚠ Tapez au moins 8 caractères pour le titre de la tâche</p>}
               </label>
 
               <label htmlFor="taskBegin">
-                <span>Date de début</span>
+                <p>Date de début</p>
                 <input
                   id="taskBegin"
                   name="taskBegin"
@@ -128,11 +128,11 @@ function Dashboard() {
                     },
                   )}
                 />
-                {errors.taskBegin && <span className="error">La date de début doit être antérieure à la date de fin</span>}
+                {errors.taskBegin && <p className="Modal__error">⚠ La date de début doit être antérieure à la date de fin</p>}
               </label>
 
               <label htmlFor="taskEnd">
-                <span>Date de début</span>
+                <p>Date de fin</p>
                 <input
                   id="taskEnd"
                   name="taskEnd"
@@ -147,7 +147,7 @@ function Dashboard() {
                   )}
                 />
               </label>
-
+              <br/>
               <button type="submit">Ajouter</button>
             </form>
           </Modal>

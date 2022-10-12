@@ -114,7 +114,7 @@ function TaskCalendar({ taskEvents }) {
       />
 
       <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
-
+        <h2>Modifier ou supprimer une tâche</h2>
         <form onSubmit={handleSubmit(handleClickUpdate)}>
           <input
             id="label"
@@ -136,6 +136,7 @@ function TaskCalendar({ taskEvents }) {
             />
             {errors.limit_date?.type === 'validate' && <p className="Register__error">⚠ La date de fin ne doit pas être inférieur à la date du début</p>}
           </label>
+          <br/>
           <button type="submit"><ArrowUpCircle /> Update</button>
         </form>
         <section>
