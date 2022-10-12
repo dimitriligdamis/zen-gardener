@@ -55,9 +55,10 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case UPDATE_TASK: {
+      console.log('UPDATE_TASK');
       const { task } = action;
       Client.instance
-        .put(`${Config.API_URL_TASKS}/${task.id}`, { task })
+        .put(`${Config.API_URL_TASKS}/${task.id}`, task)
         .then((response) => {
           const updatedTask = response.data;
           store.dispatch(actionTaskUpdated(updatedTask));

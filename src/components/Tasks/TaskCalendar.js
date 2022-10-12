@@ -13,10 +13,11 @@ import 'moment/locale/fr';
 import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { Trash, ArrowUpCircle } from 'react-feather';
 import { useDispatch } from 'react-redux';
-import { actionDeleteTask } from '../../redux/tasks/tasksActions';
+import { actionDeleteTask, actionUpdateTask } from '../../redux/tasks/tasksActions';
 import Modal from '../Modal';
 import { dateInputFormat } from '../../utils/dateUtils';
 
@@ -30,9 +31,26 @@ function TaskCalendar({ taskEvents }) {
 
   const clickRef = useRef(null);
 
+  const {
+    register, handleSubmit, reset, watch, formState: { errors },
+  } = useForm();
+
   useEffect(() => () => {
     window.clearTimeout(clickRef?.current);
   }, []);
+
+  // Set input as data passed
+  useEffect(() => {
+    reset({
+      id: data.id,
+      label: data.title,
+      begin_date: dateInputFormat(data.start),
+      limit_date: dateInputFormat(data.end),
+    });
+  }, [data]);
+
+  // Watch begin_date for validation
+  const beginDate = watch('begin_date', data.start);
 
   const onSelectEvent = useCallback((calEvent) => {
     window.clearTimeout(clickRef?.current);
@@ -64,8 +82,9 @@ function TaskCalendar({ taskEvents }) {
   };
 
   // function handleclick update
-  const handleClickUpdate = () => {
-    console.log(data);
+  const handleClickUpdate = (dataForm) => {
+    console.log(dataForm);
+    dispatch(actionUpdateTask(dataForm));
   };
 
   // function handleclick delete
@@ -93,31 +112,33 @@ function TaskCalendar({ taskEvents }) {
       />
 
       <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
-        <section>
-          <button type="button" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
-          <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
-        </section>
-        <form>
+
+        <form onSubmit={handleSubmit(handleClickUpdate)}>
           <input
+            id="label"
             type="text"
-            value={data.title}
+            {...register('label')}
           />
           <label htmlFor="begin_date"><p>Date de début :</p>
             <input
-              name="begin_date"
               id="begin_date"
               type="date"
-              value={dateInputFormat(data.start)}
+              {...register('begin_date', { valueAsDate: true })}
             />
           </label>
-          <label htmlFor="limit_date"><p>Date de début :</p>
+          <label htmlFor="limit_date"><p>Date de fin :</p>
             <input
-              name="limit_date"
+              id="limit_date"
               type="date"
-              value={dateInputFormat(data.end)}
+              {...register('limit_date', { valueAsDate: true, validate: (limitDate) => dateInputFormat(limitDate) >= dateInputFormat(beginDate) })}
             />
+            {errors.limit_date?.type === 'validate' && <p className="Register__error">⚠ La date de fin ne doit pas être inférieur à la date du début</p>}
           </label>
+          <button type="submit" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
         </form>
+        <section>
+          <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
+        </section>
       </Modal>
     </section>
   );

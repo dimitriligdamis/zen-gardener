@@ -20,12 +20,6 @@ function Modal({
 }
 
 Modal.propTypes = {
-  // data: PropTypes.shape({
-  //   id: PropTypes.string,
-  //   title: PropTypes.string,
-  //   start: PropTypes.instanceOf(Date),
-  //   end: PropTypes.instanceOf(Date),
-  // }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
