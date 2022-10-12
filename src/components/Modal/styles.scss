@@ -38,4 +38,18 @@
       cursor: pointer;
     }
   }
+
+  &__error {
+    color: #f00;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  p, input {
+    margin: 0.2rem 0 0.5rem 0;
+  }
 }
