@@ -8,7 +8,7 @@
 }
 
 .Message {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   bottom: 25%;
   right: 50%;
@@ -31,6 +31,11 @@
     background-color: rgba(255, 186, 186, .95);
     color: #cf000a;
   }
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 .alert-logo {
