@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Upload } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreateTask, actionDeleteImportedTaskMessage, actionTaskImported } from '../../../../redux/tasks/tasksActions';
-import { getDateByMonthNumber, getMonthName } from '../../../../utils/dateUtils';
+import { dateInputFormat, getDateByMonthNumber, getMonthName } from '../../../../utils/dateUtils';
 
 import Message from '../../../Form/Message';
 
@@ -12,7 +12,9 @@ import './style.scss';
 function Action({ action, sheetId }) {
   const dispatch = useDispatch();
 
-  const { taskImported } = useSelector((state) => state.tasks);
+  const [alreadyImported, setAlreadyImported] = useState(false);
+
+  const { tasks, taskImported } = useSelector((state) => state.tasks);
 
   useEffect(() => {
     dispatch(actionDeleteImportedTaskMessage());
@@ -20,14 +22,23 @@ function Action({ action, sheetId }) {
 
   const handleClick = () => {
     const beginDate = getDateByMonthNumber(action.month_begin);
-    const limitDate = getDateByMonthNumber(action.month_limit, beginDate);
-    dispatch(actionCreateTask({
+    const limitDate = getDateByMonthNumber(action.month_limit, beginDate, true);
+    const taskToImport = {
       label: action.label,
       begin_date: beginDate,
       limit_date: limitDate,
       sheet_id: sheetId,
-    }));
-    dispatch(actionTaskImported());
+    };
+    // eslint-disable-next-line max-len
+    const alreadyExist = tasks.find((task) => dateInputFormat(task.begin_date) === dateInputFormat(taskToImport.begin_date) && dateInputFormat(task.limit_date) === dateInputFormat(taskToImport.limit_date) && task.label === taskToImport.label);
+
+    if (alreadyExist) {
+      setAlreadyImported(true);
+    }
+    else {
+      dispatch(actionCreateTask(taskToImport));
+      dispatch(actionTaskImported());
+    }
   };
 
   return (
@@ -42,6 +53,7 @@ function Action({ action, sheetId }) {
         </button>
       </div>
       {taskImported && <Message message="Tâche importé dans votre calendrier" actionRemove={actionDeleteImportedTaskMessage} />}
+      {alreadyImported && <Message message="Tâche déjà existante dans votre calendrier" isError setState={setAlreadyImported} />}
     </>
   );
 }

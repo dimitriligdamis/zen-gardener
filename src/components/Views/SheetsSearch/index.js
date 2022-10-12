@@ -16,7 +16,9 @@ function SheetsSearch() {
   const [page, setPage] = useState(1);
   const { searchResultIds, sheets, noMorePageInSearch } = useSelector((state) => state.sheets);
 
-  const sheetsOnScreen = sheets.filter((sheet) => searchResultIds.includes(sheet.id));
+  // eslint-disable-next-line max-len
+  const sheetsOnScreen = sheets.filter((sheet) => searchResultIds.includes(sheet.id)).sort((a, b) => a.id - b.id);
+  console.log(sheetsOnScreen);
 
   // Search 6 first on first render
   useEffect(() => {
@@ -32,10 +34,12 @@ function SheetsSearch() {
 
   // Request more sheet
   const loadMore = () => {
-    const query = getValues('sheets_search');
-    const nextPage = page + 1;
-    dispatch(actionFetchSheetsByQuery(query, 6, nextPage));
-    setPage(nextPage);
+    if (!noMorePageInSearch) {
+      const query = getValues('sheets_search');
+      const nextPage = page + 1;
+      dispatch(actionFetchSheetsByQuery(query, 6, nextPage));
+      setPage(nextPage);
+    }
   };
 
   return (
@@ -62,6 +66,7 @@ function SheetsSearch() {
           </form>
         </article>
         <ul className="SheetsSearch__list">
+          {sheetsOnScreen.length === 0 && <p>Aucun résultat !</p>}
           {sheetsOnScreen.map((sheet) => (
             <NavLink key={sheet.id} to={`/fiches/${sheet.id}`}>
               <Card sheet={sheet} />
@@ -71,7 +76,7 @@ function SheetsSearch() {
         {searchResultIds.length > 0
           && (
           <button
-            onClick={noMorePageInSearch ? '' : loadMore}
+            onClick={loadMore}
             type="button"
             className={noMorePageInSearch ? 'SheetsSearch__button_more SheetsSearch__button_more--end' : 'SheetsSearch__button_more'}
           >

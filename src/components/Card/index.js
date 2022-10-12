@@ -15,7 +15,7 @@ function Card({ sheet }) {
         <img className="Card__image" src={photo} alt={title} />
         <div className="Card__categories_container">
           {sheet.categories && sheet.categories.map((categorie) => (
-            <div className="Card__categorie" key={categorie.id}>{categorie.label}</div>
+            <div className="Card__categorie" style={{ backgroundColor: `${categorie.color}` }} key={categorie.id}>{categorie.label}</div>
           ))}
         </div>
       </div>

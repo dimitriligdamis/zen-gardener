@@ -11,7 +11,7 @@ import { actionClearSheetsState, actionFetchFavoriteSheets } from '../sheets/she
 
 import Config from '../../config';
 import sessionMockAdapter from '../../services/mockApi/session';
-import { actionClearTasksState } from '../tasks/tasksActions';
+import { actionClearTasksState, actionFetchTasks } from '../tasks/tasksActions';
 
 if (Config.API_MOCK_ENABLED) {
   sessionMockAdapter(Client.getInstance(), Config.API_URL_SESSION);
@@ -33,6 +33,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionUserDataReceived(userData));
           Client.setToken(jwtToken);
           store.dispatch(actionFetchFavoriteSheets());
+          store.dispatch(actionFetchTasks());
         })
         .catch((error) => {
           // Login request failed => log and inform user

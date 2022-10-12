@@ -19,12 +19,17 @@ export const toDateInputFormat = (date) => date.toISOString().split('T')[0];
  * @param {number} monthNumber One based number of the month (1-12)
  * @param {Date} fromDate Date from which the next month date is calculated
  */
-export const getDateByMonthNumber = (monthNumber, fromDate = new Date()) => {
+export const getDateByMonthNumber = (monthNumber, fromDate = new Date(), setLastDay) => {
   const date = new Date();
-  date.setDate(1);
+  if (setLastDay) {
+    date.setDate(31);
+  }
+  else {
+    date.setDate(1);
+  }
   date.setMonth(monthNumber);
   if (date < fromDate) {
-    date.setFullYear(fromDate.getFullYear() + 1);
+    date.setFullYear(date.getFullYear() + 1);
   }
   return date;
 };
