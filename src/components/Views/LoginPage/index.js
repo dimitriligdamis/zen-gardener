@@ -59,7 +59,7 @@ function LoginPage() {
             />
           </form>
           <div className="links_container">
-            <a className="LoginPage__nopassword">Mot de passe oublié ?</a>
+            <Link className="LoginPage__nopassword">Mot de passe oublié ?</Link>
           </div>
         </section>
       </main>

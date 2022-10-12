@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { capitalizeFirstLetter } from '../../utils/stringUtils';
 
@@ -37,7 +38,7 @@ function FavoriteSheetsByCategory({ sheetList }) {
     sheetsByCategory[categoryName].forEach((sheet) => {
       liElements.push(
         <li key={`category-${categoryName}-sheet-${sheet.title}`}>
-          <a href={`/fiches/${sheet.id}`}>{capitalizeFirstLetter(sheet.title)}</a>
+          <Link href={`/fiches/${sheet.id}`}>{capitalizeFirstLetter(sheet.title)}</Link>
         </li>,
       );
     });
