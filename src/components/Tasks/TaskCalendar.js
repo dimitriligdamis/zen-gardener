@@ -25,7 +25,7 @@ function TaskCalendar({ taskEvents }) {
   const dispatch = useDispatch();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [data, setData] = useState({});
+  const [taskData, setTaskData] = useState({});
 
   const localizer = momentLocalizer(moment);
 
@@ -39,23 +39,23 @@ function TaskCalendar({ taskEvents }) {
     window.clearTimeout(clickRef?.current);
   }, []);
 
-  // Set input as data passed
+  // Set input as taskData passed
   useEffect(() => {
     reset({
-      id: data.id,
-      label: data.title,
-      begin_date: dateInputFormat(data.start),
-      limit_date: dateInputFormat(data.end),
+      id: taskData.id,
+      label: taskData.title,
+      begin_date: dateInputFormat(taskData.start),
+      limit_date: dateInputFormat(taskData.end),
     });
-  }, [data]);
+  }, [taskData]);
 
   // Watch begin_date for validation
-  const beginDate = watch('begin_date', data.start);
+  const beginDate = watch('begin_date', taskData.start);
 
   const onSelectEvent = useCallback((calEvent) => {
     window.clearTimeout(clickRef?.current);
     clickRef.current = window.setTimeout(() => {
-      setData(calEvent);
+      setTaskData(calEvent);
       setModalIsOpen(true);
     }, 250);
   }, []);
@@ -83,14 +83,14 @@ function TaskCalendar({ taskEvents }) {
 
   // function handleclick update
   const handleClickUpdate = (dataForm) => {
-    console.log(dataForm);
     dispatch(actionUpdateTask(dataForm));
+    setModalIsOpen(false);
   };
 
   // function handleclick delete
   const handleClickDelete = () => {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
-      dispatch(actionDeleteTask(data.id));
+      dispatch(actionDeleteTask(taskData.id));
       setModalIsOpen(false);
     }
   };
@@ -134,7 +134,7 @@ function TaskCalendar({ taskEvents }) {
             />
             {errors.limit_date?.type === 'validate' && <p className="Register__error">⚠ La date de fin ne doit pas être inférieur à la date du début</p>}
           </label>
-          <button type="submit" onClick={handleClickUpdate}><ArrowUpCircle /> Update</button>
+          <button type="submit"><ArrowUpCircle /> Update</button>
         </form>
         <section>
           <button type="button" onClick={handleClickDelete}><Trash /> Delete</button>
