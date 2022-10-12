@@ -28,3 +28,5 @@ export const getDateByMonthNumber = (monthNumber, fromDate = new Date()) => {
   }
   return date;
 };
+
+export const dateInputFormat = (date) => moment(date).format('yyyy-MM-DD');
