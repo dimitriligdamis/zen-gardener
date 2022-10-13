@@ -38,7 +38,7 @@ function FavoriteSheetsByCategory({ sheetList }) {
     sheetsByCategory[categoryName].forEach((sheet) => {
       liElements.push(
         <li key={`category-${categoryName}-sheet-${sheet.title}`}>
-          <Link href={`/fiches/${sheet.id}`}>{capitalizeFirstLetter(sheet.title)}</Link>
+          <Link to={`/fiches/${sheet.id}`}>{capitalizeFirstLetter(sheet.title)}</Link>
         </li>,
       );
     });
