@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
+import { PlusCircle } from 'react-feather';
 import { actionFetchTasks, actionCreateTask } from '../../../redux/tasks/tasksActions';
 import TaskCalendar from '../../Tasks/TaskCalendar';
 import SheetMapper from '../../Sheets/SheetMapper';
@@ -56,7 +57,7 @@ function Dashboard() {
   return (
     <div className="Dashboard">
 
-      <h1 className="Dashboard__hello">Bonjour, {user.pseudo} !</h1>
+      <h1 className="Dashboard__hello">Bonjour {user.pseudo} !</h1>
       <div className="Dashboard__content">
 
         <section className="Dashboard__item tasks">
@@ -147,7 +148,7 @@ function Dashboard() {
               />
             </label>
             <br />
-            <button type="submit">Ajouter</button>
+            <button className="submitAddTask" type="submit"><PlusCircle /> Ajouter</button>
           </form>
         </Modal>
       </div>

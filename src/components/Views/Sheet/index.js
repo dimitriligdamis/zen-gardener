@@ -80,7 +80,7 @@ function Sheet() {
             <article className="Sheet__img-container">
               <div className="Sheet__categories_container">
                 {categories && categories.map((categorie) => (
-                  <div className="Sheet__categorie" key={categorie.id}>{categorie.label}</div>
+                  <div className="Sheet__categorie" style={{ backgroundColor: `${categorie.color}` }} key={categorie.id}>{categorie.label}</div>
                 ))}
               </div>
               <img className="Sheet__img" alt={title} src={photo} />

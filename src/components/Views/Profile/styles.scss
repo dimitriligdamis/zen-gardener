@@ -112,7 +112,7 @@
 
 
     &:hover {
-      background-color: darken($color: vars.$bg-sign, $amount: 10%);
+      background-color: darken($color: vars.$bg-sign, $amount: 3);
     }
 
     &:disabled {
