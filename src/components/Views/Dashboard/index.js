@@ -56,7 +56,7 @@ function Dashboard() {
   return (
     <div className="Dashboard">
 
-      <h1 className="Dashboard__hello">Bonjour, {user.pseudo} !</h1>
+      <h1 className="Dashboard__hello">Bonjour {user.pseudo} !</h1>
       <div className="Dashboard__content">
 
         <section className="Dashboard__item tasks">

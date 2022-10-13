@@ -136,7 +136,7 @@ function TaskCalendar({ taskEvents }) {
             />
             {errors.limit_date?.type === 'validate' && <p className="Register__error">⚠ La date de fin ne doit pas être inférieur à la date du début</p>}
           </label>
-          <br/>
+          <br />
           <button type="submit"><ArrowUpCircle /> Update</button>
         </form>
         <section>

@@ -125,13 +125,15 @@
       font-size: 0.75em;
     }
 
-    &--button {
+    &--buttons {
       /* height: 15px;
       width: 25px; */
       margin: 0 5px;
       border: none;
       border-radius: 5px;
       padding: 5px;
+
+
     }
   }
 
@@ -139,9 +141,20 @@
     color: black;
     stroke-width: 1px;
 
+    &:hover {
+      color: red;
+      cursor: pointer;
+      stroke-width: 3px;
+    }
+
     &--full {
       color: red;
       stroke-width: 3px;
+
+      &:hover {
+        color: lightcoral;
+        cursor: pointer;
+      }
     }
   }
 
@@ -172,7 +185,6 @@
 
   &__categorie {
     color: black;
-    background-color: rgb(154, 255, 141);
     padding: 0.2em 0.4em;
     border-radius: 8px;
     text-transform: capitalize;
