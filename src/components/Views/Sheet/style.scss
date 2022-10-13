@@ -10,10 +10,8 @@
     padding: vars.$padding-corner;
   }
 
-  @media screen and (max-width: vars.$breakoint-phone) {
-    padding: 1rem;
-  }
-  
+  @media screen and (max-width: vars.$breakoint-phone) {}
+
   &__container {
     background-color: darken(vars.$white, 15%);
     width: 80%;
@@ -23,14 +21,13 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    border-radius: 15px;
 
     @media screen and (max-width: vars.$breakoint-desktop) {
       gap: 5rem;
-      width: 100%;
+      min-height: 100%;
     }
   }
-  
+
   &__carac {
 
     &-list {
@@ -44,6 +41,25 @@
       margin: 15px 0;
       max-width: 520px;
       border-radius: 10px;
+
+      &>h2 {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      &>section {
+        background-color: vars.$bg-description;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      @media screen and (min-width: vars.$breakoint-desktop) {
+        height: 100%;
+      }
+
     }
 
   }
@@ -67,6 +83,7 @@
   &__title {
     background-color: vars.$bg-sign;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: vars.$white;
     border-radius: 10px;
     font-size: 2.4rem;
     font-weight: 600;
@@ -80,10 +97,16 @@
     @media screen and (min-width: vars.$breakoint-desktop) {
       display: flex;
       flex-direction: row-reverse;
+      align-items: stretch;
       gap: 5rem;
     }
 
   }
+
+  // &__main-block,
+  // &__carac-list {
+  //   flex: 1 1 auto;
+  // }
 
   &__links {
     margin: 10px 0 5px;
@@ -155,7 +178,22 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
     padding: 0.5em;
+    margin: 1rem 0;
     max-width: 520px;
     line-height: 1.4em;
+    font-weight: bold;
+
+
+    &>h2 {
+      text-decoration: underline;
+      margin-bottom: 1rem;
+    }
+
+    &>p {
+      background-color: vars.$bg-description;
+      font-weight: 400;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
   }
 }
