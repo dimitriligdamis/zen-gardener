@@ -20,8 +20,8 @@ function About() {
           <em className="About__role">Product Owner</em>
           <p className="About__speciality">Back-end</p>
           <article className="About__link">
-            <Link to="https://www.linkedin.com/in/clothilde-drouot-001090b5/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></Link>
-            <Link to="https://github.com/ClothildeDrouot" target="_blank" rel="noreferrer"><GitHub /></Link>
+            <a to="https://www.linkedin.com/in/clothilde-drouot-001090b5/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a to="https://github.com/ClothildeDrouot" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
         <li className="About__card">
@@ -30,8 +30,8 @@ function About() {
           <em className="About__role">Scrum Master</em>
           <p className="About__speciality">Front-end</p>
           <article className="About__link">
-            <Link to="https://www.linkedin.com/in/nicolas-marques-412229248/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></Link>
-            <Link to="https://github.com/NicolasMRQS" className="About__github" target="_blank" rel="noreferrer"><GitHub /></Link>
+            <a to="https://www.linkedin.com/in/nicolas-marques-412229248/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a to="https://github.com/NicolasMRQS" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
         <li className="About__card">
@@ -40,8 +40,8 @@ function About() {
           <em className="About__role">Lead Dev Back</em>
           <p className="About__speciality">Back-end</p>
           <article className="About__link">
-            <Link to="https://www.linkedin.com/in/jean-leherle/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></Link>
-            <Link to="https://github.com/Jean-Leherle" className="About__github" target="_blank" rel="noreferrer"><GitHub /></Link>
+            <a to="https://www.linkedin.com/in/jean-leherle/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a to="https://github.com/Jean-Leherle" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
 
@@ -51,8 +51,8 @@ function About() {
           <em className="About__role">Lead Dev Front</em>
           <p className="About__speciality">Front-end</p>
           <article className="About__link">
-            <Link to="https://www.linkedin.com/in/olivier-battini/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></Link>
-            <Link to="https://github.com/OlivierBattini" className="About__github" target="_blank" rel="noreferrer"><GitHub /></Link>
+            <a to="https://www.linkedin.com/in/olivier-battini/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a to="https://github.com/OlivierBattini" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
         <li className="About__card">
@@ -61,8 +61,8 @@ function About() {
           <em className="About__role">Git Master</em>
           <p className="About__speciality">Front-end</p>
           <article className="About__link">
-            <Link to="https://www.linkedin.com/in/dimitriligdamis/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></Link>
-            <Link to="https://github.com/dimitriligdamis" className="About__github" target="_blank" rel="noreferrer"><GitHub /></Link>
+            <a to="https://www.linkedin.com/in/dimitriligdamis/" className="About__linkedin" target="_blank" rel="noreferrer"><Linkedin /></a>
+            <a to="https://github.com/dimitriligdamis" className="About__github" target="_blank" rel="noreferrer"><GitHub /></a>
           </article>
         </li>
       </ul>
