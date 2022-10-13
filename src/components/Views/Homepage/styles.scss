@@ -108,4 +108,18 @@
     color: vars.$black;
   }
 
+
+
+  & .Modal__content {
+    background-color: lighten($color: vars.$bg-sign, $amount: 5);
+
+
+    @media screen and (min-width: vars.$breakoint-desktop) {
+      min-width: 1000px;
+      border-radius: 15px;
+    }
+
+
+  }
+
 }
