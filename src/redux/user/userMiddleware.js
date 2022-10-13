@@ -15,7 +15,6 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case UPDATE_USER_DATA: {
       const { userData } = action;
-      console.log('modif:', userData);
       Client.instance
         .patch(Config.API_URL_MEMBER, {
           ...userData,
@@ -55,7 +54,6 @@ const userMiddleware = (store) => (next) => (action) => {
           week_notification: true,
         })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(actionUserDataReceived(response.data));
           store.dispatch(actionLogin(email, password));
           store.dispatch(actionUpdateSession());

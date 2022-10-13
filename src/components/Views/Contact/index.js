@@ -15,8 +15,6 @@ function Conntact() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-
     // Config to send email with preset
     sendForm(SERVICE_ID, TEMPLATE_ID, '#contactForm')
       .then((response) => {

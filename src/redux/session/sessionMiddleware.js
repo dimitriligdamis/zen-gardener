@@ -49,8 +49,7 @@ const sessionMiddleware = (store) => (next) => (action) => {
     case LOGOUT: {
       Client.getInstance()
         .delete(Config.API_URL_SESSION)
-        .then(() => console.log('Logout successful'))
-        .catch((error) => console.log('Logout failed', error))
+        .catch((error) => console.error('Logout failed', error))
         .finally(() => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUserLoggedOut(null));

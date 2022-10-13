@@ -67,7 +67,7 @@ function Homepage() {
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={notif} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Soyez notifiée</h3>
-          <p className="Homepage__fonctionality-body">Système de notification qui vous alerte sur les tâches à venir par mail et sur l'application. Et c'est totalement paramétrable.</p>
+          <p className="Homepage__fonctionality-body">Système de notification qui vous alerte sur les tâches à venir par mail. Et c'est totalement paramétrable.</p>
           <Link
             className="Homepage__button Homepage__button--func"
             onClick={() => {

@@ -34,6 +34,7 @@
   }
 
   &__subtitle {
+    font-family: vars.$font-title;
     font-size: 2rem;
     font-weight: bold;
     max-width: 300px;
@@ -60,6 +61,7 @@
 
   &__fonctionalites {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 3rem;
     border-bottom: 1px solid #626568;
@@ -76,6 +78,11 @@
     gap: 2rem;
     min-height: 270px;
     position: relative;
+  }
+
+
+  &__fonctionality-body {
+    text-align: center;
   }
 
   &__preview_img:hover {
