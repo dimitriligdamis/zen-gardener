@@ -8,9 +8,13 @@
   padding: 1rem;
   color: vars.$white;
   letter-spacing: 0.5px;
-  max-width: 1200px;
   margin: 0 auto;
-  border-radius: 10px;
+
+  @media screen and (min-width: vars.$breakoint-desktop) {
+    max-width: 1200px;
+    margin: 1rem auto;
+    border-radius: 15px;
+  }
 
   &__logo {
     margin-left: 3rem;
@@ -30,6 +34,7 @@
   }
 
   &__subtitle {
+    font-family: vars.$font-title;
     font-size: 2rem;
     font-weight: bold;
     max-width: 300px;
@@ -52,17 +57,11 @@
       color: vars.$white;
       background-color: darken(vars.$bg-button, 20%);
     }
-
-    &--func {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      // transform: translateX(-50%);
-    }
   }
 
   &__fonctionalites {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 3rem;
     border-bottom: 1px solid #626568;
@@ -74,9 +73,20 @@
     max-width: 270px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
     min-height: 270px;
     position: relative;
+  }
+
+
+  &__fonctionality-body {
+    text-align: center;
+  }
+
+  &__preview_img:hover {
+    cursor: pointer;
   }
 
   &__tag {
@@ -102,6 +112,13 @@
 
   & .Card__infos {
     color: vars.$black;
+  }
+
+  & .Modal__content {
+    background-color: lighten($color: vars.$bg-sign, $amount: 5);
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 15px;
   }
 
 }

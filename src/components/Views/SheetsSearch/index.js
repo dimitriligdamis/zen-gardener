@@ -18,7 +18,6 @@ function SheetsSearch() {
 
   // eslint-disable-next-line max-len
   const sheetsOnScreen = sheets.filter((sheet) => searchResultIds.includes(sheet.id)).sort((a, b) => a.id - b.id);
-  console.log(sheetsOnScreen);
 
   // Search 6 first on first render
   useEffect(() => {
@@ -75,13 +74,13 @@ function SheetsSearch() {
         </ul>
         {searchResultIds.length > 0
           && (
-          <button
-            onClick={loadMore}
-            type="button"
-            className={noMorePageInSearch ? 'SheetsSearch__button_more SheetsSearch__button_more--end' : 'SheetsSearch__button_more'}
-          >
-            {noMorePageInSearch ? 'Vous êtes à la fin !' : 'Voir plus'}
-          </button>
+            <button
+              onClick={loadMore}
+              type="button"
+              className={noMorePageInSearch ? 'SheetsSearch__button_more SheetsSearch__button_more--end' : 'SheetsSearch__button_more'}
+            >
+              {noMorePageInSearch ? 'Vous êtes à la fin !' : 'Voir plus'}
+            </button>
           )}
       </section>
     </main>

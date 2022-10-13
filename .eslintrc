@@ -7,7 +7,7 @@
   "rules": {
     "brace-style": [
       "error",
-      "windows"
+      "stroustrup"
     ],
     "no-param-reassign": [
       "error",

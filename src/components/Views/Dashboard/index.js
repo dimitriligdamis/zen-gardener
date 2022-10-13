@@ -42,7 +42,6 @@ function Dashboard() {
       begin_date: new Date(taskBegin).toISOString(),
       limit_date: new Date(taskEnd).toISOString(),
     };
-    console.log(task);
     dispatch(actionCreateTask(task));
     setCreateTaskModalIsVisible(false);
     reset();
@@ -93,64 +92,64 @@ function Dashboard() {
         </section>
 
         <Modal modalIsOpen={createTaskModalIsVisible} setModalIsOpen={setCreateTaskModalIsVisible}>
-            <h2>Ajouter une tâche</h2>
-            <form className="Modal__form" action="" onSubmit={handleSubmit(onSubmitNewTask)}>
-              <label htmlFor="taskTitle">
-                <p>Nom de la tâche</p>
-                <input
-                  id="taskTitle"
-                  name="taskTitle"
-                  type="text"
-                  {...register(
-                    'taskTitle',
-                    {
-                      required: true,
-                      minLength: 8,
-                    },
-                  )}
-                />
-                {errors.taskTitle && <p className="Modal__error">⚠ Tapez au moins 8 caractères pour le titre de la tâche</p>}
-              </label>
+          <h2>Ajouter une tâche</h2>
+          <form className="Modal__form" action="" onSubmit={handleSubmit(onSubmitNewTask)}>
+            <label htmlFor="taskTitle">
+              <p>Nom de la tâche</p>
+              <input
+                id="taskTitle"
+                name="taskTitle"
+                type="text"
+                {...register(
+                  'taskTitle',
+                  {
+                    required: true,
+                    minLength: 8,
+                  },
+                )}
+              />
+              {errors.taskTitle && <p className="Modal__error">⚠ Tapez au moins 8 caractères pour le titre de la tâche</p>}
+            </label>
 
-              <label htmlFor="taskBegin">
-                <p>Date de début</p>
-                <input
-                  id="taskBegin"
-                  name="taskBegin"
-                  type="date"
-                  min={toDateInputFormat(new Date())}
-                  defaultValue={toDateInputFormat(new Date())}
-                  {...register(
-                    'taskBegin',
-                    {
-                      required: true,
-                      validate: (value) => new Date(value) <= new Date(getValues('taskEnd')),
-                    },
-                  )}
-                />
-                {errors.taskBegin && <p className="Modal__error">⚠ La date de début doit être antérieure à la date de fin</p>}
-              </label>
+            <label htmlFor="taskBegin">
+              <p>Date de début</p>
+              <input
+                id="taskBegin"
+                name="taskBegin"
+                type="date"
+                min={toDateInputFormat(new Date())}
+                defaultValue={toDateInputFormat(new Date())}
+                {...register(
+                  'taskBegin',
+                  {
+                    required: true,
+                    validate: (value) => new Date(value) <= new Date(getValues('taskEnd')),
+                  },
+                )}
+              />
+              {errors.taskBegin && <p className="Modal__error">⚠ La date de début doit être antérieure à la date de fin</p>}
+            </label>
 
-              <label htmlFor="taskEnd">
-                <p>Date de fin</p>
-                <input
-                  id="taskEnd"
-                  name="taskEnd"
-                  type="date"
-                  min={toDateInputFormat(new Date())}
-                  defaultValue={toDateInputFormat(new Date())}
-                  {...register(
-                    'taskEnd',
-                    {
-                      required: true,
-                    },
-                  )}
-                />
-              </label>
-              <br/>
-              <button type="submit">Ajouter</button>
-            </form>
-          </Modal>
+            <label htmlFor="taskEnd">
+              <p>Date de fin</p>
+              <input
+                id="taskEnd"
+                name="taskEnd"
+                type="date"
+                min={toDateInputFormat(new Date())}
+                defaultValue={toDateInputFormat(new Date())}
+                {...register(
+                  'taskEnd',
+                  {
+                    required: true,
+                  },
+                )}
+              />
+            </label>
+            <br />
+            <button type="submit">Ajouter</button>
+          </form>
+        </Modal>
       </div>
     </div>
   );

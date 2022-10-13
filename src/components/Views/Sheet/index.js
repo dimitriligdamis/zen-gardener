@@ -73,9 +73,8 @@ function Sheet() {
                 <span className="Sheet__links--retour">← Retour à la recherche</span>
               </NavLink>
               <div className="Sheet__links--buttons">
-                <button className="Sheet__links--button" type="button" onClick={handleClickFavorite}>
-                  <Heart className={isFavorite ? 'Sheet__heart--full' : 'Sheet__heart'} />
-                </button>
+                <Heart onClick={handleClickFavorite} className={isFavorite ? 'Sheet__heart--full' : 'Sheet__heart'} />
+                {/* </button> */}
               </div>
             </div>
             <article className="Sheet__img-container">
@@ -96,7 +95,9 @@ function Sheet() {
           </div>
           <div className="Sheet__carac-list">
             <h2>Caractéristiques :</h2>
-            {caracteristiqueArray.map((carac) => <div key={carac} className="Sheet__carac">{carac}</div>)}
+            <section>
+              {caracteristiqueArray.map((carac) => <div key={carac} className="Sheet__carac">{carac}</div>)}
+            </section>
           </div>
         </section>
       </section>

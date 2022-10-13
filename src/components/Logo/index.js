@@ -7,7 +7,7 @@ import './styles.scss';
 
 function Logo({ to }) {
   return (
-    <Link className="Profile__logo" to={to}><img src={logo} alt="logo" /></Link>
+    <Link className="Logo--link" to={to}><img className="Logo" src={logo} alt="logo" /></Link>
   );
 }
 

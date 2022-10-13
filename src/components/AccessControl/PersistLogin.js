@@ -20,7 +20,7 @@ function PersistLogin() {
 
   useEffect(() => {
     Client.getInstance()
-    // Send token to the server
+      // Send token to the server
       .get(Config.API_URL_MEMBER)
 
       // Token is valid
@@ -32,7 +32,7 @@ function PersistLogin() {
         dispatch(actionFetchTasks());
       })
       // No token / Token is not valid
-      .catch((error) => console.log('No token', error))
+      .catch((error) => console.error('No token', error))
       .finally(() => setIsLoading(false));
   }, []);
 

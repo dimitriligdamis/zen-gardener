@@ -84,7 +84,6 @@ const sheetsMiddleware = (store) => (next) => (action) => {
       Client.instance
         .post(`${Config.API_URL_MEMBER}/sheet/${sheetId}`)
         .then(() => {
-          console.log('add to favorite');
           store.dispatch(actionSaveFavorites([sheetId]));
         })
         .catch((error) => {
@@ -98,7 +97,6 @@ const sheetsMiddleware = (store) => (next) => (action) => {
       Client.instance
         .delete(`${Config.API_URL_MEMBER}/sheet/${sheetId}`)
         .then(() => {
-          console.log('delete from favorite');
           store.dispatch(actionUnsaveFromFavorites(sheetId));
         })
         .catch((error) => {

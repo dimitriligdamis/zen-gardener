@@ -1,18 +1,34 @@
 @use 'src/styles/vars';
 
 .Profile {
-  background-color: darken(vars.$white, 5%);
-  padding: 2rem;
-  max-width: 70rem;
-  margin: 0 auto;
+  background-color: vars.$bg-blur;
+  min-height: vars.$dashboard-bottom;
+  padding: vars.$padding-corner;
+  box-shadow: vars.$box-shadow;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  border-radius: 15px;
 
-  &__logo {
-    margin-left: 3rem;
+  @media screen and (max-width: vars.$breakoint-phone) {
+    padding: 0;
+  }
+
+  &__container {
+    background-color: darken(vars.$white, 5%);
+    padding: 2rem;
+    max-width: 70rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 15px;
+
+    @media screen and (max-width: vars.$breakoint-phone) {
+      padding: 2rem;
+      margin: 0;
+      max-width: none;
+      width: 100%;
+      border-radius: 0;
+    }
   }
 
   &__title {
@@ -21,15 +37,23 @@
     font-family: vars.$font-title;
   }
 
+  &__input-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
   &__infos-container {
     background-color: vars.$white;
     position: relative;
     padding: 4rem 1rem 2rem;
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     border: 1px solid grey;
     border-radius: 5px;
+    width: 320px;
     min-width: 281px;
   }
 
@@ -79,7 +103,7 @@
     display: block;
     width: 50%;
     max-width: 300px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
     padding: 1rem 3rem;
     border: none;
     background-color: vars.$bg-sign;
