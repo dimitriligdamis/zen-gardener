@@ -70,6 +70,24 @@
       border-bottom-right-radius: 0;
     }
   }
+
+  & .Modal__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+  }
+
+  & .Modal__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  & .Modal__close {
+    align-self: flex-end;
+  }
 }
 
 .tasks {
@@ -110,9 +128,12 @@
   box-sizing: border-box;
   color: vars.$white;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   text-align: center;
   padding: 1rem 3rem;
+
+  &:hover {
+    background-color: darken($color: vars.$bg-sign, $amount: 3);
+  }
 }
 
 .sheets {
@@ -149,6 +170,10 @@
       box-shadow: vars.$box-shadow-dark;
       background-color: vars.$bg-sign;
       color: vars.$white;
+
+      &:hover {
+        background-color: darken($color: vars.$bg-sign, $amount: 3);
+      }
     }
   }
 }
@@ -167,7 +192,7 @@
   display: none;
 }
 
-.rbc-agenda-view > .rbc-agenda-table {
+.rbc-agenda-view>.rbc-agenda-table {
   background-color: #fff;
   border: none;
 }
@@ -186,4 +211,23 @@ div.rbc-agenda-view>table>thead>tr>th:nth-child(2) {
 
 .rbc-agenda-content {
   overflow-y: scroll;
+}
+
+.submitAddTask {
+  display: block;
+  max-width: 140px;
+  width: 90%;
+  margin: 1rem auto 0;
+  color: vars.$white;
+  background-color: vars.$bg-sign;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover {
+    background-color: darken($color: vars.$bg-sign, $amount: 3);
+  }
 }
