@@ -32,7 +32,7 @@ function Menu() {
             >
               <div className="Menu__item-content">
                 <Calendar />
-                <p>Tableau de bord</p>
+                <p>Tâches</p>
               </div>
             </NavLink>
             <NavLink
