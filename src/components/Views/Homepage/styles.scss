@@ -9,6 +9,7 @@
   color: vars.$white;
   letter-spacing: 0.5px;
   margin: 0 auto;
+  position: relative;
 
   @media screen and (min-width: vars.$breakoint-desktop) {
     max-width: 1200px;
