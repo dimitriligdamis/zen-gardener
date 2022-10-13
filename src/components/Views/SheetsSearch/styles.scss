@@ -32,6 +32,11 @@
     box-shadow: vars.$box-shadow;
     background-color: vars.$white;
     width: 50%;
+    
+    @media screen and (max-width: vars.$breakoint-phone) {
+      width: 80%;
+      padding: 2rem;
+    }
   }
 
   &__title {

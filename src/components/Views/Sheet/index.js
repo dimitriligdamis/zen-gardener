@@ -73,9 +73,9 @@ function Sheet() {
                 <span className="Sheet__links--retour">← Retour à la recherche</span>
               </NavLink>
               <div className="Sheet__links--buttons">
-                <button className="Sheet__links--button" type="button" onClick={handleClickFavorite}>
-                  <Heart className={isFavorite ? 'Sheet__heart--full' : 'Sheet__heart'} />
-                </button>
+                {/* <button className="Sheet__links--button" type="button" onClick={handleClickFavorite}> */}
+                  <Heart onClick={handleClickFavorite} className={isFavorite ? 'Sheet__heart--full' : 'Sheet__heart'} />
+                {/* </button> */}
               </div>
             </div>
             <article className="Sheet__img-container">
