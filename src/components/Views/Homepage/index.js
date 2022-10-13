@@ -45,7 +45,7 @@ function Homepage() {
       <section className="Homepage__introduction">
         <h2 className="Homepage__subtitle">Zen-Gardener vous fait voir le jardinage sous un nouvel angle.</h2>
         <p className="Homepage__slogan-body">
-          Créer, gérez votre jardin et atteignez de nouveaux sommets en
+          Créez, gérez votre jardin et atteignez de nouveaux sommets en
           matière de productivité. Que vous soyez débutant ou expérimenté, redécouvrez le jardinage.
           Accomplissez toutes vos tâches grâce à Zen-Gardener.
         </p>
@@ -55,7 +55,7 @@ function Homepage() {
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={tag} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Création de tâches</h3>
-          <p className="Homepage__fonctionality-body">Accès à la création de tâches avec vu calenrier ou planning pour gérez votre organisation. Trouvez l'option qui vous correspond.</p>
+          <p className="Homepage__fonctionality-body">Accès à la création de tâches avec vu calendrier ou planning pour gérer votre organisation. Trouvez l'option qui vous correspond.</p>
           <Link
             className="Homepage__button Homepage__button--func"
             onClick={() => {
@@ -79,7 +79,7 @@ function Homepage() {
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={legume} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Découvrez nos fiches</h3>
-          <p className="Homepage__fonctionality-body">Accèdez à des fiches en illimité qui vous aideront au quotidien pour jardiner et pourront être lier à vos tâches.</p>
+          <p className="Homepage__fonctionality-body">Accédez à des fiches en illimité qui vous aideront au quotidien pour jardiner et pourront être lié à vos tâches.</p>
           <Link
             className="Homepage__button Homepage__button--func"
             onClick={() => {
@@ -98,7 +98,7 @@ function Homepage() {
         </ul>
       </section>
       <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
-        <img style={{ width: '100%' }} src={imgModal} alt="preview sheets" />
+        <img className="Homepage__preview_img" onClick={() => window.open(imgModal, '_blank')} style={{ width: '100%' }} src={imgModal} alt="preview sheets" />
       </Modal>
     </main>
   );
