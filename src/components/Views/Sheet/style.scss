@@ -5,7 +5,11 @@
   min-height: vars.$dashboard-bottom;
   display: flex;
   justify-content: center;
-  // padding: vars.$padding-corner;
+
+  @media screen and (min-width: vars.$breakoint-desktop) {
+    padding: vars.$padding-corner;
+  }
+
 
 
 
@@ -38,6 +42,7 @@
 
     @media screen and (min-width: vars.$breakoint-desktop) {
       gap: 5rem;
+      border-radius: 15px;
     }
   }
 

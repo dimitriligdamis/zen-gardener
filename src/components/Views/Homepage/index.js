@@ -7,14 +7,18 @@ import { useEffect, useState } from 'react';
 import Logo from '../../Logo';
 
 import Card from '../../Card';
+import Modal from '../../Modal';
 import './styles.scss';
 import Config from '../../../config';
+import previewSheets from 'src/assets/img/preview-sheets.png';
 
 const axios = require('axios');
 
 function Homepage() {
   const { userIsLoggedIn } = useSelector((state) => state.session);
   const [randomSheets, setRandomSheets] = useState([]);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`${Config.API_URL_PUBLIC_SHEETS}n=3`).then((response) => {
@@ -26,6 +30,11 @@ function Homepage() {
   if (userIsLoggedIn) {
     return (<Navigate to="/tableau-de-bord" />);
   }
+
+  const handleclickPreview = () => {
+    setModalIsOpen(true);
+  }
+
   return (
     <main className="Homepage">
       <Logo to="/" />
@@ -44,19 +53,19 @@ function Homepage() {
           <img className="Homepage__tag" src={tag} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Création de tâches</h3>
           <p className="Homepage__fonctionality-body">Accès à la création de tâches avec vu calenrier ou planning pour gérez votre organisation. Trouvez l'option qui vous correspond.</p>
-          <Link className="Homepage__button Homepage__button--func" to="/register">Preview</Link>
+          <Link className="Homepage__button Homepage__button--func" onClick={handleclickPreview}>Preview</Link>
         </article>
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={notif} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Soyez notifié.e</h3>
           <p className="Homepage__fonctionality-body">Système de notification qui vous alerte sur les tâches à venir par mail et sur l'application. Et c'est totalement paramétrable.</p>
-          <Link className="Homepage__button Homepage__button--func" to="/register">Preview</Link>
+          <Link className="Homepage__button Homepage__button--func" onClick={handleclickPreview}>Preview</Link>
         </article>
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={legume} alt="tag" />
           <h3 className="Homepage__fonctionality-title">Découvrez nos fiches</h3>
           <p className="Homepage__fonctionality-body">Accèdez à des fiches en illimité qui vous aideront au quotidien pour jardiner et pourront être lier à vos tâches.</p>
-          <Link className="Homepage__button Homepage__button--func" to="/register">Preview</Link>
+          <Link className="Homepage__button Homepage__button--func" onClick={handleclickPreview}>Preview</Link>
         </article>
       </section>
       <section className="Homepage__sheet-example">
@@ -67,6 +76,9 @@ function Homepage() {
           ))}
         </ul>
       </section>
+      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
+        <img style={{ width: '100%' }} src={previewSheets} alt='preview sheets' />
+      </Modal>
     </main>
   );
 }
