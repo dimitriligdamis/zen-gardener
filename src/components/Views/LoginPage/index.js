@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionLogin } from '../../../redux/session/sessionActions';
 
+import { actionLogin, actionRemoveLoginErrorMessage } from '../../../redux/session/sessionActions';
 import Message from '../../Form/Message';
 import SubmitButton from '../../Form/SubmitButton';
 
@@ -11,7 +13,13 @@ import './style.scss';
 function LoginPage() {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { errorIsActive, message } = useSelector((state) => state.error);
+  const { lastLoginFailed } = useSelector((state) => state.session);
+
+  useEffect(() => {
+    if (lastLoginFailed) {
+      dispatch(actionRemoveLoginErrorMessage());
+    }
+  }, []);
 
   const onSubmit = ({ email, password }) => {
     dispatch(actionLogin(email, password));
@@ -52,11 +60,11 @@ function LoginPage() {
             />
           </form>
           <div className="links_container">
-            <a className="LoginPage__nopassword">Mot de passe oublié ?</a>
+            <Link className="LoginPage__nopassword">Mot de passe oublié ?</Link>
           </div>
         </section>
       </main>
-      {errorIsActive && <Message message={message} isError />}
+      {lastLoginFailed && <Message message="Combinaison email / mot de passe incorrecte" isError actionRemove={actionRemoveLoginErrorMessage} />}
     </>
   );
 }

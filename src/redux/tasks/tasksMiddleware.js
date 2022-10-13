@@ -19,7 +19,7 @@ import Config from '../../config';
 import tasksMockAdapter from '../../services/mockApi/tasks';
 
 if (Config.API_MOCK_ENABLED) {
-  tasksMockAdapter(Client, Config.API_URL_TASKS);
+  tasksMockAdapter(Client.instance, Config.API_URL_TASKS);
 }
 
 const tasksMiddleware = (store) => (next) => (action) => {
@@ -39,18 +39,12 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case CREATE_TASK: {
-      const {
-        label, begin_date, limit_date, sheet_id,
-      } = action;
+      console.log('CREATE_TASK');
+      const { task } = action;
       Client.instance
-        .post(Config.API_URL_TASKS, {
-          label,
-          begin_date,
-          limit_date,
-          sheet_id,
-        })
+        .post(Config.API_URL_TASKS, task)
         .then((response) => {
-          const newTask = response.data;
+          const newTask = response.data[0];
           store.dispatch(actionTaskCreated(newTask));
         })
         .catch((error) => {
@@ -61,11 +55,13 @@ const tasksMiddleware = (store) => (next) => (action) => {
     }
 
     case UPDATE_TASK: {
+      console.log('UPDATE_TASK');
       const { task } = action;
       Client.instance
-        .put(`${Config.API_URL_TASKS}/${task.id}`, { task })
+        .put(`${Config.API_URL_TASKS}/${task.id}`, task)
         .then((response) => {
-          const updatedTask = response.data;
+          const updatedTask = response.data[0];
+          console.log(updatedTask)
           store.dispatch(actionTaskUpdated(updatedTask));
         })
         .catch((error) => {

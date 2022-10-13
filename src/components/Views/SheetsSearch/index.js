@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search } from 'react-feather';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,23 +14,32 @@ function SheetsSearch() {
   const { register, handleSubmit, getValues } = useForm();
 
   const [page, setPage] = useState(1);
-  const { searchResultIds, sheets } = useSelector((state) => state.sheets);
+  const { searchResultIds, sheets, noMorePageInSearch } = useSelector((state) => state.sheets);
 
-  const sheetsOnScreen = sheets.filter((sheet) => searchResultIds.includes(sheet.id));
+  // eslint-disable-next-line max-len
+  const sheetsOnScreen = sheets.filter((sheet) => searchResultIds.includes(sheet.id)).sort((a, b) => a.id - b.id);
+  console.log(sheetsOnScreen);
+
+  // Search 6 first on first render
+  useEffect(() => {
+    dispatch(actionFetchSheetsByQuery('', 6, 1));
+  }, []);
 
   // Search request
   const onSubmit = (data) => {
     dispatch(actionClearSearchResult());
-    dispatch(actionFetchSheetsByQuery(data.sheets_search, 6, 1, false));
+    dispatch(actionFetchSheetsByQuery(data.sheets_search, 6, 1));
     setPage(1);
   };
 
   // Request more sheet
   const loadMore = () => {
-    const query = getValues('sheets_search');
-    const nextPage = page + 1;
-    dispatch(actionFetchSheetsByQuery(query, 6, nextPage, true));
-    setPage(nextPage);
+    if (!noMorePageInSearch) {
+      const query = getValues('sheets_search');
+      const nextPage = page + 1;
+      dispatch(actionFetchSheetsByQuery(query, 6, nextPage));
+      setPage(nextPage);
+    }
   };
 
   return (
@@ -57,6 +66,7 @@ function SheetsSearch() {
           </form>
         </article>
         <ul className="SheetsSearch__list">
+          {sheetsOnScreen.length === 0 && <p>Aucun résultat !</p>}
           {sheetsOnScreen.map((sheet) => (
             <NavLink key={sheet.id} to={`/fiches/${sheet.id}`}>
               <Card sheet={sheet} />
@@ -64,7 +74,15 @@ function SheetsSearch() {
           ))}
         </ul>
         {searchResultIds.length > 0
-          && <button onClick={loadMore} type="button" className="SheetsSearch__button_more">Voir plus</button>}
+          && (
+          <button
+            onClick={loadMore}
+            type="button"
+            className={noMorePageInSearch ? 'SheetsSearch__button_more SheetsSearch__button_more--end' : 'SheetsSearch__button_more'}
+          >
+            {noMorePageInSearch ? 'Vous êtes à la fin !' : 'Voir plus'}
+          </button>
+          )}
       </section>
     </main>
   );

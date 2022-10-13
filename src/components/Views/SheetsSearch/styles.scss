@@ -5,7 +5,7 @@
   min-height: vars.$dashboard-bottom;
   display: flex;
   justify-content: center;
-  padding: 3rem 3rem 1rem;
+  padding: vars.$padding-corner;
 
   @media screen and (max-width: vars.$breakoint-phone) {
     padding: 1rem;
@@ -93,8 +93,9 @@
   }
 
   &__button_more {
-    height: 35px;
-    width: 12rem;
+    height: fit-content;
+    width: fit-content;
+    padding: 0.7em 1.5em;
     margin: 2rem 0;
     border-radius: 1rem;
     font-size: 1.6rem;
@@ -112,6 +113,17 @@
     &:active {
       box-shadow: inset 0 0 3px 1px black;
       transition: none;
+    }
+
+    &--end {
+      cursor: auto;
+      &:hover {
+        background-color: vars.$bg-sign;
+        color: white;
+      }
+      &:active {
+        box-shadow: none;
+      }
     }
   }
 }

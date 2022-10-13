@@ -7,10 +7,11 @@ import {
   actionLoginFailed,
 } from './sessionActions';
 import { actionUserDataReceived, actionUserLoggedOut } from '../user/userActions';
-import { actionDisplayError } from '../error/errorAction';
-import Config from '../../config';
+import { actionClearSheetsState, actionFetchFavoriteSheets } from '../sheets/sheetsActions';
 
+import Config from '../../config';
 import sessionMockAdapter from '../../services/mockApi/session';
+import { actionClearTasksState, actionFetchTasks } from '../tasks/tasksActions';
 
 if (Config.API_MOCK_ENABLED) {
   sessionMockAdapter(Client.getInstance(), Config.API_URL_SESSION);
@@ -31,13 +32,15 @@ const sessionMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionUpdateSession());
           store.dispatch(actionUserDataReceived(userData));
           Client.setToken(jwtToken);
+          store.dispatch(actionFetchFavoriteSheets());
+          store.dispatch(actionFetchTasks());
         })
         .catch((error) => {
           // Login request failed => log and inform user
           console.error('Error while logging in', error);
           store.dispatch(actionLoginFailed());
           if (error.response.status === 401) {
-            store.dispatch(actionDisplayError('Combinaison email / mot de passe incorrect'));
+            store.dispatch(actionLoginFailed());
           }
         });
       break;
@@ -52,6 +55,8 @@ const sessionMiddleware = (store) => (next) => (action) => {
           // Clearing session anyway for security reasons
           store.dispatch(actionUserLoggedOut(null));
           Client.clearToken();
+          store.dispatch(actionClearTasksState());
+          store.dispatch(actionClearSheetsState());
         });
       break;
     }

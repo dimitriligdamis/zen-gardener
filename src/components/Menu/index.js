@@ -3,7 +3,6 @@ import {
   LogIn,
   Layers,
   User,
-  Bell,
   Calendar,
   MoreHorizontal,
   PenTool,
@@ -45,12 +44,6 @@ function Menu() {
                 <p>Fiches</p>
               </div>
             </NavLink>
-            <Link className="Menu__item">
-              <div className="Menu__item-content">
-                <Bell />
-                <p>Notifications</p>
-              </div>
-            </Link>
             <NavLink
               to="/profil"
               className={({ isActive }) => (isActive ? 'Menu__item Menu__item--active' : 'Menu__item')}

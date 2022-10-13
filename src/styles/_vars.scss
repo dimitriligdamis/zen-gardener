@@ -8,12 +8,18 @@ $dashboard-bottom: calc(100vh - 50px);
 $breakoint-mini-phone: 375px;
 $breakoint-phone: 815px;
 $breakoint-desktop: 1200px;
+$padding-corner: 3rem 3rem 1rem;
 
 
 // background color
 $bg-blur: rgba(92, 86, 86, 0.8);
 $bg-main: bisque;
 $bg-sign: rgba(0, 84, 79, 0.8);
+$bg-description: #f0ffff;
+$bg-button: #dfb725;
+
+// utils
+$bar: 1px solid #626568;
 
 
 //color

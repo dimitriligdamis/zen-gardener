@@ -11,7 +11,7 @@ import { actionFetchFavoriteSheets } from '../../redux/sheets/sheetsActions';
 import Loading from '../Loading';
 
 import './style.scss';
-import logo from '../../assets/img/carrot.svg';
+import { actionFetchTasks } from '../../redux/tasks/tasksActions';
 
 function PersistLogin() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,7 @@ function PersistLogin() {
         dispatch(actionUserDataReceived(userData));
         dispatch(actionUpdateSession());
         dispatch(actionFetchFavoriteSheets());
-        // console.log('Valid Token');
+        dispatch(actionFetchTasks());
       })
       // No token / Token is not valid
       .catch((error) => console.log('No token', error))

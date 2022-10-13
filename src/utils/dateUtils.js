@@ -9,14 +9,29 @@ import moment from 'moment';
 export const getMonthName = (monthNumber, locale = 'fr') => moment().locale(locale).month(monthNumber).format('MMMM');
 
 /**
+ * @param {Date} date Date to format
+ * @returns {string} Date formatted as "YYYY-MM-DD"
+ */
+export const toDateInputFormat = (date) => date.toISOString().split('T')[0];
+// export const toDateInputFormat = (date) => `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+
+/**
  * @param {number} monthNumber One based number of the month (1-12)
  * @param {Date} fromDate Date from which the next month date is calculated
  */
-export const getDateByMonthNumber = (monthNumber, fromDate = new Date()) => {
-  fromDate.setDate(1);
-  if (monthNumber < fromDate.getMonth()) {
-    fromDate.setFullYear(fromDate.getFullYear() + 1);
+export const getDateByMonthNumber = (monthNumber, fromDate = new Date(), setLastDay) => {
+  const date = new Date();
+  if (setLastDay) {
+    date.setDate(31);
   }
-  fromDate.setMonth(monthNumber);
-  return fromDate;
+  else {
+    date.setDate(1);
+  }
+  date.setMonth(monthNumber);
+  if (date < fromDate) {
+    date.setFullYear(date.getFullYear() + 1);
+  }
+  return date;
 };
+
+export const dateInputFormat = (date) => moment(date).format('yyyy-MM-DD');

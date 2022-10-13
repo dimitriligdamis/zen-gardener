@@ -31,7 +31,7 @@ function Homepage() {
       <Logo to="/" />
       {/* <h1 className="Homepage__title">Welcome to Zen-Gardener</h1> */}
       <section className="Homepage__introduction">
-        <h2 className="Homepage__subtitle">Zen-Gardener vous fait voir le jardinage sous un nouvelle angle.</h2>
+        <h2 className="Homepage__subtitle">Zen-Gardener vous fait voir le jardinage sous un nouvel angle.</h2>
         <p className="Homepage__slogan-body">
           Créer, gérez votre jardin et atteignez de nouveaux sommets en
           matière de productivité. Que vous soyez débutant ou expérimenté, redécouvrez le jardinage.
@@ -48,7 +48,7 @@ function Homepage() {
         </article>
         <article className="Homepage__fonctionality">
           <img className="Homepage__tag" src={notif} alt="tag" />
-          <h3 className="Homepage__fonctionality-title">Soyez notifier</h3>
+          <h3 className="Homepage__fonctionality-title">Soyez notifié.e</h3>
           <p className="Homepage__fonctionality-body">Système de notification qui vous alerte sur les tâches à venir par mail et sur l'application. Et c'est totalement paramétrable.</p>
           <Link className="Homepage__button Homepage__button--func" to="/register">Preview</Link>
         </article>

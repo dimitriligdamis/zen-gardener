@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { getMonthName } from '../../utils/dateUtils';
 import { capitalizeFirstLetter } from '../../utils/stringUtils';
@@ -36,7 +37,7 @@ function FavoriteSheetsByMonth({ sheetList }) {
     const monthActionsJsx = formattedActions
       .filter((action) => action.monthBegin === month)
       .map((action) => (
-        <p key={`action-${action.sheetId}-${action.label}`}><a href={`/fiches/${action.sheetId}`}>{action.label}</a></p>
+        <p key={`action-${action.sheetId}-${action.label}`}><Link to={`/fiches/${action.sheetId}`}>{action.label}</Link></p>
       ));
 
     if (monthActionsJsx.length > 0) {

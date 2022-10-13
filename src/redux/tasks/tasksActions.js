@@ -14,6 +14,9 @@ export const TASK_DELETED = 'TASK_DELETED';
 export const TASK_CREATE_FAILED = 'TASK_CREATE_FAILED';
 export const TASK_UPDATE_FAILED = 'TASK_UPDATE_FAILED';
 export const TASK_DELETE_FAILED = 'TASK_DELETE_FAILED';
+export const TASK_IMPORTED = 'TASK_IMPORTED';
+export const DELETE_IMPORTED_TASK_MESSAGE = 'DELETE_IMPORTED_TASK_MESSAGE';
+export const CLEAR_TASKS_STATE = 'CLEAR_TASKS_STATE';
 
 // ACTION CREATORS
 
@@ -25,10 +28,7 @@ export const actionFetchTasks = () => ({
 /** Action dispatched when user submits new task to API */
 export const actionCreateTask = (task) => ({
   type: CREATE_TASK,
-  label: task.label,
-  begin_date: task.begin_date,
-  limit_date: task.limit_date,
-  sheet_id: task.sheet_id,
+  task,
 });
 
 /** Action dispatched when user submits new task to API */
@@ -39,7 +39,7 @@ export const actionUpdateTask = (task) => ({
 
 /** Action dispatched when user submits new task to API */
 export const actionDeleteTask = (taskId) => ({
-  type: FETCH_TASKS,
+  type: DELETE_TASK,
   taskId,
 });
 
@@ -80,4 +80,16 @@ export const actionTaskUpdateFailed = (failed = true) => ({
 export const actionTaskDeleteFailed = (failed = true) => ({
   type: TASK_DELETE_FAILED,
   failed,
+});
+
+export const actionTaskImported = () => ({
+  type: TASK_IMPORTED,
+});
+
+export const actionDeleteImportedTaskMessage = () => ({
+  type: DELETE_IMPORTED_TASK_MESSAGE,
+});
+
+export const actionClearTasksState = () => ({
+  type: CLEAR_TASKS_STATE,
 });

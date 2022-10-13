@@ -12,6 +12,7 @@ import {
   actionSaveFavorites,
   DELETE_FROM_FAVORITES,
   actionUnsaveFromFavorites,
+  actionNoMoreResult,
 } from './sheetsActions';
 
 import Config from '../../config';
@@ -49,9 +50,12 @@ const sheetsMiddleware = (store) => (next) => (action) => {
           store.dispatch(actionSaveSheets(newSheets));
           const searchResultIds = newSheets.map(({ id }) => id);
           store.dispatch(actionAddToSearchResults(searchResultIds));
+          if (newSheets.length === 0) {
+            store.dispatch(actionNoMoreResult());
+          }
         })
         .catch((error) => {
-          console.error('Error while creating Sheet', error);
+          console.error('Error while fetching Sheet', error);
           store.dispatch(actionSheetFetchFailed());
         });
       break;
@@ -69,7 +73,7 @@ const sheetsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.error('Error while creating Sheet', error);
+          console.error('Error while fetching favorite Sheet', error);
           store.dispatch(actionSheetFetchFailed());
         });
       break;

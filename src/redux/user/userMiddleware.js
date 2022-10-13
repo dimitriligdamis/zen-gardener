@@ -6,10 +6,10 @@ import {
   actionUserDataUpdated,
   REGISTER,
   actionUserDataReceived,
+  actionRegisterFailed,
 } from './userActions';
 import Config from '../../config';
-import { actionLoginFailed, actionUpdateSession } from '../session/sessionActions';
-import { actionDisplayError } from '../error/errorAction';
+import { actionLogin, actionUpdateSession } from '../session/sessionActions';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -23,7 +23,6 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           // User data updated successfully
           const { updatedAt } = response.data;
-          console.log('ici', updatedAt, response);
           store.dispatch(actionUserDataUpdated(updatedAt));
           store.dispatch(actionUserDataReceived(response.data));
         })
@@ -58,12 +57,12 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(actionUserDataReceived(response.data));
+          store.dispatch(actionLogin(email, password));
           store.dispatch(actionUpdateSession());
         })
         .catch((error) => {
           console.error('Error while register', error);
-          store.dispatch(actionLoginFailed());
-          store.dispatch(actionDisplayError(error.response.data));
+          store.dispatch(actionRegisterFailed(error.response.data));
         });
       break;
     }
