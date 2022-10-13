@@ -56,13 +56,6 @@
       color: vars.$white;
       background-color: darken(vars.$bg-button, 20%);
     }
-
-    &--func {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      // transform: translateX(-50%);
-    }
   }
 
   &__fonctionalites {
@@ -78,6 +71,8 @@
     max-width: 270px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
     min-height: 270px;
     position: relative;

@@ -42,6 +42,10 @@
       max-width: 520px;
       border-radius: 10px;
 
+      @media screen and (min-width: vars.$breakoint-desktop) {
+        height: auto;
+      }
+
       &>h2 {
         font-weight: bold;
         text-decoration: underline;
@@ -54,10 +58,10 @@
         gap: 2rem;
         padding: 15px;
         border-radius: 10px;
-      }
 
-      @media screen and (min-width: vars.$breakoint-desktop) {
-        height: 100%;
+        @media screen and (min-width: vars.$breakoint-desktop) {
+          height: -webkit-fill-available;
+        }
       }
 
     }
