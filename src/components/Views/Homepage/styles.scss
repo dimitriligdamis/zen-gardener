@@ -83,6 +83,10 @@
     position: relative;
   }
 
+  &__preview_img:hover {
+    cursor: pointer;
+  }
+
   &__tag {
     width: 20%;
   }
