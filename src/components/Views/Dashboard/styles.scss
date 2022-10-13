@@ -153,10 +153,10 @@
   }
 }
 
-// MANDATOTY SETTING
+// MANDATORY SETTING
 // // Always set calendar height
 .rbc-calendar {
-  min-height: 50rem;
+  min-height: 40rem;
 }
 
 .rbc-toolbar {
@@ -167,13 +167,23 @@
   display: none;
 }
 
+.rbc-agenda-view > .rbc-agenda-table {
+  background-color: #fff;
+  border: none;
+}
+
+.rbc-agenda-view {
+  overflow-x: hidden;
+}
+
 div.rbc-agenda-view>table>thead>tr>th:nth-child(2) {
   display: none;
 }
 
+.rbc-header+.rbc-header {
+  border: none;
+}
 
-
-// TO BE REMOVED (only used for testing purposes)
-// .Page {
-//     background: none !important;
-// }
+.rbc-agenda-content {
+  overflow-y: scroll;
+}
