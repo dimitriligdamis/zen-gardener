@@ -19,6 +19,10 @@
     border-radius: 10px;
     min-height: 300px;
     min-width: 300px;
+
+    @media screen and (min-width: vars.$breakoint-phone) {
+      min-width: 400px;
+    }
   }
 
   &__title {

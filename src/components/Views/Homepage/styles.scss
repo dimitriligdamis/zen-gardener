@@ -8,9 +8,13 @@
   padding: 1rem;
   color: vars.$white;
   letter-spacing: 0.5px;
-  max-width: 1200px;
   margin: 0 auto;
-  border-radius: 10px;
+
+  @media screen and (min-width: vars.$breakoint-desktop) {
+    max-width: 1200px;
+    margin: 1rem auto;
+    border-radius: 15px;
+  }
 
   &__logo {
     margin-left: 3rem;
@@ -102,6 +106,20 @@
 
   & .Card__infos {
     color: vars.$black;
+  }
+
+
+
+  & .Modal__content {
+    background-color: lighten($color: vars.$bg-sign, $amount: 5);
+
+
+    @media screen and (min-width: vars.$breakoint-desktop) {
+      min-width: 1000px;
+      border-radius: 15px;
+    }
+
+
   }
 
 }

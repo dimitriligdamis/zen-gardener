@@ -5,7 +5,10 @@
   min-height: vars.$dashboard-bottom;
   display: flex;
   justify-content: center;
-  padding: vars.$padding-corner;
+
+  @media screen and (min-width: vars.$breakoint-desktop) {
+    padding: vars.$padding-corner;
+  }
 
   @media screen and (max-width: vars.$breakoint-phone) {
     padding: 1rem;
@@ -45,6 +48,21 @@
 
   }
 
+  &__container {
+    background-color: darken(vars.$white, 15%);
+    width: 100%;
+    padding: 0.5em;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @media screen and (min-width: vars.$breakoint-desktop) {
+      gap: 5rem;
+      border-radius: 15px;
+    }
+  }
 
   &__title {
     background-color: vars.$bg-sign;
