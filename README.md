@@ -2,6 +2,8 @@
 
 ## Initialisation
 
+[Lien du projet](https://zen-gardener.netlify.app/)
+
 ## Conventional Commits
 
 Configuration: `git commit -m ":gear: config: 'message here' "`
