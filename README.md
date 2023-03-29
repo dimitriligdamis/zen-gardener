@@ -4,6 +4,10 @@
 
 [Lien du projet](https://zen-gardener.netlify.app/)
 
+## Preview
+
+![Preview website](./docs/Design/zen-preview.png)
+
 ## Conventional Commits
 
 Configuration: `git commit -m ":gear: config: 'message here' "`
